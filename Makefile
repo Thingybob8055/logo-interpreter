@@ -8,4 +8,4 @@ main.o: main.c
 	gcc -c src/main.c
 
 clean:
-	rm src/*o
+	rm -f src/*o
