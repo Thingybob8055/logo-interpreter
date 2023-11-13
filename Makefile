@@ -4,9 +4,11 @@
 # Tutorial: https://csee.essex.ac.uk/trac/ce320-06/wiki/MakefileTutorial
 #####################################################################
 
+.PHONY: test clean rm run run_test gen_report
+
 CXX = g++
 CXXFLAGS = -std=c++17 -O2 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
-INCLUDE = -I/usr/local/include/xcurses  -I/usr/include/X11 -I/usr/include
+INCLUDE = -I/usr/local/include/xcurses -I/usr/include/X11 -I/usr/include
 LIBS = -lXCurses -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
 OBJS = main.o pd_renderer.o
 EXEC = bin/main
@@ -18,21 +20,31 @@ TEST_LIBS = -lgtest -lgtest_main -lpthread
 TEST_INCLUDE = -I./src
 REPORTS_DIR = reports
 
+ifeq ($(OS),Windows_NT)
+    $(error Windows is not supported)
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Darwin)
+        LIBS += -L/usr/X11/lib
+        INCLUDE += -I/opt/homebrew/include
+    endif
+endif
+
 $(EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $(EXEC) $(LIBS)
-	make clean
-
-test: $(TEST_SRCS)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(TEST_INCLUDE) $(TEST_SRCS) -o $(TEST_EXEC) $(LIBS) $(TEST_LIBS)
 	make clean
 
 $(OBJS): $(SRCS_MAIN)
 	$(CXX) -c $(CXXFLAGS) $(INCLUDE) $(SRCS_MAIN)
 
+test: $(TEST_SRCS)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(TEST_INCLUDE) $(TEST_SRCS) -o $(TEST_EXEC) $(LIBS) $(TEST_LIBS)
+	make clean
+
 clean:
 	rm -f *.o
 
-make rm:
+rm:
 	rm -f $(EXEC)
 	rm -f $(TEST_EXEC)
 	rm -rf $(REPORTS_DIR)

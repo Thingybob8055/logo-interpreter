@@ -49,7 +49,7 @@ bool GetExitCommand(int command) {
 
 void RunLoop(WINDOW **window, PDRender **graphics) {
   int command;
-  while (command = wgetch(*window)) {
+  while ( (command = wgetch(*window)) ) {
     if (GetExitCommand(command)) {
       break;
     }
