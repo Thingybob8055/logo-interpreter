@@ -6,5 +6,28 @@ To compile a binary to run you will need to use make. This will run all the GCC 
 
 ```shell
 make
-./bin/main
+make run
+```
+
+## Running Test
+
+```shell
+make test
+./bin/test_main
+```
+
+## Generate xUnit report
+
+```shell
+make gen_report
+```
+
+## Clean repository
+### Remove all binaries and reports
+```shell
+make rm
+```
+### Remove object files
+```shell
+make clean
 ```

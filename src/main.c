@@ -26,11 +26,12 @@ void CreateDrawingZone(WINDOW *window, int box_y_character,
 }
 
 void CreateWindow(WINDOW **window) {
-  int y_max_screen_coordinate, x_max_screen_coordinate;
+  int y_max_screen_coordinate;
+  int x_max_screen_coordinate;
   getmaxyx(stdscr, y_max_screen_coordinate, x_max_screen_coordinate);
 
-  uint8_t y_safe_zone = y_max_screen_coordinate - 1;
-  uint8_t x_safe_zone = x_max_screen_coordinate - 2;
+  uint8_t y_safe_zone = (uint8_t)(y_max_screen_coordinate - 1);
+  uint8_t x_safe_zone = (uint8_t)(x_max_screen_coordinate - 2);
   uint8_t begin_y = 1;
   uint8_t begin_x = 1;
   uint8_t box_x_character = 0;
@@ -49,10 +50,12 @@ bool GetExitCommand(int command) {
 
 void RunLoop(WINDOW **window, PDRender **graphics) {
   int command;
-  while ( (command = wgetch(*window)) ) {
+  while ((command = wgetch(*window))) {
     if (GetExitCommand(command)) {
       break;
     }
+    Move(*graphics, command);
+    Render(*graphics);
     wrefresh(*window);
   }
 }
