@@ -4,7 +4,7 @@
 # Tutorial: https://csee.essex.ac.uk/trac/ce320-06/wiki/MakefileTutorial
 #####################################################################
 
-.PHONY: test clean coverage_clean rm run run_test gen_report
+.PHONY: test format clean coverage_clean rm run run_test gen_report
 
 CXX = g++
 CXXFLAGS = -std=c++17 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
@@ -41,6 +41,9 @@ $(OBJS): $(SRCS_MAIN)
 test: $(TEST_SRCS)
 	$(CXX) $(TEST_CXXFLAGS) $(INCLUDE) $(TEST_INCLUDE) $(TEST_SRCS) -o $(TEST_EXEC) $(LIBS) $(TEST_LIBS)
 	make clean
+
+format:
+	find . -type f \( -name "*.h" -o -name "*.cc" -o -name "*.c" \) | xargs clang-format -i
 
 clean:
 	rm -f *.o

@@ -103,27 +103,27 @@ void MoveRight(struct PDRendererStruct *obj) {
 
 void Move(struct PDRendererStruct *obj, int command) {
   switch (command) {
-    case KEY_UP:
-      MoveUp(obj);
-      break;
-    case KEY_DOWN:
-      MoveDown(obj);
-      break;
-    case KEY_LEFT:
-      MoveLeft(obj);
-      break;
-    case KEY_RIGHT:
-      MoveRight(obj);
-      break;
-    case KEY_SPACE:
-      if (obj->pen_position == PEN_DOWN) {
-        obj->pen_position = PEN_UP;
-      } else {
-        obj->pen_position = PEN_DOWN;
-      }
-      break;
-    default:
-      break;
+  case KEY_UP:
+    MoveUp(obj);
+    break;
+  case KEY_DOWN:
+    MoveDown(obj);
+    break;
+  case KEY_LEFT:
+    MoveLeft(obj);
+    break;
+  case KEY_RIGHT:
+    MoveRight(obj);
+    break;
+  case KEY_SPACE:
+    if (obj->pen_position == PEN_DOWN) {
+      obj->pen_position = PEN_UP;
+    } else {
+      obj->pen_position = PEN_DOWN;
+    }
+    break;
+  default:
+    break;
   }
 }
 
