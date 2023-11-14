@@ -4,7 +4,7 @@
 # Tutorial: https://csee.essex.ac.uk/trac/ce320-06/wiki/MakefileTutorial
 #####################################################################
 
-.PHONY: test clean rm run run_test gen_report
+.PHONY: test clean coverage_clean rm run run_test gen_report
 
 CXX = g++
 CXXFLAGS = -std=c++17 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
@@ -49,6 +49,7 @@ rm:
 	rm -f $(EXEC)
 	rm -f $(TEST_EXEC)
 	rm -rf $(REPORTS_DIR)
+	make coverage_clean
 
 run:
 	xrdb -merge src/xresource && ./$(EXEC)
@@ -56,7 +57,10 @@ run:
 run_test:
 	xrdb -merge src/xresource && ./$(TEST_EXEC)
 
+coverage_clean:
+	rm -rf *.gcda; rm -rf *.gcno; rm -rf *.gcov
+
 gen_report: test
 	./$(TEST_EXEC) --gtest_output="xml:$(REPORTS_DIR)/gtest-report.xml"
 	gcovr --filter src/ --html-details $(REPORTS_DIR)/coverage.html
-	rm -rf *.gcda; rm -rf *.gcno; rm -rf *.gcov
+	make coverage_clean

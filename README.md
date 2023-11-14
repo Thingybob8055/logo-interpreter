@@ -16,18 +16,22 @@ make test
 ./bin/test_main
 ```
 
-## Generate xUnit report
+## Run tests & generate xUnit and code coverage reports
 
 ```shell
 make gen_report
 ```
 
 ## Clean repository
+
 ### Remove all binaries and reports
+
 ```shell
 make rm
 ```
+
 ### Remove object files
+
 ```shell
 make clean
 ```
