@@ -4,9 +4,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void SetTrailingCharacter(struct PDRendererStruct *obj) {
+const char *TrailingCharacter(struct PDRendererStruct *obj,
+                              int current_command) {
+  if (current_command == KEY_DOWN) {
+    if (obj->last_command == KEY_RIGHT) {
+      return "┐";
+    } else if (obj->last_command == KEY_LEFT) {
+      return "┌";
+    } else {
+      return "│";
+    }
+  }
+
+  if (current_command == KEY_UP) {
+    if (obj->last_command == KEY_RIGHT) {
+      return "┘";
+    } else if (obj->last_command == KEY_LEFT) {
+      return "└";
+    } else {
+      return "│";
+    }
+  }
+
+  if (current_command == KEY_LEFT) {
+    if (obj->last_command == KEY_UP) {
+      return "┐";
+    } else if (obj->last_command == KEY_DOWN) {
+      return "┘";
+    } else {
+      return "─";
+    }
+  }
+
+  if (current_command == KEY_RIGHT) {
+    if (obj->last_command == KEY_UP) {
+      return "┌";
+    } else if (obj->last_command == KEY_DOWN) {
+      return "└";
+    } else {
+      return "─";
+    }
+  }
+  return " ";
+}
+
+void SetTrailingCharacter(struct PDRendererStruct *obj, int current_command) {
   if (obj->pen_position == PEN_DOWN) {
-    obj->trailing_character = (char *)"─";
+    obj->trailing_character = (char *)TrailingCharacter(obj, current_command);
   } else {
     obj->trailing_character = (char *)" ";
   }
@@ -25,9 +69,33 @@ void BoundaryCheck(struct PDRendererStruct *obj) {
   }
 }
 
+void MoveUp(struct PDRendererStruct *obj) {
+  obj->leading_character = (char *)"▲";
+  SetTrailingCharacter(obj, KEY_UP);
+  obj->last_command = KEY_UP;
+  obj->y_location--;
+  BoundaryCheck(obj);
+}
+
+void MoveDown(struct PDRendererStruct *obj) {
+  obj->leading_character = (char *)"▼";
+  SetTrailingCharacter(obj, KEY_DOWN);
+  obj->last_command = KEY_DOWN;
+  obj->y_location++;
+  BoundaryCheck(obj);
+}
+
+void MoveLeft(struct PDRendererStruct *obj) {
+  obj->leading_character = (char *)"◀";
+  SetTrailingCharacter(obj, KEY_LEFT);
+  obj->last_command = KEY_LEFT;
+  obj->x_location--;
+  BoundaryCheck(obj);
+}
+
 void MoveRight(struct PDRendererStruct *obj) {
   obj->leading_character = (char *)"▶";
-  SetTrailingCharacter(obj);
+  SetTrailingCharacter(obj, KEY_RIGHT);
   obj->last_command = KEY_RIGHT;
   obj->x_location++;
   BoundaryCheck(obj);
@@ -36,13 +104,13 @@ void MoveRight(struct PDRendererStruct *obj) {
 void Move(struct PDRendererStruct *obj, int command) {
   switch (command) {
     case KEY_UP:
-      // TODO:
+      MoveUp(obj);
       break;
     case KEY_DOWN:
-      // TODO:
+      MoveDown(obj);
       break;
     case KEY_LEFT:
-      // TODO:
+      MoveLeft(obj);
       break;
     case KEY_RIGHT:
       MoveRight(obj);
@@ -61,7 +129,16 @@ void Move(struct PDRendererStruct *obj, int command) {
 
 int Render(struct PDRendererStruct *obj) {
   int return_value = OK;
-  if (obj->last_command == KEY_RIGHT) {
+  if (obj->last_command == KEY_UP) {
+    return_value |= mvwaddstr(obj->current_window, obj->y_location + 1,
+                              obj->x_location, obj->trailing_character);
+  } else if (obj->last_command == KEY_LEFT) {
+    return_value |= mvwaddstr(obj->current_window, obj->y_location,
+                              obj->x_location + 1, obj->trailing_character);
+  } else if (obj->last_command == KEY_DOWN) {
+    return_value |= mvwaddstr(obj->current_window, obj->y_location - 1,
+                              obj->x_location, obj->trailing_character);
+  } else if (obj->last_command == KEY_RIGHT) {
     return_value |= mvwaddstr(obj->current_window, obj->y_location,
                               obj->x_location - 1, obj->trailing_character);
   }
@@ -71,9 +148,10 @@ int Render(struct PDRendererStruct *obj) {
   return return_value;
 }
 
-void DestroyPDRenderStruct(struct PDRendererStruct *obj) {
-  if (obj != NULL) {
-    free(obj);
+void DestroyPDRenderStruct(struct PDRendererStruct **obj) {
+  if (*obj != NULL) {
+    free(*obj);
+    *obj = NULL;
   }
 }
 

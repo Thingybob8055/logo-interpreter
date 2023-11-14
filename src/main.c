@@ -62,7 +62,7 @@ void RunLoop(WINDOW **window, PDRender **graphics) {
 
 void FreeMemory(PDRender **graphics) {
   endwin();
-  DestroyPDRenderStruct(*graphics);
+  DestroyPDRenderStruct(graphics);
 }
 
 int main(int argc, char **argv) {
