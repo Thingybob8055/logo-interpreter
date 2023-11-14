@@ -58,5 +58,5 @@ run_test:
 
 gen_report: test
 	./$(TEST_EXEC) --gtest_output="xml:$(REPORTS_DIR)/gtest-report.xml"
-	gcovr --html-details $(REPORTS_DIR)/coverage.html
+	gcovr --filter src/ --html-details $(REPORTS_DIR)/coverage.html
 	rm -rf *.gcda; rm -rf *.gcno; rm -rf *.gcov
