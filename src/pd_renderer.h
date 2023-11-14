@@ -3,6 +3,10 @@
 
 #include <curses.h>
 
+#define KEY_SPACE 32
+
+typedef enum PenPosition { PEN_UP, PEN_DOWN } PenPosition;
+
 typedef struct PDRendererStruct PDRender;
 
 int Render(struct PDRendererStruct *obj);
@@ -22,6 +26,7 @@ struct PDRendererStruct {
   int y_safe_zone;
   char *leading_character;
   char *trailing_character;
+  PenPosition pen_position;
   WINDOW *current_window;
   int last_command;
 };

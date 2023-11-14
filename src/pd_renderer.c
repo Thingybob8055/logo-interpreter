@@ -5,7 +5,11 @@
 #include <stdlib.h>
 
 void SetTrailingCharacter(struct PDRendererStruct *obj) {
-  obj->trailing_character = (char *)"─";
+  if (obj->pen_position == PEN_DOWN) {
+    obj->trailing_character = (char *)"─";
+  } else {
+    obj->trailing_character = (char *)" ";
+  }
 }
 
 void BoundaryCheck(struct PDRendererStruct *obj) {
@@ -42,6 +46,13 @@ void Move(struct PDRendererStruct *obj, int command) {
       break;
     case KEY_RIGHT:
       MoveRight(obj);
+      break;
+    case KEY_SPACE:
+      if (obj->pen_position == PEN_DOWN) {
+        obj->pen_position = PEN_UP;
+      } else {
+        obj->pen_position = PEN_DOWN;
+      }
       break;
     default:
       break;
@@ -86,6 +97,7 @@ struct PDRendererStruct *CreateRenderer(WINDOW *window, int start_y_coordinate,
     obj->leading_character = leading_character;
     obj->trailing_character = (char *)"";
     obj->last_command = KEY_RIGHT;
+    obj->pen_position = PEN_DOWN;
   }
 
   return obj;
