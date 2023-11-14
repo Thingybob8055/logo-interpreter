@@ -7,7 +7,7 @@
 .PHONY: test clean rm run run_test gen_report
 
 CXX = g++
-CXXFLAGS = -std=c++17 -O2 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
+CXXFLAGS = -std=c++17 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
 INCLUDE = -I/usr/local/include/xcurses -I/usr/include/X11 -I/usr/include
 LIBS = /usr/local/lib/libXCurses.a -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
 OBJS = main.o pd_renderer.o
@@ -15,8 +15,9 @@ EXEC = bin/main
 TEST_EXEC = bin/test_main
 SRCS_MAIN = src/main.c $(SRCS)
 SRCS = src/pd_renderer.c
-TEST_SRCS = test/pd_renderer.cc test/test_all.cc $(SRCS)
-TEST_LIBS = -lgtest -lgtest_main -lpthread
+TEST_SRCS = test/pd_renderer_test.cc test/test_all.cc $(SRCS)
+TEST_CXXFLAGS = -fprofile-arcs -ftest-coverage $(CXXFLAGS)
+TEST_LIBS = -lgtest -lgtest_main -lpthread -fprofile-arcs -ftest-coverage
 TEST_INCLUDE = -I./src
 REPORTS_DIR = reports
 
@@ -38,7 +39,7 @@ $(OBJS): $(SRCS_MAIN)
 	$(CXX) -c $(CXXFLAGS) $(INCLUDE) $(SRCS_MAIN)
 
 test: $(TEST_SRCS)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) $(TEST_INCLUDE) $(TEST_SRCS) -o $(TEST_EXEC) $(LIBS) $(TEST_LIBS)
+	$(CXX) $(TEST_CXXFLAGS) $(INCLUDE) $(TEST_INCLUDE) $(TEST_SRCS) -o $(TEST_EXEC) $(LIBS) $(TEST_LIBS)
 	make clean
 
 clean:
@@ -57,3 +58,5 @@ run_test:
 
 gen_report: test
 	./$(TEST_EXEC) --gtest_output="xml:$(REPORTS_DIR)/gtest-report.xml"
+	gcovr --html-details $(REPORTS_DIR)/coverage.html
+	rm -rf *.gcda; rm -rf *.gcno; rm -rf *.gcov
