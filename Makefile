@@ -9,7 +9,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -O2 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
 INCLUDE = -I/usr/local/include/xcurses -I/usr/include/X11 -I/usr/include
-LIBS = -lXCurses -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
+LIBS = /usr/local/lib/libXCurses.a -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
 OBJS = main.o pd_renderer.o
 EXEC = bin/main
 TEST_EXEC = bin/test_main
@@ -25,7 +25,7 @@ ifeq ($(OS),Windows_NT)
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Darwin)
-        LIBS += -L/usr/X11/lib
+        LIBS += -L/usr/X11/lib -L/opt/homebrew/lib
         INCLUDE += -I/opt/homebrew/include
     endif
 endif
