@@ -31,7 +31,6 @@ void FreeMemory(PDWindow *window, PDRenderer *graphics) {
 }
 
 int main(int argc, char **argv) {
-
   FileImporter fileImporter = FileImporter("test.txt");
   std::cout << fileImporter.GetContents() << std::endl;
 
@@ -39,9 +38,9 @@ int main(int argc, char **argv) {
 
   uint8_t start_y_coordinate = 1;
   uint8_t start_x_coordinate = 1;
+
   auto *graphics =
-      new PDRenderer(window, start_y_coordinate, start_x_coordinate,
-                     (char *)"▶", KEY_RIGHT, PEN_DOWN);
+      new PDRenderer(window, start_y_coordinate, start_x_coordinate);
   RunLoop(window, graphics);
 
   FreeMemory(window, graphics);
