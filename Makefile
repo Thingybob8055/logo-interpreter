@@ -10,12 +10,12 @@ CXX = g++
 CXXFLAGS = -std=c++17 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8
 INCLUDE = -I./src -I/usr/local/include/xcurses -I/usr/include/X11 -I/usr/include
 LIBS = /usr/local/lib/libXCurses.a -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
-OBJS = main.o pd_renderer.o pd_window.o
+OBJS = main.o file_importer.o pd_renderer.o pd_window.o
 EXEC = bin/main
 TEST_EXEC = bin/test_main
 SRCS_MAIN = src/main.cc $(SRCS)
-SRCS = src/renderer/pd_renderer.cc src/window/pd_window.cc
-TEST_SRCS = test/pd_renderer_test.cc test/test_all.cc $(SRCS)
+SRCS = src/importer/file_importer.cc src/renderer/pd_renderer.cc src/window/pd_window.cc
+TEST_SRCS = test/file_importer_test.cc test/pd_renderer_test.cc test/test_all.cc $(SRCS)
 TEST_CXXFLAGS = -fprofile-arcs -ftest-coverage $(CXXFLAGS)
 TEST_LIBS = -lgtest -lgtest_main -lpthread -fprofile-arcs -ftest-coverage
 TEST_INCLUDE = -I./src
