@@ -16,11 +16,11 @@ private:
     int command;
     int magnitude;
 public:
-    std::map<std::string, int> commandMap;
     Parser(std::string fileContents);
-    void next();
-    int getCommand();
-    int getMagnitude();
+    
+    void Next();
+    int GetCommand();
+    int GetMagnitude();
 };
 
 

@@ -1,4 +1,4 @@
-#include <parser/logo_parser.h>
+#include "parser/logo_parser.h"
 
 //commands = fd, bk, lt, rt, cs, pu, pd, ht, st
 
@@ -6,7 +6,7 @@ Parser::Parser (std::string fileContents) {
     this->data = std::stringstream(fileContents);
 }
 
-void Parser::next() {
+void Parser::Next() {
     getline(data,buf);
     std::string commandStr;
     std::string magnitudeStr;
@@ -24,45 +24,17 @@ void Parser::next() {
     commandMap["bk"] = KEY_DOWN;
     commandMap["lt"] = KEY_LEFT;
     commandMap["rt"] = KEY_RIGHT;
-    // to be written
+    // not yet implemented in renderer
     // commandMap["cs"];
-    // commandMap["pu"];
-    // commandMap["pd"];
     // commandMap["ht"];
     // commandMap["st"];
-    //
-
+    // only implemented as toggle instead of seperate commands
+    // commandMap["pu"];
+    // commandMap["pd"];
+    
     command = commandMap[commandStr];
-
-//     if (!commandStr.compare("fd")) {
-//         command = KEY_UP;
-//     }
-//     else if (!commandStr.compare("bk")) {
-//         command = KEY_DOWN;
-//     }
-//     else if (!commandStr.compare("lt")) {
-//         command = KEY_LEFT;
-//     }
-//     else if (!commandStr.compare("rt")) {
-//         command = KEY_RIGHT;
-//     }
-//     else if (!commandStr.compare("cs")) {
-//         //command = clearscreen (to be written)
-//     }
-//     else if (!commandStr.compare("pu")) {
-//         //command = KEY_SPACE;
-//     }
-//     else if (!commandStr.compare("pd")) {
-//         //command = KEY_SPACE;
-//     }
-//     else if (!commandStr.compare("ht")) {
-//         //to be written
-//     }
-//     else {
-//         std::cout << "Invalid command: " + commandStr << std::endl;
-//     }
 
 }
 
-int Parser::getCommand() { return command; }
-int Parser::getMagnitude() { return magnitude; }
+int Parser::GetCommand() { return command; }
+int Parser::GetMagnitude() { return magnitude; }
