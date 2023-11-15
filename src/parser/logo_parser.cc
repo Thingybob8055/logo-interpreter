@@ -30,6 +30,7 @@ void Parser::next() {
     // commandMap["pd"];
     // commandMap["ht"];
     // commandMap["st"];
+    //
 
     command = commandMap[commandStr];
 
