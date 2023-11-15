@@ -23,11 +23,14 @@ REPORTS_DIR = reports
 
 ifeq ($(OS),Windows_NT)
     $(error Windows is not supported)
+else ifeq ($(shell uname -s),Linux)
+	COVERAGE_DIR = bin
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Darwin)
         LIBS += -L/usr/X11/lib -L/opt/homebrew/lib
         INCLUDE += -I/opt/homebrew/include
+		COVERAGE_DIR = .
     endif
 endif
 
@@ -61,7 +64,7 @@ run_test:
 	xrdb -merge src/xresource && ./$(TEST_EXEC)
 
 coverage_clean:
-	rm -rf *.gcda; rm -rf *.gcno; rm -rf *.gcov
+	rm -rf $(COVERAGE_DIR)/*.gcda; rm -rf $(COVERAGE_DIR)/*.gcno; rm -rf $(COVERAGE_DIR)/*.gcov
 
 gen_report: coverage_clean test
 	./$(TEST_EXEC) --gtest_output="xml:$(REPORTS_DIR)/gtest-report.xml"
