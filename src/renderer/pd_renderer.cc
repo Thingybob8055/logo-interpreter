@@ -4,19 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-PDRenderer::PDRenderer(PDWindow *window, int start_y_coordinate,
-                       int start_x_coordinate) {
-  int y_max_screen_coordinate;
-  int x_max_screen_coordinate;
+PDRenderer::PDRenderer(PDWindow *window, Movement *movement) {
   this->current_window = window;
-
-  getmaxyx(this->current_window->GetWindow(), y_max_screen_coordinate,
-           x_max_screen_coordinate);
-  this->x_safe_zone = x_max_screen_coordinate - 2;
-  this->y_safe_zone = y_max_screen_coordinate - 2;
   keypad(this->current_window->GetWindow(), true);
-  this->movement = new Movement(start_x_coordinate, start_y_coordinate,
-                                this->x_safe_zone, this->y_safe_zone);
+  this->movement = movement;
 }
 
 void PDRenderer::Move(int command) {
@@ -48,26 +39,26 @@ void PDRenderer::Move(int command) {
 int PDRenderer::Render() {
   int return_value = OK;
   WINDOW *window = this->current_window->GetWindow();
-  if (this->movement->GetLastCommand() == KEY_UP) {
-    return_value |= mvwaddstr(window, movement->GetYLocation() + 1,
-                              movement->GetXLocation(),
-                              this->movement->GetTrailingCharacter());
-  } else if (this->movement->GetLastCommand() == KEY_LEFT) {
-    return_value |= mvwaddstr(window, movement->GetYLocation(),
-                              movement->GetXLocation() + 1,
-                              this->movement->GetTrailingCharacter());
-  } else if (this->movement->GetLastCommand() == KEY_DOWN) {
-    return_value |= mvwaddstr(window, movement->GetYLocation() - 1,
-                              movement->GetXLocation(),
-                              this->movement->GetTrailingCharacter());
-  } else if (this->movement->GetLastCommand() == KEY_RIGHT) {
-    return_value |= mvwaddstr(window, movement->GetYLocation(),
-                              movement->GetXLocation() - 1,
-                              this->movement->GetTrailingCharacter());
+  if (this->movement->GetLastCommandFromAssembler() == KEY_UP) {
+    return_value |= mvwaddstr(
+        window, movement->GetYLocation() + 1, movement->GetXLocation(),
+        this->movement->GetTrailingCharacterFromAssembler());
+  } else if (this->movement->GetLastCommandFromAssembler() == KEY_LEFT) {
+    return_value |= mvwaddstr(
+        window, movement->GetYLocation(), movement->GetXLocation() + 1,
+        this->movement->GetTrailingCharacterFromAssembler());
+  } else if (this->movement->GetLastCommandFromAssembler() == KEY_DOWN) {
+    return_value |= mvwaddstr(
+        window, movement->GetYLocation() - 1, movement->GetXLocation(),
+        this->movement->GetTrailingCharacterFromAssembler());
+  } else if (this->movement->GetLastCommandFromAssembler() == KEY_RIGHT) {
+    return_value |= mvwaddstr(
+        window, movement->GetYLocation(), movement->GetXLocation() - 1,
+        this->movement->GetTrailingCharacterFromAssembler());
   }
   return_value |=
       mvwaddstr(window, movement->GetYLocation(), movement->GetXLocation(),
-                this->movement->GetLeadingCharacter());
+                this->movement->GetLeadingCharacterFromAssembler());
   return_value |= wrefresh(window);
   return return_value;
 }

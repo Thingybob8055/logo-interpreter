@@ -4,18 +4,14 @@
 
 #include <cstdint>
 
-Movement::Movement() {}
-
-Movement::Movement(int x_location, int y_location, int x_safe_zone,
-                   int y_safe_zone) {
+Movement::Movement(int y_location, int x_location, int y_safe_zone,
+                   int x_safe_zone, CharacterAssembler *assembler) {
   this->x_location = x_location;
   this->y_location = y_location;
   this->x_safe_zone = x_safe_zone;
   this->y_safe_zone = y_safe_zone;
-  this->last_command = KEY_RIGHT;
   this->pen_position = PEN_DOWN;
-  this->leading_character = (char *)"▶";
-  this->trailing_character = (char *)"";
+  this->assembler = assembler;
 }
 
 void Movement::BoundaryCheck() {
@@ -32,84 +28,33 @@ void Movement::BoundaryCheck() {
 }
 
 void Movement::MoveUp() {
-  leading_character = (char *)"▲";
-  SetTrailingCharacter(KEY_UP);
-  last_command = KEY_UP;
+  assembler->SetLeadingCharacter((char *)"▲");
+  assembler->SetTrailingCharacter(KEY_UP, pen_position);
+  assembler->SetLastCommand(KEY_UP);
   y_location--;
   BoundaryCheck();
 }
 
 void Movement::MoveDown() {
-  leading_character = (char *)"▼";
-  SetTrailingCharacter(KEY_DOWN);
-  last_command = KEY_DOWN;
+  assembler->SetLeadingCharacter((char *)"▼");
+  assembler->SetTrailingCharacter(KEY_DOWN, pen_position);
+  assembler->SetLastCommand(KEY_DOWN);
   y_location++;
   BoundaryCheck();
 }
 
 void Movement::MoveLeft() {
-  leading_character = (char *)"◀";
-  SetTrailingCharacter(KEY_LEFT);
-  last_command = KEY_LEFT;
+  assembler->SetLeadingCharacter((char *)"◀");
+  assembler->SetTrailingCharacter(KEY_LEFT, pen_position);
+  assembler->SetLastCommand(KEY_LEFT);
   x_location--;
   BoundaryCheck();
 }
 
 void Movement::MoveRight() {
-  leading_character = (char *)"▶";
-  SetTrailingCharacter(KEY_RIGHT);
-  last_command = KEY_RIGHT;
+  assembler->SetLeadingCharacter((char *)"▶");
+  assembler->SetTrailingCharacter(KEY_RIGHT, pen_position);
+  assembler->SetLastCommand(KEY_RIGHT);
   x_location++;
   BoundaryCheck();
-}
-
-const char *Movement::TrailingCharacter(int current_command) {
-  if (current_command == KEY_DOWN) {
-    if (this->last_command == KEY_RIGHT) {
-      return "┐";
-    } else if (this->last_command == KEY_LEFT) {
-      return "┌";
-    } else {
-      return "│";
-    }
-  }
-
-  if (current_command == KEY_UP) {
-    if (this->last_command == KEY_RIGHT) {
-      return "┘";
-    } else if (this->last_command == KEY_LEFT) {
-      return "└";
-    } else {
-      return "│";
-    }
-  }
-
-  if (current_command == KEY_LEFT) {
-    if (this->last_command == KEY_UP) {
-      return "┐";
-    } else if (this->last_command == KEY_DOWN) {
-      return "┘";
-    } else {
-      return "─";
-    }
-  }
-
-  if (current_command == KEY_RIGHT) {
-    if (this->last_command == KEY_UP) {
-      return "┌";
-    } else if (this->last_command == KEY_DOWN) {
-      return "└";
-    } else {
-      return "─";
-    }
-  }
-  return " ";
-}
-
-void Movement::SetTrailingCharacter(int current_command) {
-  if (this->pen_position == PEN_DOWN) {
-    this->trailing_character = (char *)TrailingCharacter(current_command);
-  } else {
-    this->trailing_character = (char *)" ";
-  }
 }

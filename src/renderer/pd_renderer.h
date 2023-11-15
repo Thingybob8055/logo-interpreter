@@ -7,32 +7,25 @@
 
 class PDRenderer {
  private:
-  int x_safe_zone;
-  int y_safe_zone;
   PDWindow *current_window;
 
   // create instance of Movement
   Movement *movement;
 
  public:
-  PDRenderer(PDWindow *window, int start_y_coordinate, int start_x_coordinate);
+  PDRenderer(PDWindow *window, Movement *movement);
 
   void Move(int command);
   int Render();
 
   int GetXLocationFromMovement() { return movement->GetXLocation(); }
   int GetYLocationFromMovement() { return movement->GetYLocation(); }
-  int GetXSafeZone() { return x_safe_zone; }
-  int GetYSafeZone() { return y_safe_zone; }
   PenPosition GetPenPositionFromMovement() {
     return movement->GetPenPosition();
   }
-  char *GetLeadingCharacterFromMovement() {
-    return movement->GetLeadingCharacter();
-  }
-  char *GetTrailingCharacterFromMovement() {
-    return movement->GetTrailingCharacter();
-  }
+
+  PDWindow *GetWindow() { return current_window; }
+  Movement *GetMovement() { return movement; }
 };
 
 #endif /* PD_RENDERER_H_ */

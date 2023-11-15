@@ -1,16 +1,17 @@
 #ifndef PD_WINDOW_H_
 #define PD_WINDOW_H_
 
-#include <cstdint>
 #include <curses.h>
 
+#include <cstdint>
+
 class PDWindow {
-private:
+ private:
   WINDOW *window;
   int y_max_screen_coordinate;
   int x_max_screen_coordinate;
 
-public:
+ public:
   PDWindow(int argc, char **argv);
   ~PDWindow();
 

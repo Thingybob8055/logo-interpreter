@@ -3,25 +3,26 @@
 
 #define KEY_SPACE 32
 
-#include <iostream>
-#include <sstream>
-#include <string.h>
 #include <curses.h>
+#include <string.h>
+
+#include <iostream>
 #include <map>
+#include <sstream>
 
 class Parser {
-private:
-    std::stringstream data;
-    std::string buf;
-    int command;
-    int magnitude;
-public:
-    Parser(std::string fileContents);
-    
-    void Next();
-    int GetCommand();
-    int GetMagnitude();
-};
+ private:
+  std::stringstream data;
+  std::string buf;
+  int command;
+  int magnitude;
 
+ public:
+  Parser(std::string fileContents);
+
+  void Next();
+  int GetCommand();
+  int GetMagnitude();
+};
 
 #endif

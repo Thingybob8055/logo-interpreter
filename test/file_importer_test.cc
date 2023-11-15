@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 class FileImporterTestFixture : public ::testing::Test {
-protected:
+ protected:
   std::string fileName;
   std::ofstream fp;
 
@@ -13,10 +13,10 @@ protected:
 
     fp = std::ofstream(fileName);
   }
-  virtual void TearDown() override { 
+  virtual void TearDown() override {
     std::remove(fileName.c_str());
     fp.close();
-    }
+  }
 };
 
 TEST_F(FileImporterTestFixture,

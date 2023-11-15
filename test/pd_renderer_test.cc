@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "box/pd_box.h"
 #include "movement/movement.h"
 
 char *ReadStringFromWindow(WINDOW *win, int y, int x) {
@@ -17,19 +18,27 @@ TEST(PDRendererTest, when_constructed_expect_renderer_to_be_created) {
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 1;
   int x_start_location = 1;
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
 
   // Act
-  auto renderer = PDRenderer(win, y_start_location, x_start_location);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Assert
-  ASSERT_EQ(x_start_location, renderer.GetXLocationFromMovement());
-  ASSERT_EQ(y_start_location, renderer.GetYLocationFromMovement());
-  ASSERT_EQ(win->GetYMaxScreenCoordinate() - 3, renderer.GetYSafeZone());
-  ASSERT_EQ(win->GetXMaxScreenCoordinate() - 4, renderer.GetXSafeZone());
+
+  ASSERT_EQ(win, renderer.GetWindow());
+  ASSERT_EQ(movement, renderer.GetMovement());
+
   // Cleanup
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(PDRendererTest,
@@ -37,9 +46,15 @@ TEST(PDRendererTest,
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 2;
   int x_start_location = 2;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_RIGHT);
@@ -50,6 +65,8 @@ TEST(PDRendererTest,
 
   // Cleanup
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(PDRendererTest,
@@ -57,9 +74,15 @@ TEST(PDRendererTest,
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 2;
   int x_start_location = 2;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_LEFT);
@@ -70,6 +93,8 @@ TEST(PDRendererTest,
 
   // Cleanup
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(PDRendererTest,
@@ -77,9 +102,15 @@ TEST(PDRendererTest,
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 2;
   int x_start_location = 2;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_UP);
@@ -90,6 +121,8 @@ TEST(PDRendererTest,
 
   // Cleanup
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(PDRendererTest,
@@ -97,10 +130,15 @@ TEST(PDRendererTest,
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 2;
   int x_start_location = 2;
-  char *leading_string = (char *)"c";
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_DOWN);
@@ -111,6 +149,8 @@ TEST(PDRendererTest,
 
   // Cleanup
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(PDRendererTest,
@@ -118,9 +158,15 @@ TEST(PDRendererTest,
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 2;
   int x_start_location = 2;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_SPACE);
@@ -136,6 +182,8 @@ TEST(PDRendererTest,
 
   // Cleanup
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(PDRendererTest,
@@ -143,9 +191,15 @@ TEST(PDRendererTest,
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 1;
   int x_start_location = 1;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   int return_value = renderer.Render();
@@ -153,11 +207,13 @@ TEST(PDRendererTest,
   // Assert
   char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
                                            x_start_location);
-  ASSERT_STREQ(read_string, renderer.GetLeadingCharacterFromMovement());
+  ASSERT_STREQ(read_string, assembler->GetLeadingCharacter());
   ASSERT_EQ(OK, return_value);
 
   // free(read_string);
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(
@@ -166,9 +222,15 @@ TEST(
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 1;
   int x_start_location = 1;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_RIGHT);
@@ -177,11 +239,13 @@ TEST(
   // Assert
   char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
                                            x_start_location);
-  ASSERT_STREQ(read_string, renderer.GetTrailingCharacterFromMovement());
+  ASSERT_STREQ(read_string, assembler->GetTrailingCharacter());
   ASSERT_EQ(OK, return_value);
 
   // free(read_string);
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(
@@ -190,9 +254,15 @@ TEST(
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_LEFT);
@@ -201,11 +271,13 @@ TEST(
   // Assert
   char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
                                            x_start_location);
-  ASSERT_STREQ(read_string, renderer.GetTrailingCharacterFromMovement());
+  ASSERT_STREQ(read_string, assembler->GetTrailingCharacter());
   ASSERT_EQ(OK, return_value);
 
   // free(read_string);
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(
@@ -214,9 +286,15 @@ TEST(
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_UP);
@@ -225,11 +303,13 @@ TEST(
   // Assert
   char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
                                            x_start_location);
-  ASSERT_STREQ(read_string, renderer.GetTrailingCharacterFromMovement());
+  ASSERT_STREQ(read_string, assembler->GetTrailingCharacter());
   ASSERT_EQ(OK, return_value);
 
   // free(read_string);
   delete win;
+  delete movement;
+  delete box;
 }
 
 TEST(
@@ -238,9 +318,15 @@ TEST(
   // Arrange
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
-  PDRenderer renderer = PDRenderer(win, y_start_location, x_start_location);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
 
   // Act
   renderer.Move(KEY_DOWN);
@@ -249,9 +335,11 @@ TEST(
   // Assert
   char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
                                            x_start_location);
-  ASSERT_STREQ(read_string, renderer.GetTrailingCharacterFromMovement());
+  ASSERT_STREQ(read_string, assembler->GetTrailingCharacter());
   ASSERT_EQ(OK, return_value);
 
   // free(read_string);
   delete win;
+  delete movement;
+  delete box;
 }

@@ -6,11 +6,11 @@
 #include <sstream>
 
 class FileImporter {
-private:
+ private:
   std::ifstream *file;
   std::string contents;
 
-public:
+ public:
   FileImporter(std::string fileName);
   ~FileImporter();
 

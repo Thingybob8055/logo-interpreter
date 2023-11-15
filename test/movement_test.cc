@@ -11,9 +11,11 @@ TEST(MovementTest, when_constructor_called_expect_movement_to_be_created) {
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
+  CharacterAssembler *assembler = new CharacterAssembler();
+
   // Act
-  auto movement =
-      Movement(x_start_location, y_start_location, x_safe_zone, y_safe_zone);
+  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+                           y_safe_zone, assembler);
 
   // Assert
   ASSERT_EQ(x_start_location, movement.GetXLocation());
@@ -21,20 +23,19 @@ TEST(MovementTest, when_constructor_called_expect_movement_to_be_created) {
   ASSERT_EQ(x_safe_zone, movement.GetXSafeZone());
   ASSERT_EQ(y_safe_zone, movement.GetYSafeZone());
   ASSERT_EQ(PEN_DOWN, movement.GetPenPosition());
-  ASSERT_EQ(KEY_RIGHT, movement.GetLastCommand());
-  ASSERT_STREQ("▶", movement.GetLeadingCharacter());
-  ASSERT_STREQ("", movement.GetTrailingCharacter());
 }
 
-TEST(MovementTest,
-     when_move_up_called_expect_y_location_to_decrement_by_one) {
+TEST(MovementTest, when_move_up_called_expect_y_location_to_decrement_by_one) {
   // Arrange
   int x_start_location = 2;
   int y_start_location = 2;
   int x_safe_zone = 10;
   int y_safe_zone = 10;
-  auto movement =
-      Movement(x_start_location, y_start_location, x_safe_zone, y_safe_zone);
+  CharacterAssembler *assembler = new CharacterAssembler();
+
+  // Act
+  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+                           y_safe_zone, assembler);
 
   // Act
   movement.MoveUp();
@@ -51,8 +52,11 @@ TEST(MovementTest,
   int y_start_location = 2;
   int x_safe_zone = 10;
   int y_safe_zone = 10;
-  auto movement =
-      Movement(x_start_location, y_start_location, x_safe_zone, y_safe_zone);
+  CharacterAssembler *assembler = new CharacterAssembler();
+
+  // Act
+  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+                           y_safe_zone, assembler);
 
   // Act
   movement.MoveDown();
@@ -69,8 +73,11 @@ TEST(MovementTest,
   int y_start_location = 2;
   int x_safe_zone = 10;
   int y_safe_zone = 10;
-  auto movement =
-      Movement(x_start_location, y_start_location, x_safe_zone, y_safe_zone);
+  CharacterAssembler *assembler = new CharacterAssembler();
+
+  // Act
+  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+                           y_safe_zone, assembler);
 
   // Act
   movement.MoveLeft();
@@ -87,8 +94,11 @@ TEST(MovementTest,
   int y_start_location = 2;
   int x_safe_zone = 10;
   int y_safe_zone = 10;
-  auto movement =
-      Movement(x_start_location, y_start_location, x_safe_zone, y_safe_zone);
+  CharacterAssembler *assembler = new CharacterAssembler();
+
+  // Act
+  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+                           y_safe_zone, assembler);
 
   // Act
   movement.MoveRight();

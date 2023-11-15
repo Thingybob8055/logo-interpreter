@@ -1,6 +1,9 @@
 #include <cstdint>
 
+#include "box/pd_box.h"
+#include "character_assembler/character_assembler.h"
 #include "importer/file_importer.h"
+#include "movement/movement.h"
 #include "renderer/pd_renderer.h"
 #include "window/pd_window.h"
 
@@ -35,15 +38,20 @@ int main(int argc, char **argv) {
   std::cout << fileImporter.GetContents() << std::endl;
 
   auto *window = new PDWindow(argc, argv);
+  auto *box = new PDBox(window);
+  box->CreateBox();
 
   uint8_t start_y_coordinate = 1;
   uint8_t start_x_coordinate = 1;
-
-  auto *graphics =
-      new PDRenderer(window, start_y_coordinate, start_x_coordinate);
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement =
+      new Movement(start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
+                   box->GetXSafeZone(), assembler);
+  auto *graphics = new PDRenderer(window, movement);
   RunLoop(window, graphics);
 
   FreeMemory(window, graphics);
+  delete movement;
 
   return 0;
 }
