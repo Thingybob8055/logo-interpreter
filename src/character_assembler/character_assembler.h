@@ -13,7 +13,7 @@ class CharacterAssembler {
   char *GetLeadingCharacter() { return leading_character; }
   char *GetTrailingCharacter() { return trailing_character; }
   int GetLastCommand() { return last_command; }
-  // setters
+
   void SetLeadingCharacter(char *leading_character) {
     this->leading_character = leading_character;
   }

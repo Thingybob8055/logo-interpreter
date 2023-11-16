@@ -1,35 +1,29 @@
 #include "parser/logo_parser.h"
 
-Parser::Parser(std::string fileContents) {
-  this->data = std::stringstream(fileContents);
+Parser::Parser(std::string file_contents) {
+  this->data = std::stringstream(file_contents);
 }
 
 void Parser::Next() {
   getline(data, buf);
-  std::string commandStr;
-  std::string magnitudeStr;
+  std::string command_str;
+  std::string magnitude_str;
   if (buf.find(' ') == std::string::npos) {
-    commandStr = buf;
+    command_str = buf;
     magnitude = 0;
   } else {
-    commandStr = buf.substr(0, buf.find(' '));
-    magnitudeStr = buf.substr(buf.find(' ') + 1, buf.back());
-    this->magnitude = stoi(magnitudeStr);
+    command_str = buf.substr(0, buf.find(' '));
+    magnitude_str = buf.substr(buf.find(' ') + 1, buf.back());
+    this->magnitude = stoi(magnitude_str);
   }
-  std::map<std::string, int> commandMap;
-  commandMap["fd"] = KEY_UP;
-  commandMap["bk"] = KEY_DOWN;
-  commandMap["lt"] = KEY_LEFT;
-  commandMap["rt"] = KEY_RIGHT;
-  // not yet implemented in renderer
-  // commandMap["cs"];
-  // commandMap["ht"];
-  // commandMap["st"];
-  // only implemented as toggle instead of seperate commands
-  // commandMap["pu"];
-  // commandMap["pd"];
+  std::map<std::string, int> command_map;
+  command_map["fd"] = KEY_UP;
+  command_map["bk"] = KEY_DOWN;
+  command_map["lt"] = KEY_LEFT;
+  command_map["rt"] = KEY_RIGHT;
+  command_map["pu"] = KEY_SPACE;
 
-  command = commandMap[commandStr];
+  command = command_map[command_str];
 }
 
 int Parser::GetCommand() { return command; }

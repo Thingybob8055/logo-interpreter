@@ -9,7 +9,6 @@ class PDRenderer {
  private:
   PDWindow *current_window;
 
-  // create instance of Movement
   Movement *movement;
 
  public:

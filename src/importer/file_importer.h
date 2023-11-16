@@ -11,7 +11,8 @@ class FileImporter {
   std::string contents;
 
  public:
-  FileImporter(std::string fileName);
+  FileImporter();
+  FileImporter(std::string file_name);
   ~FileImporter();
 
   std::string GetContents() { return contents; }

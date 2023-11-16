@@ -343,3 +343,31 @@ TEST(
   delete movement;
   delete box;
 }
+
+TEST(PDRendererTest, when_move_called_and_invalid_key_pressed_expect_x_y_location_to_remain_the_same) {
+  // Arrange
+  char *ptest[0];
+  PDWindow *win = new PDWindow(0, ptest);
+  PDBox *box = new PDBox(win);
+
+  box->CreateBox();
+  int y_start_location = 2;
+  int x_start_location = 2;
+  CharacterAssembler *assembler = new CharacterAssembler();
+  Movement *movement = new Movement(y_start_location, x_start_location,
+                                    box->GetYSafeZone(), box->GetXSafeZone(),
+                                    assembler);
+  PDRenderer renderer = PDRenderer(win, movement);
+
+  // Act
+  renderer.Move(0);
+
+  // Assert
+  ASSERT_EQ(x_start_location, renderer.GetXLocationFromMovement());
+  ASSERT_EQ(y_start_location, renderer.GetYLocationFromMovement());
+
+  // Cleanup
+  delete win;
+  delete movement;
+  delete box;
+}

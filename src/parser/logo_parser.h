@@ -18,7 +18,7 @@ class Parser {
   int magnitude;
 
  public:
-  Parser(std::string fileContents);
+  Parser(std::string file_contents);
 
   void Next();
   int GetCommand();
