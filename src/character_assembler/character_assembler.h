@@ -7,7 +7,7 @@
 class CharacterAssembler {
  public:
   CharacterAssembler();
-  const char *TrailingCharacter(int current_command);
+
   void SetTrailingCharacter(int current_command, PenPosition pen_position);
 
   char *GetLeadingCharacter() { return leading_character; }
@@ -23,6 +23,7 @@ class CharacterAssembler {
   void SetLastCommand(int last_command) { this->last_command = last_command; }
 
  private:
+  const char *TrailingCharacter(int current_command);
   int last_command;
   char *leading_character;
   char *trailing_character;
