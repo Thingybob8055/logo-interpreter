@@ -4,10 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-PDRenderer::PDRenderer(PDWindow *window, Movement *movement) {
-  this->current_window = window;
+PDRenderer::PDRenderer(PDWindow *window, Movement *movement)
+    : current_window(window), movement(movement) {
   keypad(this->current_window->GetWindow(), true);
-  this->movement = movement;
 }
 
 void PDRenderer::Move(int command, int magnitude) {

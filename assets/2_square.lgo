@@ -1,27 +1,26 @@
 pu
-fd 100
+fd 5
 rt 90
-fd 100 
+fd 5 
 pd
-fd 100
+fd 5
 rt 90
-fd 100
+fd 5
 rt 90
-fd 100
+fd 5
 rt 90
-fd 100
+fd 5
 rt 90
 pu
-fd 100
+fd 5
 rt 90
-fd 100 
+fd 5 
 pd
-fd 100
+fd 5
 rt 90
-fd 100
+fd 5
 rt 90
-fd 100
+fd 5
 rt 90
-fd 100
+fd 5
 rt 90
-cs

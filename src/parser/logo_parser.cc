@@ -4,6 +4,8 @@ Parser::Parser(std::string file_contents) {
   this->data = std::stringstream(file_contents);
 }
 
+bool Parser::HasNext() const { return !data.eof(); }
+
 void Parser::Next() {
   getline(data, buf);
   std::string command_str;
@@ -26,5 +28,5 @@ void Parser::Next() {
   command = command_map[command_str];
 }
 
-int Parser::GetCommand() { return command; }
-int Parser::GetMagnitude() { return magnitude; }
+int Parser::GetCommand() const { return command; }
+int Parser::GetMagnitude() const { return magnitude; }
