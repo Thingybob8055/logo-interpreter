@@ -2,16 +2,13 @@
 #define MOVEMENT_H_
 
 #include "character_assembler/character_assembler.h"
+#include "heading.h"
 #include "pen_position.h"
 
 class Movement {
  public:
   Movement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
            CharacterAssembler *assembler);
-  void MoveUp();
-  void MoveDown();
-  void MoveLeft();
-  void MoveRight();
 
   int GetXLocation() { return x_location; }
   int GetYLocation() { return y_location; };
@@ -28,7 +25,19 @@ class Movement {
   char *GetTrailingCharacterFromAssembler() {
     return assembler->GetTrailingCharacter();
   }
-  int GetLastCommandFromAssembler() { return assembler->GetLastCommand(); }
+
+  void MoveForward();
+  void MoveBackward();
+  void TurnRight90();
+  void TurnLeft90();
+
+  Direction GetLastDirectionFronAssembler() {
+    return assembler->GetLastDirection();
+  }
+  Heading GetLastHeadingFromAssembler() { return assembler->GetLastHeading(); }
+  Heading GetCurrentHeadingFromAssembler() {
+    return assembler->GetCurrentHeading();
+  }
 
  private:
   int x_location;

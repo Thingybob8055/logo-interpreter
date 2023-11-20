@@ -10,19 +10,29 @@ PDRenderer::PDRenderer(PDWindow *window, Movement *movement) {
   this->movement = movement;
 }
 
-void PDRenderer::Move(int command) {
+void PDRenderer::Move(int command, int magnitude) {
+  if (this->movement->GetCurrentHeadingFromAssembler() == HEADING_RIGHT ||
+      this->movement->GetCurrentHeadingFromAssembler() == HEADING_LEFT) {
+    magnitude *= 2;
+  }
   switch (command) {
     case KEY_UP:
-      this->movement->MoveUp();
+      for (int i = 0; i < magnitude; i++) {
+        this->movement->MoveForward();
+        this->Render();
+      }
       break;
     case KEY_DOWN:
-      this->movement->MoveDown();
+      for (int i = 0; i < magnitude; i++) {
+        this->movement->MoveBackward();
+        this->Render();
+      }
       break;
     case KEY_LEFT:
-      this->movement->MoveLeft();
+      this->movement->TurnLeft90();
       break;
     case KEY_RIGHT:
-      this->movement->MoveRight();
+      this->movement->TurnRight90();
       break;
     case KEY_SPACE:
       if (this->movement->GetPenPosition() == PEN_DOWN) {
@@ -39,26 +49,50 @@ void PDRenderer::Move(int command) {
 int PDRenderer::Render() {
   int return_value = OK;
   WINDOW *window = this->current_window->GetWindow();
-  if (this->movement->GetLastCommandFromAssembler() == KEY_UP) {
-    return_value |= mvwaddstr(
-        window, movement->GetYLocation() + 1, movement->GetXLocation(),
-        this->movement->GetTrailingCharacterFromAssembler());
-  } else if (this->movement->GetLastCommandFromAssembler() == KEY_LEFT) {
-    return_value |= mvwaddstr(
-        window, movement->GetYLocation(), movement->GetXLocation() + 1,
-        this->movement->GetTrailingCharacterFromAssembler());
-  } else if (this->movement->GetLastCommandFromAssembler() == KEY_DOWN) {
-    return_value |= mvwaddstr(
-        window, movement->GetYLocation() - 1, movement->GetXLocation(),
-        this->movement->GetTrailingCharacterFromAssembler());
-  } else if (this->movement->GetLastCommandFromAssembler() == KEY_RIGHT) {
-    return_value |= mvwaddstr(
-        window, movement->GetYLocation(), movement->GetXLocation() - 1,
-        this->movement->GetTrailingCharacterFromAssembler());
+  Heading current_heading = this->movement->GetCurrentHeadingFromAssembler();
+  Heading last_heading = this->movement->GetLastHeadingFromAssembler();
+  Direction last_direction = this->movement->GetLastDirectionFronAssembler();
+  int x_location = this->movement->GetXLocation();
+  int y_location = this->movement->GetYLocation();
+  char *trailing_character =
+      this->movement->GetTrailingCharacterFromAssembler();
+
+  if (last_direction == FORWARDS) {
+    if (current_heading == HEADING_RIGHT && last_heading == HEADING_RIGHT) {
+      return_value |=
+          mvwaddstr(window, y_location, x_location - 1, trailing_character);
+    } else if (current_heading == HEADING_LEFT &&
+               last_heading == HEADING_LEFT) {
+      return_value |=
+          mvwaddstr(window, y_location, x_location + 1, trailing_character);
+    } else if (current_heading == HEADING_UP && last_heading == HEADING_UP) {
+      return_value |=
+          mvwaddstr(window, y_location + 1, x_location, trailing_character);
+    } else if (current_heading == HEADING_DOWN &&
+               last_heading == HEADING_DOWN) {
+      return_value |=
+          mvwaddstr(window, y_location - 1, x_location, trailing_character);
+    }
+  } else if (last_direction == BACKWARDS) {
+    if (current_heading == HEADING_RIGHT && last_heading == HEADING_RIGHT) {
+      return_value |=
+          mvwaddstr(window, y_location, x_location + 1, trailing_character);
+    } else if (current_heading == HEADING_LEFT &&
+               last_heading == HEADING_LEFT) {
+      return_value |=
+          mvwaddstr(window, y_location, x_location - 1, trailing_character);
+    } else if (current_heading == HEADING_UP && last_heading == HEADING_UP) {
+      return_value |=
+          mvwaddstr(window, y_location - 1, x_location, trailing_character);
+    } else if (current_heading == HEADING_DOWN &&
+               last_heading == HEADING_DOWN) {
+      return_value |=
+          mvwaddstr(window, y_location + 1, x_location, trailing_character);
+    }
   }
-  return_value |=
-      mvwaddstr(window, movement->GetYLocation(), movement->GetXLocation(),
-                this->movement->GetLeadingCharacterFromAssembler());
+
+  return_value |= mvwaddstr(window, y_location, x_location,
+                            this->movement->GetLeadingCharacterFromAssembler());
   return_value |= wrefresh(window);
   return return_value;
 }

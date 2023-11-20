@@ -14,7 +14,7 @@ class PDRenderer {
  public:
   PDRenderer(PDWindow *window, Movement *movement);
 
-  void Move(int command);
+  void Move(int command, int magnitude);
   int Render();
 
   int GetXLocationFromMovement() { return movement->GetXLocation(); }

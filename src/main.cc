@@ -21,7 +21,7 @@ void RunLoop(PDWindow *window, PDRenderer *graphics) {
     if (GetExitCommand(command)) {
       break;
     }
-    graphics->Move(command);
+    graphics->Move(command, 5);
     graphics->Render();
     wrefresh(window->GetWindow());
   }
@@ -41,8 +41,8 @@ int main(int argc, char **argv) {
   auto *box = new PDBox(window);
   box->CreateBox();
 
-  uint8_t start_y_coordinate = 1;
-  uint8_t start_x_coordinate = 1;
+  uint8_t start_y_coordinate = box->GetYSafeZone() / 2;
+  uint8_t start_x_coordinate = box->GetXSafeZone() / 2;
   CharacterAssembler *assembler = new CharacterAssembler();
   Movement *movement =
       new Movement(start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),

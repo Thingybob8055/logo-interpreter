@@ -27,34 +27,68 @@ void Movement::BoundaryCheck() {
   }
 }
 
-void Movement::MoveUp() {
-  assembler->SetLeadingCharacter((char *)"▲");
-  assembler->SetTrailingCharacter(KEY_UP, pen_position);
-  assembler->SetLastCommand(KEY_UP);
-  y_location--;
+void Movement::MoveForward() {
+  if (assembler->GetCurrentHeading() == HEADING_UP) {
+    y_location--;
+  } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
+    y_location++;
+  } else if (assembler->GetCurrentHeading() == HEADING_LEFT) {
+    x_location--;
+  } else if (assembler->GetCurrentHeading() == HEADING_RIGHT) {
+    x_location++;
+  }
+  assembler->SetTrailingCharacter(FORWARDS, pen_position);
+  assembler->SetLastDirection(FORWARDS);
+  assembler->SetLastHeading(assembler->GetCurrentHeading());
   BoundaryCheck();
 }
 
-void Movement::MoveDown() {
-  assembler->SetLeadingCharacter((char *)"▼");
-  assembler->SetTrailingCharacter(KEY_DOWN, pen_position);
-  assembler->SetLastCommand(KEY_DOWN);
-  y_location++;
+void Movement::MoveBackward() {
+  if (assembler->GetCurrentHeading() == HEADING_UP) {
+    y_location++;
+  } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
+    y_location--;
+  } else if (assembler->GetCurrentHeading() == HEADING_LEFT) {
+    x_location++;
+  } else if (assembler->GetCurrentHeading() == HEADING_RIGHT) {
+    x_location--;
+  }
+  assembler->SetTrailingCharacter(BACKWARDS, pen_position);
+  assembler->SetLastHeading(assembler->GetCurrentHeading());
+  assembler->SetLastDirection(BACKWARDS);
   BoundaryCheck();
 }
 
-void Movement::MoveLeft() {
-  assembler->SetLeadingCharacter((char *)"◀");
-  assembler->SetTrailingCharacter(KEY_LEFT, pen_position);
-  assembler->SetLastCommand(KEY_LEFT);
-  x_location--;
-  BoundaryCheck();
+void Movement::TurnRight90() {
+  // assembler->SetLastHeading(assembler->GetCurrentHeading());
+  if (assembler->GetCurrentHeading() == HEADING_UP) {
+    assembler->SetCurrentHeading(HEADING_RIGHT);
+    assembler->SetLeadingCharacter((char *)"▶");
+  } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
+    assembler->SetCurrentHeading(HEADING_LEFT);
+    assembler->SetLeadingCharacter((char *)"◀");
+  } else if (assembler->GetCurrentHeading() == HEADING_LEFT) {
+    assembler->SetCurrentHeading(HEADING_UP);
+    assembler->SetLeadingCharacter((char *)"▲");
+  } else if (assembler->GetCurrentHeading() == HEADING_RIGHT) {
+    assembler->SetCurrentHeading(HEADING_DOWN);
+    assembler->SetLeadingCharacter((char *)"▼");
+  }
 }
 
-void Movement::MoveRight() {
-  assembler->SetLeadingCharacter((char *)"▶");
-  assembler->SetTrailingCharacter(KEY_RIGHT, pen_position);
-  assembler->SetLastCommand(KEY_RIGHT);
-  x_location++;
-  BoundaryCheck();
+void Movement::TurnLeft90() {
+  // assembler->SetLastHeading(assembler->GetCurrentHeading());
+  if (assembler->GetCurrentHeading() == HEADING_UP) {
+    assembler->SetCurrentHeading(HEADING_LEFT);
+    assembler->SetLeadingCharacter((char *)"◀");
+  } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
+    assembler->SetCurrentHeading(HEADING_RIGHT);
+    assembler->SetLeadingCharacter((char *)"▶");
+  } else if (assembler->GetCurrentHeading() == HEADING_LEFT) {
+    assembler->SetCurrentHeading(HEADING_DOWN);
+    assembler->SetLeadingCharacter((char *)"▼");
+  } else if (assembler->GetCurrentHeading() == HEADING_RIGHT) {
+    assembler->SetCurrentHeading(HEADING_UP);
+    assembler->SetLeadingCharacter((char *)"▲");
+  }
 }

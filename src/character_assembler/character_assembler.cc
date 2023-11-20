@@ -5,58 +5,190 @@
 #include <cstdint>
 
 CharacterAssembler::CharacterAssembler() {
-  this->last_command = KEY_RIGHT;
-  this->leading_character = (char *)"▶";
+  this->leading_character = (char *)"▲";
   this->trailing_character = (char *)"";
+  this->last_heading = HEADING_UP;
+  this->current_heading = HEADING_UP;
 }
 
-const char *CharacterAssembler::TrailingCharacter(int current_command) {
-  if (current_command == KEY_DOWN) {
-    if (this->last_command == KEY_RIGHT) {
-      return "┐";
-    } else if (this->last_command == KEY_LEFT) {
-      return "┌";
-    } else {
-      return "│";
+const char *CharacterAssembler::TrailingCharacter(Direction current_direction) {
+  if (current_direction == FORWARDS && last_direction == FORWARDS) {
+    if (current_heading == HEADING_RIGHT) {
+      if (last_heading == HEADING_RIGHT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "┌";
+      } else if (last_heading == HEADING_DOWN) {
+        return "└";
+      } else if (last_heading == HEADING_LEFT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_LEFT) {
+      if (last_heading == HEADING_LEFT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "┐";
+      } else if (last_heading == HEADING_DOWN) {
+        return "┘";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_UP) {
+      if (last_heading == HEADING_UP) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "└";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "┘";
+      } else if (last_heading == HEADING_DOWN) {
+        return "│";
+      }
+    } else if (current_heading == HEADING_DOWN) {
+      if (last_heading == HEADING_DOWN) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "┌";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "┐";
+      } else if (last_heading == HEADING_UP) {
+        return "│";
+      }
+    }
+  } else if (current_direction == BACKWARDS && last_direction == BACKWARDS) {
+    if (current_heading == HEADING_RIGHT) {
+      if (last_heading == HEADING_RIGHT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "┘";
+      } else if (last_heading == HEADING_DOWN) {
+        return "┐";
+      } else if (last_heading == HEADING_LEFT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_LEFT) {
+      if (last_heading == HEADING_LEFT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "└";
+      } else if (last_heading == HEADING_DOWN) {
+        return "┌";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_UP) {
+      if (last_heading == HEADING_UP) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "┐";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "┌";
+      } else if (last_heading == HEADING_DOWN) {
+        return "│";
+      }
+    } else if (current_heading == HEADING_DOWN) {
+      if (last_heading == HEADING_DOWN) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "┘";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "└";
+      } else if (last_heading == HEADING_UP) {
+        return "│";
+      }
+    }
+  } else if (current_direction == FORWARDS && last_direction == BACKWARDS) {
+    if (current_heading == HEADING_RIGHT) {
+      if (last_heading == HEADING_RIGHT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "└";
+      } else if (last_heading == HEADING_DOWN) {
+        return "┌";
+      } else if (last_heading == HEADING_LEFT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_LEFT) {
+      if (last_heading == HEADING_LEFT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "┘";
+      } else if (last_heading == HEADING_DOWN) {
+        return "┐";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_UP) {
+      if (last_heading == HEADING_UP) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "┘";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "└";
+      } else if (last_heading == HEADING_DOWN) {
+        return "│";
+      }
+    } else if (current_heading == HEADING_DOWN) {
+      if (last_heading == HEADING_DOWN) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "┐";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "┌";
+      } else if (last_heading == HEADING_UP) {
+        return "│";
+      }
+    }
+  } else if (current_direction == BACKWARDS && last_direction == FORWARDS) {
+    if (current_heading == HEADING_RIGHT) {
+      if (last_heading == HEADING_RIGHT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "┐";
+      } else if (last_heading == HEADING_DOWN) {
+        return "┘";
+      } else if (last_heading == HEADING_LEFT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_LEFT) {
+      if (last_heading == HEADING_LEFT) {
+        return "─";
+      } else if (last_heading == HEADING_UP) {
+        return "┌";
+      } else if (last_heading == HEADING_DOWN) {
+        return "└";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "─";
+      }
+    } else if (current_heading == HEADING_UP) {
+      if (last_heading == HEADING_UP) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "┌";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "┐";
+      } else if (last_heading == HEADING_DOWN) {
+        return "│";
+      }
+    } else if (current_heading == HEADING_DOWN) {
+      if (last_heading == HEADING_DOWN) {
+        return "│";
+      } else if (last_heading == HEADING_LEFT) {
+        return "└";
+      } else if (last_heading == HEADING_RIGHT) {
+        return "┘";
+      } else if (last_heading == HEADING_UP) {
+        return "│";
+      }
     }
   }
 
-  if (current_command == KEY_UP) {
-    if (this->last_command == KEY_RIGHT) {
-      return "┘";
-    } else if (this->last_command == KEY_LEFT) {
-      return "└";
-    } else {
-      return "│";
-    }
-  }
-
-  if (current_command == KEY_LEFT) {
-    if (this->last_command == KEY_UP) {
-      return "┐";
-    } else if (this->last_command == KEY_DOWN) {
-      return "┘";
-    } else {
-      return "─";
-    }
-  }
-
-  if (current_command == KEY_RIGHT) {
-    if (this->last_command == KEY_UP) {
-      return "┌";
-    } else if (this->last_command == KEY_DOWN) {
-      return "└";
-    } else {
-      return "─";
-    }
-  }
   return " ";
 }
 
-void CharacterAssembler::SetTrailingCharacter(int current_command,
+void CharacterAssembler::SetTrailingCharacter(Direction current_direction,
                                               PenPosition pen_position) {
   if (pen_position == PEN_DOWN) {
-    this->trailing_character = (char *)TrailingCharacter(current_command);
+    this->trailing_character = (char *)TrailingCharacter(current_direction);
   } else {
     this->trailing_character = (char *)" ";
   }
