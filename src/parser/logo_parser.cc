@@ -26,7 +26,6 @@ void Parser::Next() {
   command_map["pu"] = KEY_SPACE;
   command_map["pd"] = KEY_SPACE;
 
-
   command = command_map[command_str];
 }
 

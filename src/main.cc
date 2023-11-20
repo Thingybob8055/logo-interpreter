@@ -32,15 +32,6 @@ void RunLoop(PDWindow *window, PDRenderer *graphics, Parser *parser) {
   wgetch(window->GetWindow());
 }
 
-void FreeMemory(PDWindow *window, PDBox *box, CharacterAssembler *assembler,
-                Movement *movement) {
-  endwin();
-  delete window;
-  delete box;
-  delete assembler;
-  delete movement;
-}
-
 int main(int argc, char **argv) {
   if (argc != 2) {
     std::cout << "Usage: ./logo <filename>" << std::endl;
@@ -50,19 +41,18 @@ int main(int argc, char **argv) {
   auto fileImporter = FileImporter(argv[1]);
   auto parser = Parser(fileImporter.GetContents());
 
-  auto *window = new PDWindow(argc, argv);
-  auto *box = new PDBox(window);
+  auto window = std::make_unique<PDWindow>(argc, argv);
+  auto box = std::make_unique<PDBox>(window.get());
   box->CreateBox();
 
-  uint8_t start_y_coordinate = box->GetYSafeZone() / 2;
-  uint8_t start_x_coordinate = box->GetXSafeZone() / 2;
-  CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
-                   box->GetXSafeZone(), assembler);
-  auto graphics = PDRenderer(window, movement);
-  RunLoop(window, &graphics, &parser);
-
-  FreeMemory(window, box, assembler, movement);
+  uint8_t start_y_coordinate = (uint8_t)box->GetYSafeZone() / 2;
+  uint8_t start_x_coordinate = (uint8_t)box->GetXSafeZone() / 2;
+  auto assembler = std::make_unique<CharacterAssembler>();
+  auto movement = std::make_unique<Movement>(
+      start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
+      box->GetXSafeZone(), assembler.get());
+  auto graphics = PDRenderer(window.get(), movement.get());
+  RunLoop(window.get(), &graphics, &parser);
+  endwin();
   return 0;
 }
