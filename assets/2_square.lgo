@@ -1,26 +1,19 @@
+fd 10
+rt 90
+fd 10
+rt 90
+fd 10
+rt 90
+fd 10
 pu
-fd 5
+fd 30
 rt 90
-fd 5 
 pd
-fd 5
+fd 10
 rt 90
-fd 5
+fd 10
 rt 90
-fd 5
+fd 10
 rt 90
-fd 5
-rt 90
-pu
-fd 5
-rt 90
-fd 5 
-pd
-fd 5
-rt 90
-fd 5
-rt 90
-fd 5
-rt 90
-fd 5
+fd 10
 rt 90
