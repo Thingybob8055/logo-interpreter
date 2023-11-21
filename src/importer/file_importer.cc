@@ -1,6 +1,6 @@
 #include "importer/file_importer.h"
 
-FileImporter::FileImporter(std::string file_name) {
+FileImporter::FileImporter(const std::string &file_name) {
   file = new std::ifstream(file_name);
   if (file->is_open()) {
     std::stringstream buffer;
@@ -8,8 +8,6 @@ FileImporter::FileImporter(std::string file_name) {
     contents = buffer.str();
   }
 }
-
-FileImporter::FileImporter() { file = nullptr; }
 
 FileImporter::~FileImporter() {
   if (file != nullptr && file->is_open()) {
