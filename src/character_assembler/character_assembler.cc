@@ -143,10 +143,11 @@ const char* CharacterAssembler::
 }
 
 const char* CharacterAssembler::ReturnTrailingCharacterFromLastHeading(
-    Heading param2, Heading param3, Heading param4, const char* param5,
-    const char* param6, const char* param7, const char* param8) const {
-  return (last_heading == param2)   ? param5
-         : (last_heading == param3) ? param6
-         : (last_heading == param4) ? param7
-                                    : param8;
+    Heading heading1, Heading heading2, Heading heading3, const char* output1,
+    const char* output2, const char* output3,
+    const char* output_default) const {
+  return (last_heading == heading1)   ? output1
+         : (last_heading == heading2) ? output2
+         : (last_heading == heading3) ? output3
+                                      : output_default;
 }

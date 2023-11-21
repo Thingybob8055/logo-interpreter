@@ -40,8 +40,9 @@ class CharacterAssembler {
   const char *TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards()
       const;
   const char *ReturnTrailingCharacterFromLastHeading(
-      Heading param2, Heading param3, Heading param4, const char *param5,
-      const char *param6, const char *param7, const char *param8) const;
+      Heading heading1, Heading heading2, Heading heading3, const char *output1,
+      const char *output2, const char *output3,
+      const char *output_default) const;
 
   const char *leading_character = static_cast<const char *>("▲");
   const char *trailing_character = static_cast<const char *>("");
