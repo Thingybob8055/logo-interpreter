@@ -1,12 +1,26 @@
 #ifndef PD_RENDERER_H_
 #define PD_RENDERER_H_
+#include "keys.h"
 #include "movement/movement.h"
 #include "window/pd_window.h"
 
-#define KEY_SPACE 32
-
 class PDRenderer {
  private:
+  void TogglePenPosition();
+  void MoveWithDirectionAndMagnitude(Direction direction, int magnitude);
+  int GetMagnitudeForHeading(Heading heading, int magnitude) const;
+  int RenderTrailingCharacterForwardsMovement(WINDOW *window, int y_location,
+                                              int x_location,
+                                              const char *trailing_character,
+                                              Heading current_heading,
+                                              Heading last_heading) const;
+  int RenderTrailingCharacterBackwardsMovement(WINDOW *window, int y_location,
+                                               int x_location,
+                                               const char *trailing_character,
+                                               Heading current_heading,
+                                               Heading last_heading) const;
+  int RenderLeadingCharacter(WINDOW *window, int y_location, int x_location,
+                             const char *leading_character) const;
   PDWindow *current_window;
 
   Movement *movement;
@@ -17,9 +31,9 @@ class PDRenderer {
   void Move(int command, int magnitude);
   int Render();
 
-  int GetXLocationFromMovement() { return movement->GetXLocation(); }
-  int GetYLocationFromMovement() { return movement->GetYLocation(); }
-  PenPosition GetPenPositionFromMovement() {
+  int GetXLocationFromMovement() const { return movement->GetXLocation(); }
+  int GetYLocationFromMovement() const { return movement->GetYLocation(); }
+  PenPosition GetPenPositionFromMovement() const {
     return movement->GetPenPosition();
   }
 

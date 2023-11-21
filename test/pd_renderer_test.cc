@@ -19,7 +19,7 @@ TEST(PDRendererTest, when_constructed_expect_renderer_to_be_created) {
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 1;
   int x_start_location = 1;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -48,7 +48,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -79,7 +79,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -108,7 +108,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -141,7 +141,6 @@ TEST(
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
 
-  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -175,7 +174,6 @@ TEST(
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
 
-  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -206,7 +204,6 @@ TEST(
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
 
-  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -235,7 +232,6 @@ TEST(
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
 
-  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -267,7 +263,6 @@ TEST(
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
 
-  box->CreateBox();
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -298,7 +293,7 @@ TEST(PDRendererTest,
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -332,7 +327,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 1;
   int x_start_location = 1;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -363,7 +358,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 1;
   int x_start_location = 1;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -396,7 +391,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -431,7 +426,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -463,7 +458,7 @@ TEST(
   char *ptest[0];
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
-  box->CreateBox();
+
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
@@ -498,7 +493,6 @@ TEST(
   PDWindow *win = new PDWindow(0, ptest);
   PDBox *box = new PDBox(win);
 
-  box->CreateBox();
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();

@@ -16,8 +16,10 @@ class PDWindow {
   ~PDWindow();
 
   WINDOW *GetWindow();
-  int GetYMaxScreenCoordinate() { return y_max_screen_coordinate; }
-  int GetXMaxScreenCoordinate() { return x_max_screen_coordinate; }
+  int GetYMaxScreenCoordinate() const { return y_max_screen_coordinate; }
+  int GetXMaxScreenCoordinate() const { return x_max_screen_coordinate; }
 };
+
+void InitXcurses(int argc, char **argv);
 
 #endif /* PD_WINDOW_H_ */

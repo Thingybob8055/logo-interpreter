@@ -11,9 +11,9 @@ class PDBox {
   int y_safe_zone;
   int x_safe_zone;
   PDWindow *window;
+  void CreateBox(WINDOW *window, int box_y_character, int box_x_character);
 
  public:
-  void CreateBox();
   PDBox(PDWindow *window);
   int GetXSafeZone() { return x_safe_zone; }
   int GetYSafeZone() { return y_safe_zone; }

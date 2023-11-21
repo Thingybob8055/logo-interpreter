@@ -5,31 +5,36 @@
 #include "heading.h"
 #include "pen_position.h"
 
+constexpr const char* UP_ARROW = (const char*)"▲";
+constexpr const char* DOWN_ARROW = (const char*)"▼";
+constexpr const char* LEFT_ARROW = (const char*)"◀";
+constexpr const char* RIGHT_ARROW = (const char*)"▶";
+
 class Movement {
  public:
   Movement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
-           CharacterAssembler *assembler);
-
-  int GetXLocation() { return x_location; }
-  int GetYLocation() { return y_location; };
-  PenPosition GetPenPosition() { return pen_position; }
-  int GetXSafeZone() { return x_safe_zone; }
-  int GetYSafeZone() { return y_safe_zone; }
-  void SetPenPosition(PenPosition pen_position) {
-    this->pen_position = pen_position;
-  }
-
-  char *GetLeadingCharacterFromAssembler() {
-    return assembler->GetLeadingCharacter();
-  }
-  char *GetTrailingCharacterFromAssembler() {
-    return assembler->GetTrailingCharacter();
-  }
+           CharacterAssembler* assembler);
 
   void MoveForward();
   void MoveBackward();
   void TurnRight90();
   void TurnLeft90();
+
+  int GetXLocation() const { return x_location; }
+  int GetYLocation() const { return y_location; };
+  PenPosition GetPenPosition() const { return pen_position; }
+  int GetXSafeZone() const { return x_safe_zone; }
+  int GetYSafeZone() const { return y_safe_zone; }
+  void SetPenPosition(PenPosition pen_position) {
+    this->pen_position = pen_position;
+  }
+
+  const char* GetLeadingCharacterFromAssembler() {
+    return assembler->GetLeadingCharacter();
+  }
+  const char* GetTrailingCharacterFromAssembler() {
+    return assembler->GetTrailingCharacter();
+  }
 
   Direction GetLastDirectionFronAssembler() {
     return assembler->GetLastDirection();
@@ -48,7 +53,7 @@ class Movement {
   void BoundaryCheck();
   PenPosition pen_position;
 
-  CharacterAssembler *assembler;
+  CharacterAssembler* assembler;
 };
 
 #endif /* MOVEMENT_H_ */

@@ -1,4 +1,5 @@
 #include <cstdint>
+#include <memory>
 
 #include "box/pd_box.h"
 #include "character_assembler/character_assembler.h"
@@ -32,9 +33,16 @@ void RunLoop(PDWindow *window, PDRenderer *graphics, Parser *parser) {
   wgetch(window->GetWindow());
 }
 
-int main(int argc, char **argv) {
+bool CheckForArguments(int argc) {
   if (argc != 2) {
-    std::cout << "Usage: ./logo <filename>" << std::endl;
+    std::cout << "Usage: ./main <filename>" << std::endl;
+    return false;
+  }
+  return true;
+}
+
+int main(int argc, char **argv) {
+  if (!CheckForArguments(argc)) {
     return 1;
   }
 
@@ -43,7 +51,6 @@ int main(int argc, char **argv) {
 
   auto window = std::make_unique<PDWindow>(argc, argv);
   auto box = std::make_unique<PDBox>(window.get());
-  box->CreateBox();
 
   uint8_t start_y_coordinate = (uint8_t)box->GetYSafeZone() / 2;
   uint8_t start_x_coordinate = (uint8_t)box->GetXSafeZone() / 2;

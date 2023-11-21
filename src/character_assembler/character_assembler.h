@@ -12,29 +12,35 @@ class CharacterAssembler {
   void SetTrailingCharacter(Direction current_direction,
                             PenPosition pen_position);
 
-  char *GetLeadingCharacter() { return leading_character; }
-  char *GetTrailingCharacter() { return trailing_character; }
+  const char *GetLeadingCharacter() const { return leading_character; }
+  const char *GetTrailingCharacter() const { return trailing_character; }
 
-  void SetLeadingCharacter(char *leading_character) {
+  void SetLeadingCharacter(const char *leading_character) {
     this->leading_character = leading_character;
   }
-  void SetTrailingCharacter(char *trailing_character) {
+  void SetTrailingCharacter(const char *trailing_character) {
     this->trailing_character = trailing_character;
   }
 
   void SetLastDirection(Direction direction) { last_direction = direction; }
-  Direction GetLastDirection() { return last_direction; }
+  Direction GetLastDirection() const { return last_direction; }
 
   void SetLastHeading(Heading heading) { last_heading = heading; }
-  Heading GetLastHeading() { return last_heading; }
+  Heading GetLastHeading() const { return last_heading; }
 
   void SetCurrentHeading(Heading heading) { current_heading = heading; }
-  Heading GetCurrentHeading() { return current_heading; }
+  Heading GetCurrentHeading() const { return current_heading; }
 
  private:
   const char *TrailingCharacter(Direction current_direction);
-  char *leading_character;
-  char *trailing_character;
+  const char *TrailingCharacterIfCurrentAndLastDirectionIsForwards() const;
+  const char *TrailingCharacterIfCurrentAndLastDirectionIsBackwards() const;
+  const char *TrailingCharacterIfCurrentDirectionIsForwardsLastIsBackwards()
+      const;
+  const char *TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards()
+      const;
+  const char *leading_character = static_cast<const char *>("▲");
+  const char *trailing_character = static_cast<const char *>("");
 
   Direction last_direction;
   Heading last_heading;
