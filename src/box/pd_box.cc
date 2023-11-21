@@ -1,13 +1,11 @@
 #include "pd_box.h"
 
-PDBox::PDBox(PDWindow* window)
-    : window(window), box_x_character(0), box_y_character(0) {
-  CreateBox(window->GetWindow(), box_y_character, box_x_character);
+PDBox::PDBox(PDWindow* pd_window) : pd_window(pd_window) {
+  CreateBox(pd_window->GetWindow(), box_y_character, box_x_character);
 }
 
-void PDBox::CreateBox(WINDOW* window, int box_y_character,
-                      int box_x_character) {
-  box(window, box_y_character, box_x_character);
+void PDBox::CreateBox(WINDOW* window, int y_character, int x_character) {
+  box(window, y_character, x_character);
   refresh();
   wrefresh(window);
   int x_max_coordinate;

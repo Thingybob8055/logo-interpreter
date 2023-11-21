@@ -6,17 +6,17 @@
 
 class PDBox {
  private:
-  int box_x_character;
-  int box_y_character;
+  int box_x_character = 0;
+  int box_y_character = 0;
   int y_safe_zone;
   int x_safe_zone;
-  PDWindow *window;
-  void CreateBox(WINDOW *window, int box_y_character, int box_x_character);
+  PDWindow *pd_window;
+  void CreateBox(WINDOW *window, int y_character, int x_character);
 
  public:
-  PDBox(PDWindow *window);
-  int GetXSafeZone() { return x_safe_zone; }
-  int GetYSafeZone() { return y_safe_zone; }
+  explicit PDBox(PDWindow *window);
+  int GetXSafeZone() const { return x_safe_zone; }
+  int GetYSafeZone() const { return y_safe_zone; }
 };
 
 #endif /* PD_BOX_H_ */

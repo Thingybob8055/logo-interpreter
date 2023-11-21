@@ -12,10 +12,10 @@ class FileImporter {
 
  public:
   FileImporter();
-  FileImporter(std::string file_name);
+  explicit FileImporter(std::string file_name);
   ~FileImporter();
 
-  std::string GetContents() { return contents; }
+  std::string GetContents() const { return contents; }
 
   void SetContents(std::string contents) { this->contents = contents; }
 };

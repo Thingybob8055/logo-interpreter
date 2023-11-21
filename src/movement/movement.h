@@ -29,18 +29,20 @@ class Movement {
     this->pen_position = pen_position;
   }
 
-  const char* GetLeadingCharacterFromAssembler() {
+  const char* GetLeadingCharacterFromAssembler() const {
     return assembler->GetLeadingCharacter();
   }
-  const char* GetTrailingCharacterFromAssembler() {
+  const char* GetTrailingCharacterFromAssembler() const {
     return assembler->GetTrailingCharacter();
   }
 
-  Direction GetLastDirectionFronAssembler() {
+  Direction GetLastDirectionFronAssembler() const {
     return assembler->GetLastDirection();
   }
-  Heading GetLastHeadingFromAssembler() { return assembler->GetLastHeading(); }
-  Heading GetCurrentHeadingFromAssembler() {
+  Heading GetLastHeadingFromAssembler() const {
+    return assembler->GetLastHeading();
+  }
+  Heading GetCurrentHeadingFromAssembler() const {
     return assembler->GetCurrentHeading();
   }
 
@@ -51,7 +53,7 @@ class Movement {
   int y_safe_zone;
 
   void BoundaryCheck();
-  PenPosition pen_position;
+  PenPosition pen_position = PEN_DOWN;
 
   CharacterAssembler* assembler;
 };

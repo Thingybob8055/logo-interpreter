@@ -13,7 +13,6 @@ class PDWindow {
 
  public:
   PDWindow(int argc, char **argv);
-  ~PDWindow();
 
   WINDOW *GetWindow();
   int GetYMaxScreenCoordinate() const { return y_max_screen_coordinate; }

@@ -5,14 +5,12 @@
 #include <cstdint>
 
 Movement::Movement(int y_location, int x_location, int y_safe_zone,
-                   int x_safe_zone, CharacterAssembler *assembler) {
-  this->x_location = x_location;
-  this->y_location = y_location;
-  this->x_safe_zone = x_safe_zone;
-  this->y_safe_zone = y_safe_zone;
-  this->pen_position = PEN_DOWN;
-  this->assembler = assembler;
-}
+                   int x_safe_zone, CharacterAssembler *assembler)
+    : x_location(x_location),
+      y_location(y_location),
+      x_safe_zone(x_safe_zone),
+      y_safe_zone(y_safe_zone),
+      assembler(assembler) {}
 
 void Movement::BoundaryCheck() {
   static uint8_t ceiling_cap = 1;
@@ -62,31 +60,31 @@ void Movement::MoveBackward() {
 void Movement::TurnRight90() {
   if (assembler->GetCurrentHeading() == HEADING_UP) {
     assembler->SetCurrentHeading(HEADING_RIGHT);
-    assembler->SetLeadingCharacter((char *)RIGHT_ARROW);
+    assembler->SetLeadingCharacter(RIGHT_ARROW);
   } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
     assembler->SetCurrentHeading(HEADING_LEFT);
-    assembler->SetLeadingCharacter((char *)LEFT_ARROW);
+    assembler->SetLeadingCharacter(LEFT_ARROW);
   } else if (assembler->GetCurrentHeading() == HEADING_LEFT) {
     assembler->SetCurrentHeading(HEADING_UP);
-    assembler->SetLeadingCharacter((char *)UP_ARROW);
+    assembler->SetLeadingCharacter(UP_ARROW);
   } else if (assembler->GetCurrentHeading() == HEADING_RIGHT) {
     assembler->SetCurrentHeading(HEADING_DOWN);
-    assembler->SetLeadingCharacter((char *)DOWN_ARROW);
+    assembler->SetLeadingCharacter(DOWN_ARROW);
   }
 }
 
 void Movement::TurnLeft90() {
   if (assembler->GetCurrentHeading() == HEADING_UP) {
     assembler->SetCurrentHeading(HEADING_LEFT);
-    assembler->SetLeadingCharacter((char *)LEFT_ARROW);
+    assembler->SetLeadingCharacter(LEFT_ARROW);
   } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
     assembler->SetCurrentHeading(HEADING_RIGHT);
-    assembler->SetLeadingCharacter((char *)RIGHT_ARROW);
+    assembler->SetLeadingCharacter(RIGHT_ARROW);
   } else if (assembler->GetCurrentHeading() == HEADING_LEFT) {
     assembler->SetCurrentHeading(HEADING_DOWN);
-    assembler->SetLeadingCharacter((char *)DOWN_ARROW);
+    assembler->SetLeadingCharacter(DOWN_ARROW);
   } else if (assembler->GetCurrentHeading() == HEADING_RIGHT) {
     assembler->SetCurrentHeading(HEADING_UP);
-    assembler->SetLeadingCharacter((char *)UP_ARROW);
+    assembler->SetLeadingCharacter(UP_ARROW);
   }
 }

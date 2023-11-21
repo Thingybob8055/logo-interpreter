@@ -17,7 +17,8 @@ CharacterAssembler::CharacterAssembler() {
   this->current_heading = HEADING_UP;
 }
 
-const char* CharacterAssembler::TrailingCharacter(Direction current_direction) {
+const char* CharacterAssembler::TrailingCharacter(
+    Direction current_direction) const {
   const char* returned_trailing_character;
   if (current_direction == FORWARDS && last_direction == FORWARDS) {
     returned_trailing_character =
@@ -52,25 +53,21 @@ CharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsForwards()
     const {
   switch (current_heading) {
     case HEADING_RIGHT:
-      return (last_heading == HEADING_RIGHT)  ? horizontal
-             : (last_heading == HEADING_UP)   ? top_left
-             : (last_heading == HEADING_DOWN) ? bottom_left
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_RIGHT, HEADING_UP, HEADING_DOWN, horizontal, top_left,
+          bottom_left, horizontal);
     case HEADING_LEFT:
-      return (last_heading == HEADING_LEFT)   ? horizontal
-             : (last_heading == HEADING_UP)   ? top_right
-             : (last_heading == HEADING_DOWN) ? bottom_right
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_LEFT, HEADING_UP, HEADING_DOWN, horizontal, top_right,
+          bottom_right, horizontal);
     case HEADING_UP:
-      return (last_heading == HEADING_UP)      ? vertical
-             : (last_heading == HEADING_LEFT)  ? bottom_left
-             : (last_heading == HEADING_RIGHT) ? bottom_right
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_UP, HEADING_LEFT, HEADING_RIGHT, vertical, bottom_left,
+          bottom_right, vertical);
     case HEADING_DOWN:
-      return (last_heading == HEADING_DOWN)    ? vertical
-             : (last_heading == HEADING_LEFT)  ? top_left
-             : (last_heading == HEADING_RIGHT) ? top_right
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_DOWN, HEADING_LEFT, HEADING_RIGHT, vertical, top_left,
+          top_right, vertical);
   }
   return space;
 }
@@ -80,25 +77,21 @@ CharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsBackwards()
     const {
   switch (current_heading) {
     case HEADING_RIGHT:
-      return (last_heading == HEADING_RIGHT)  ? horizontal
-             : (last_heading == HEADING_UP)   ? bottom_right
-             : (last_heading == HEADING_DOWN) ? top_right
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_RIGHT, HEADING_UP, HEADING_DOWN, horizontal, bottom_right,
+          top_right, horizontal);
     case HEADING_LEFT:
-      return (last_heading == HEADING_LEFT)   ? horizontal
-             : (last_heading == HEADING_UP)   ? bottom_left
-             : (last_heading == HEADING_DOWN) ? top_left
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_LEFT, HEADING_UP, HEADING_DOWN, horizontal, bottom_left,
+          top_left, horizontal);
     case HEADING_UP:
-      return (last_heading == HEADING_UP)      ? vertical
-             : (last_heading == HEADING_LEFT)  ? top_right
-             : (last_heading == HEADING_RIGHT) ? top_left
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_UP, HEADING_LEFT, HEADING_RIGHT, vertical, top_right,
+          top_left, vertical);
     case HEADING_DOWN:
-      return (last_heading == HEADING_DOWN)    ? vertical
-             : (last_heading == HEADING_LEFT)  ? bottom_right
-             : (last_heading == HEADING_RIGHT) ? bottom_left
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_DOWN, HEADING_LEFT, HEADING_RIGHT, vertical, bottom_right,
+          bottom_left, vertical);
   }
   return space;
 }
@@ -107,25 +100,21 @@ const char* CharacterAssembler::
     TrailingCharacterIfCurrentDirectionIsForwardsLastIsBackwards() const {
   switch (current_heading) {
     case HEADING_RIGHT:
-      return (last_heading == HEADING_RIGHT)  ? horizontal
-             : (last_heading == HEADING_UP)   ? bottom_left
-             : (last_heading == HEADING_DOWN) ? top_left
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_RIGHT, HEADING_UP, HEADING_DOWN, horizontal, bottom_left,
+          top_left, horizontal);
     case HEADING_LEFT:
-      return (last_heading == HEADING_LEFT)   ? horizontal
-             : (last_heading == HEADING_UP)   ? bottom_right
-             : (last_heading == HEADING_DOWN) ? top_right
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_LEFT, HEADING_UP, HEADING_DOWN, horizontal, bottom_right,
+          top_right, horizontal);
     case HEADING_UP:
-      return (last_heading == HEADING_UP)      ? vertical
-             : (last_heading == HEADING_LEFT)  ? bottom_right
-             : (last_heading == HEADING_RIGHT) ? bottom_left
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_UP, HEADING_LEFT, HEADING_RIGHT, vertical, bottom_right,
+          bottom_left, vertical);
     case HEADING_DOWN:
-      return (last_heading == HEADING_DOWN)    ? vertical
-             : (last_heading == HEADING_LEFT)  ? top_right
-             : (last_heading == HEADING_RIGHT) ? top_left
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_DOWN, HEADING_LEFT, HEADING_RIGHT, vertical, top_right,
+          top_left, vertical);
   }
   return space;
 }
@@ -134,25 +123,30 @@ const char* CharacterAssembler::
     TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards() const {
   switch (current_heading) {
     case HEADING_RIGHT:
-      return (last_heading == HEADING_RIGHT)  ? horizontal
-             : (last_heading == HEADING_UP)   ? top_right
-             : (last_heading == HEADING_DOWN) ? bottom_right
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_RIGHT, HEADING_UP, HEADING_DOWN, horizontal, top_right,
+          bottom_right, horizontal);
     case HEADING_LEFT:
-      return (last_heading == HEADING_LEFT)   ? horizontal
-             : (last_heading == HEADING_UP)   ? top_left
-             : (last_heading == HEADING_DOWN) ? bottom_left
-                                              : horizontal;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_LEFT, HEADING_UP, HEADING_DOWN, horizontal, top_left,
+          bottom_left, horizontal);
     case HEADING_UP:
-      return (last_heading == HEADING_UP)      ? vertical
-             : (last_heading == HEADING_LEFT)  ? top_left
-             : (last_heading == HEADING_RIGHT) ? top_right
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_UP, HEADING_LEFT, HEADING_RIGHT, vertical, top_left,
+          top_right, vertical);
     case HEADING_DOWN:
-      return (last_heading == HEADING_DOWN)    ? vertical
-             : (last_heading == HEADING_LEFT)  ? bottom_left
-             : (last_heading == HEADING_RIGHT) ? bottom_right
-                                               : vertical;
+      return ReturnTrailingCharacterFromLastHeading(
+          HEADING_DOWN, HEADING_LEFT, HEADING_RIGHT, vertical, bottom_left,
+          bottom_right, vertical);
   }
   return space;
+}
+
+const char* CharacterAssembler::ReturnTrailingCharacterFromLastHeading(
+    Heading param2, Heading param3, Heading param4, const char* param5,
+    const char* param6, const char* param7, const char* param8) const {
+  return (last_heading == param2)   ? param5
+         : (last_heading == param3) ? param6
+         : (last_heading == param4) ? param7
+                                    : param8;
 }

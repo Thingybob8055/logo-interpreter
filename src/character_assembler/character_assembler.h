@@ -32,16 +32,19 @@ class CharacterAssembler {
   Heading GetCurrentHeading() const { return current_heading; }
 
  private:
-  const char *TrailingCharacter(Direction current_direction);
+  const char *TrailingCharacter(Direction current_direction) const;
   const char *TrailingCharacterIfCurrentAndLastDirectionIsForwards() const;
   const char *TrailingCharacterIfCurrentAndLastDirectionIsBackwards() const;
   const char *TrailingCharacterIfCurrentDirectionIsForwardsLastIsBackwards()
       const;
   const char *TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards()
       const;
+  const char *ReturnTrailingCharacterFromLastHeading(
+      Heading param2, Heading param3, Heading param4, const char *param5,
+      const char *param6, const char *param7, const char *param8) const;
+
   const char *leading_character = static_cast<const char *>("▲");
   const char *trailing_character = static_cast<const char *>("");
-
   Direction last_direction;
   Heading last_heading;
   Heading current_heading;
