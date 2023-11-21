@@ -6,6 +6,25 @@
 #include "movement/pen_position.h"
 
 class CharacterAssembler {
+ private:
+  const char *TrailingCharacter(Direction current_direction) const;
+  const char *TrailingCharacterIfCurrentAndLastDirectionIsForwards() const;
+  const char *TrailingCharacterIfCurrentAndLastDirectionIsBackwards() const;
+  const char *TrailingCharacterIfCurrentDirectionIsForwardsLastIsBackwards()
+      const;
+  const char *TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards()
+      const;
+  const char *ReturnTrailingCharacterFromLastHeading(
+      Heading heading1, Heading heading2, Heading heading3, const char *output1,
+      const char *output2, const char *output3,
+      const char *output_default) const;
+
+  const char *leading_character = static_cast<const char *>("▲");
+  const char *trailing_character = static_cast<const char *>("");
+  Direction last_direction;
+  Heading last_heading;
+  Heading current_heading;
+
  public:
   CharacterAssembler();
 
@@ -30,25 +49,6 @@ class CharacterAssembler {
 
   void SetCurrentHeading(Heading heading) { current_heading = heading; }
   Heading GetCurrentHeading() const { return current_heading; }
-
- private:
-  const char *TrailingCharacter(Direction current_direction) const;
-  const char *TrailingCharacterIfCurrentAndLastDirectionIsForwards() const;
-  const char *TrailingCharacterIfCurrentAndLastDirectionIsBackwards() const;
-  const char *TrailingCharacterIfCurrentDirectionIsForwardsLastIsBackwards()
-      const;
-  const char *TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards()
-      const;
-  const char *ReturnTrailingCharacterFromLastHeading(
-      Heading heading1, Heading heading2, Heading heading3, const char *output1,
-      const char *output2, const char *output3,
-      const char *output_default) const;
-
-  const char *leading_character = static_cast<const char *>("▲");
-  const char *trailing_character = static_cast<const char *>("");
-  Direction last_direction;
-  Heading last_heading;
-  Heading current_heading;
 };
 
 #endif /* CHARACTER_ASSEMBLER_H_ */

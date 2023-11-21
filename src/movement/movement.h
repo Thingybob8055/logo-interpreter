@@ -11,6 +11,17 @@ constexpr const char* LEFT_ARROW = (const char*)"◀";
 constexpr const char* RIGHT_ARROW = (const char*)"▶";
 
 class Movement {
+ private:
+  int x_location;
+  int y_location;
+  int x_safe_zone;
+  int y_safe_zone;
+
+  void BoundaryCheck();
+  PenPosition pen_position = PEN_DOWN;
+
+  CharacterAssembler* assembler;
+
  public:
   Movement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
            CharacterAssembler* assembler);
@@ -45,17 +56,6 @@ class Movement {
   Heading GetCurrentHeadingFromAssembler() const {
     return assembler->GetCurrentHeading();
   }
-
- private:
-  int x_location;
-  int y_location;
-  int x_safe_zone;
-  int y_safe_zone;
-
-  void BoundaryCheck();
-  PenPosition pen_position = PEN_DOWN;
-
-  CharacterAssembler* assembler;
 };
 
 #endif /* MOVEMENT_H_ */
