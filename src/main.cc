@@ -1,13 +1,15 @@
 #include <cstdint>
 #include <memory>
 
-#include "box/pd_box.h"
+#include "box/box.h"
 #include "character_assembler/character_assembler.h"
+#include "factory/pd_factory.h"
+#include "factory/ui_factory.h"
 #include "importer/file_importer.h"
 #include "movement/movement.h"
 #include "parser/logo_parser.h"
-#include "renderer/pd_renderer.h"
-#include "window/pd_window.h"
+#include "renderer/renderer.h"
+#include "window/window.h"
 
 bool GetExitCommand(int command) {
   if (command == 'x') {
@@ -17,7 +19,7 @@ bool GetExitCommand(int command) {
   }
 }
 
-void RunLoop(PDWindow *window, PDRenderer *graphics, Parser *parser) {
+void RunLoop(Window *window, Renderer *graphics, Parser *parser) {
   while (parser->HasNext()) {
     parser->Next();
     int command = parser->GetCommand();
@@ -28,9 +30,8 @@ void RunLoop(PDWindow *window, PDRenderer *graphics, Parser *parser) {
 #endif
     graphics->Move(command, magnitude);
     graphics->Render();
-    wrefresh(window->GetWindow());
   }
-  wgetch(window->GetWindow());
+  window->GetInput();
 }
 
 bool CheckForArguments(int argc) {
@@ -49,8 +50,9 @@ int main(int argc, char **argv) {
   auto fileImporter = FileImporter(argv[1]);
   auto parser = Parser(fileImporter.GetContents());
 
-  auto window = std::make_unique<PDWindow>(argc, argv);
-  auto box = std::make_unique<PDBox>(window.get());
+  std::unique_ptr<UIFactory> ui_factory = std::make_unique<PDFactory>();
+  auto window = ui_factory->createWindow();
+  auto box = ui_factory->createBox(window.get());
 
   uint8_t start_y_coordinate = (uint8_t)box->GetYSafeZone() / 2;
   uint8_t start_x_coordinate = (uint8_t)box->GetXSafeZone() / 2;
@@ -58,8 +60,7 @@ int main(int argc, char **argv) {
   auto movement = std::make_unique<Movement>(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
       box->GetXSafeZone(), assembler.get());
-  auto graphics = PDRenderer(window.get(), movement.get());
-  RunLoop(window.get(), &graphics, &parser);
-  endwin();
+  auto graphics = ui_factory->createRenderer(window.get(), movement.get());
+  RunLoop(window.get(), graphics.get(), &parser);
   return 0;
 }

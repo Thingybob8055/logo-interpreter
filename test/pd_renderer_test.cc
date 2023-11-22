@@ -16,8 +16,8 @@ char *ReadStringFromWindow(WINDOW *win, int y, int x) {
 
 TEST(PDRendererTest, when_constructed_expect_renderer_to_be_created) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 1;
@@ -45,8 +45,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_forwards_with_heading_set_to_right_and_magntitude_1_expect_x_location_to_increment_by_two) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 2;
@@ -76,8 +76,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_forwards_with_heading_set_to_up_and_magntitude_1_expect_y_location_to_decrement_by_one) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 2;
@@ -105,8 +105,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_forwards_with_heading_down_and_magntitude_1_expect_y_location_to_increment_by_one) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 2;
@@ -137,8 +137,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_forwards_with_heading_left_and_magntitude_1_expect_x_location_to_decrement_by_two) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -170,8 +170,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_backwards_expect_x_location_to_decrement_by_two) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -200,8 +200,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_backwards_expect_y_location_to_increment_by_one) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -228,8 +228,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_backwards_expect_y_location_to_decrement_by_one) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -259,8 +259,8 @@ TEST(
     PDRendererTest,
     when_move_called_when_going_backwards_expect_x_location_to_increment_by_two) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -290,8 +290,8 @@ TEST(
 TEST(PDRendererTest,
      when_move_called_with_key_space_expect_pen_position_to_be_toggled) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 2;
@@ -324,8 +324,8 @@ TEST(
     PDRendererTest,
     Render_when_when_going_forwards_called_expect_leading_character_to_be_written_to_window) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 1;
@@ -355,8 +355,8 @@ TEST(
     PDRendererTest,
     Render_when_called_when_going_forwards_expect_trailing_character_to_be_written_to_window_when_heading_is_right_and_mangitude_is_1) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 1;
@@ -388,8 +388,8 @@ TEST(
     PDRendererTest,
     Render_when_called_when_going_forwards_expect_trailing_character_to_be_written_to_window_when_heading_is_left_and_mangitude_is_1) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -423,8 +423,8 @@ TEST(
     PDRendererTest,
     Render_when_called_when_going_forwards_expect_trailing_character_to_be_written_to_window_when_heading_is_up_and_mangitude_is_1) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -455,8 +455,7 @@ TEST(
     PDRendererTest,
     Render_when_called_expect_when_going_forwards_trailing_character_to_be_written_to_window_when_heading_is_down_and_mangitude_is_1) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 5;
@@ -489,8 +488,8 @@ TEST(
     PDRendererTest,
     when_move_called_and_invalid_key_pressed_expect_x_y_location_to_remain_the_same) {
   // Arrange
-  char *ptest[0];
-  PDWindow *win = new PDWindow(0, ptest);
+
+  PDWindow *win = new PDWindow();
   PDBox *box = new PDBox(win);
 
   int y_start_location = 2;

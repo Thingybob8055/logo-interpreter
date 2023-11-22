@@ -1,9 +1,5 @@
 #include "movement.h"
 
-#include <curses.h>
-
-#include <cstdint>
-
 Movement::Movement(int y_location, int x_location, int y_safe_zone,
                    int x_safe_zone, CharacterAssembler *assembler)
     : x_location(x_location),

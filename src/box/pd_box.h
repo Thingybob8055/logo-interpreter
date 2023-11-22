@@ -1,10 +1,11 @@
 #ifndef PD_BOX_H_
 #define PD_BOX_H_
 
+#include "box/box.h"
 #include "curses.h"
 #include "window/pd_window.h"
 
-class PDBox {
+class PDBox : public Box {
  private:
   int box_x_character = 0;
   int box_y_character = 0;
@@ -15,8 +16,9 @@ class PDBox {
 
  public:
   explicit PDBox(PDWindow *window);
-  int GetXSafeZone() const { return x_safe_zone; }
-  int GetYSafeZone() const { return y_safe_zone; }
+  ~PDBox() override = default;
+  int GetXSafeZone() const override { return x_safe_zone; }
+  int GetYSafeZone() const override { return y_safe_zone; }
 };
 
 #endif /* PD_BOX_H_ */

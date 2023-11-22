@@ -1,10 +1,16 @@
 #ifndef PD_RENDERER_H_
 #define PD_RENDERER_H_
+
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "keys.h"
 #include "movement/movement.h"
+#include "renderer/renderer.h"
 #include "window/pd_window.h"
 
-class PDRenderer {
+class PDRenderer : public Renderer {
  private:
   void TogglePenPosition();
   void MoveWithDirectionAndMagnitude(Direction direction, int magnitude);
@@ -28,8 +34,8 @@ class PDRenderer {
  public:
   PDRenderer(PDWindow *window, Movement *movement);
 
-  void Move(int command, int magnitude);
-  int Render();
+  void Move(int command, int magnitude) override;
+  int Render() override;
 
   int GetXLocationFromMovement() const { return movement->GetXLocation(); }
   int GetYLocationFromMovement() const { return movement->GetYLocation(); }

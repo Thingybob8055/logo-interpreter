@@ -1,6 +1,8 @@
 #ifndef MOVEMENT_H_
 #define MOVEMENT_H_
 
+#include <cstdint>
+
 #include "character_assembler/character_assembler.h"
 #include "heading.h"
 #include "pen_position.h"

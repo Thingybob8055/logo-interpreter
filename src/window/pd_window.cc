@@ -1,9 +1,7 @@
 #include "pd_window.h"
 
-#include <iostream>
-
-PDWindow::PDWindow(int argc, char **argv) {
-  InitXcurses(argc, argv);
+PDWindow::PDWindow() {
+  InitXcurses();
   int y_max_coordinate;
   int x_max_coordinate;
   getmaxyx(stdscr, y_max_coordinate, x_max_coordinate);
@@ -19,11 +17,16 @@ PDWindow::PDWindow(int argc, char **argv) {
   this->y_max_screen_coordinate = y_max_coordinate;
 }
 
+PDWindow::~PDWindow() { delwin(window); }
+
+int PDWindow::GetInput() { return wgetch(window); }
+
 WINDOW *PDWindow::GetWindow() { return window; }
 
-void InitXcurses(int argc, char **argv) {
+void InitXcurses() {
 #ifdef XCURSES
-  Xinitscr(argc, argv);
+  char *params[0];
+  Xinitscr(0, params);
 #else
   initscr();
 #endif

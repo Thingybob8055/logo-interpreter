@@ -1,9 +1,5 @@
 #include "pd_renderer.h"
 
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 PDRenderer::PDRenderer(PDWindow *window, Movement *movement)
     : current_window(window), movement(movement) {
   keypad(this->current_window->GetWindow(), true);
@@ -58,7 +54,6 @@ int PDRenderer::Render() {
 
   return_value |= this->RenderLeadingCharacter(window, y_location, x_location,
                                                leading_character);
-  return_value |= wrefresh(window);
   return return_value;
 }
 

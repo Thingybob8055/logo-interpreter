@@ -1,9 +1,5 @@
 #include "character_assembler.h"
 
-#include <curses.h>
-
-#include <cstdint>
-
 constexpr const char* horizontal = (const char*)"─";
 constexpr const char* vertical = (const char*)"│";
 constexpr const char* top_left = (const char*)"┌";

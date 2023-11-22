@@ -6,8 +6,6 @@ PDBox::PDBox(PDWindow* pd_window) : pd_window(pd_window) {
 
 void PDBox::CreateBox(WINDOW* window, int y_character, int x_character) {
   box(window, y_character, x_character);
-  refresh();
-  wrefresh(window);
   int x_max_coordinate;
   int y_max_coordinate;
   getmaxyx(window, y_max_coordinate, x_max_coordinate);

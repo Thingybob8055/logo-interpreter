@@ -1,7 +1,8 @@
 #ifndef CHARACTER_ASSEMBLER_H_
 #define CHARACTER_ASSEMBLER_H_
 
-#include "curses.h"
+#include <cstdint>
+
 #include "movement/heading.h"
 #include "movement/pen_position.h"
 

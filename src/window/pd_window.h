@@ -4,21 +4,26 @@
 #include <curses.h>
 
 #include <cstdint>
+#include <iostream>
 
-class PDWindow {
+#include "window/window.h"
+
+class PDWindow : public Window {
  private:
   WINDOW *window;
   int y_max_screen_coordinate;
   int x_max_screen_coordinate;
 
  public:
-  PDWindow(int argc, char **argv);
+  PDWindow();
+  ~PDWindow() override;
+  int GetInput() override;
 
   WINDOW *GetWindow();
   int GetYMaxScreenCoordinate() const { return y_max_screen_coordinate; }
   int GetXMaxScreenCoordinate() const { return x_max_screen_coordinate; }
 };
 
-void InitXcurses(int argc, char **argv);
+void InitXcurses();
 
 #endif /* PD_WINDOW_H_ */
