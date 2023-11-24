@@ -1,15 +1,4 @@
-#include <cstdint>
-#include <memory>
-
-#include "box/box.h"
-#include "character_assembler/character_assembler.h"
-#include "factory/pd_factory.h"
-#include "factory/ui_factory.h"
-#include "importer/file_importer.h"
-#include "movement/movement.h"
-#include "parser/logo_parser.h"
-#include "renderer/renderer.h"
-#include "window/window.h"
+#include "main.h"
 
 bool GetExitCommand(int command) {
   if (command == 'x') {
@@ -42,6 +31,7 @@ bool CheckForArguments(int argc) {
   return true;
 }
 
+#ifndef TEST
 int main(int argc, char **argv) {
   if (!CheckForArguments(argc)) {
     return 1;
@@ -64,3 +54,4 @@ int main(int argc, char **argv) {
   RunLoop(window.get(), graphics.get(), &parser);
   return 0;
 }
+#endif
