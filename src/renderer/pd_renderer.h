@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "keys.h"
 #include "movement/movement.h"
 #include "renderer/renderer.h"
 #include "window/pd_window.h"

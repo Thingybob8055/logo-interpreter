@@ -1,5 +1,7 @@
 #include "pd_renderer.h"
 
+#include "keys.h"
+
 PDRenderer::PDRenderer(PDWindow *window, Movement *movement)
     : current_window(window), movement(movement) {
   keypad(this->current_window->GetWindow(), true);

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include "box/pd_box.h"
+#include "keys.h"
 #include "movement/movement.h"
 
 char *ReadStringFromWindow(WINDOW *win, int y, int x) {

@@ -2,7 +2,7 @@
 
 #include <gtest/gtest.h>
 
-#include "fff.h"
+#include "external/fff.h"
 
 DEFINE_FFF_GLOBALS;
 FAKE_VOID_FUNC(RunLoop, Window*, Renderer*, Parser*);

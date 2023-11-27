@@ -1,8 +1,10 @@
 #include "parser/logo_parser.h"
 
+#include <curses.h>
 #include <gtest/gtest.h>
 
 #include "importer/file_importer.h"
+#include "keys.h"
 
 class LogoParserTestFixture : public ::testing::Test {
  protected:

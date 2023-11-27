@@ -1,5 +1,7 @@
 #include "parser/logo_parser.h"
 
+#include "keys.h"
+
 Parser::Parser(std::string file_contents) {
   this->data = std::stringstream(file_contents);
 }
