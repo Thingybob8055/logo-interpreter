@@ -1,6 +1,15 @@
 #ifndef RAYLIB_WRAPPER_H_
 #define RAYLIB_WRAPPER_H_
 
+#undef KEY_ENTER
+#undef KEY_BACKSPACE
+#undef KEY_UP
+#undef KEY_DOWN
+#undef KEY_LEFT
+#undef KEY_RIGHT
+#undef KEY_HOME
+#undef KEY_END
+
 #include <raylib.h>
 
 #ifdef TEST
@@ -18,9 +27,12 @@ void WEAK_REF DrawRectangleLinesExWrapper(Rectangle rec, float lineThick,
                                           Color color);
 void WEAK_REF DrawTextWrapper(const char *text, int posX, int posY,
                               int fontSize, Color color);
+void WEAK_REF DrawLineExWrapper(Vector2 startPos, Vector2 endPos, float thick,
+                                Color color);
 
 void WEAK_REF EndDrawingWrapper();
 
+bool WEAK_REF WindowShouldCloseWrapper();
 void WEAK_REF CloseWindowWrapper();
 
 #endif /* RAYLIB_WRAPPER_H_ */

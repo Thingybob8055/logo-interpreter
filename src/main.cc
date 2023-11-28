@@ -1,7 +1,5 @@
 #include "main.h"
 
-void RayLibDisableLogging() { SetTraceLogLevel(LOG_NONE); }
-
 bool GetExitCommand(int command) {
   if (command == 'x') {
     return true;
@@ -22,7 +20,10 @@ void RunLoop(Window *window, Renderer *graphics, Parser *parser) {
     graphics->Move(command, magnitude);
     graphics->Render();
   }
-  window->GetInput();
+
+  while (!window->ShouldExit()) {
+    graphics->Render();
+  };
 }
 
 bool CheckForArguments(int argc) {
@@ -33,8 +34,21 @@ bool CheckForArguments(int argc) {
   return true;
 }
 
-void CreatePDUI(Parser *parser) {
-  std::unique_ptr<UIFactory> ui_factory = std::make_unique<PDFactory>();
+#ifndef TEST
+int main(int argc, char **argv) {
+  if (!CheckForArguments(argc)) {
+    return 1;
+  }
+
+  auto fileImporter = FileImporter(argv[1]);
+  auto parser = Parser(fileImporter.GetContents());
+
+  std::unique_ptr<UIFactory> ui_factory;
+  if (strcmp(argv[2], "pd") == 0) {
+    ui_factory = std::make_unique<PDFactory>();
+  } else if (strcmp(argv[2], "rl") == 0) {
+    ui_factory = std::make_unique<RLFactory>();
+  }
   auto window = ui_factory->createWindow();
   auto box = ui_factory->createBox(window.get());
 
@@ -45,44 +59,8 @@ void CreatePDUI(Parser *parser) {
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
       box->GetXSafeZone(), assembler.get());
   auto graphics = ui_factory->createRenderer(window.get(), movement.get());
-  RunLoop(window.get(), graphics.get(), parser);
-}
+  RunLoop(window.get(), graphics.get(), &parser);
 
-void CreateRLUI() {
-  float thickness = 3.0f;
-  Vector2 start = {55.0f, 55.0f};
-  Vector2 end = {100.0f, 100.0f};
-  Vector2 start2 = {100.0f, 100.0f};
-  Vector2 end2 = {100.0f, 200.0f};
-  std::unique_ptr<UIFactory> ui_factory = std::make_unique<RLFactory>();
-  auto window = ui_factory->createWindow();
-  auto box = ui_factory->createBox();
-  while (!WindowShouldClose()) {
-    BeginDrawing();
-    DrawText("Congrats! You created your first window!", 190, 200, 20,
-             LIGHTGRAY);
-    DrawLineEx(start, end, thickness, RED);
-    DrawLineEx(start2, end2, thickness, RED);
-    EndDrawing();
-  }
-}
-
-#ifndef TEST
-int main(int argc, char **argv) {
-  if (!CheckForArguments(argc)) {
-    return 1;
-  }
-
-  RayLibDisableLogging();
-
-  auto fileImporter = FileImporter(argv[1]);
-  auto parser = Parser(fileImporter.GetContents());
-
-  if (strcmp(argv[2], "pd") == 0) {
-    CreatePDUI(&parser);
-  } else if (strcmp(argv[2], "rl") == 0) {
-    CreateRLUI();
-  }
   return 0;
 }
 #endif

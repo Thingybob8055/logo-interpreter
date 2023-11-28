@@ -19,7 +19,7 @@ PDWindow::PDWindow() {
 
 PDWindow::~PDWindow() { delwin(window); }
 
-int PDWindow::GetInput() { return wgetch(window); }
+bool PDWindow::ShouldExit() { return wgetch(window) != 0; }
 
 WINDOW *PDWindow::GetWindow() { return window; }
 

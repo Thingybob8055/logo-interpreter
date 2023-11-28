@@ -17,7 +17,7 @@ class PDWindow : public Window {
  public:
   PDWindow();
   ~PDWindow() override;
-  int GetInput() override;
+  bool ShouldExit() override;
 
   WINDOW *GetWindow();
   int GetYMaxScreenCoordinate() const { return y_max_screen_coordinate; }

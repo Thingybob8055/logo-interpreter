@@ -17,7 +17,7 @@ class PDFactory : public UIFactory {
   std::unique_ptr<Window> createWindow() override {
     return std::make_unique<PDWindow>();
   }
-  std::unique_ptr<Box> createBox(Window* window = nullptr) override {
+  std::unique_ptr<Box> createBox(Window* window) override {
     return std::make_unique<PDBox>(static_cast<PDWindow*>(window));
   }
   std::unique_ptr<Renderer> createRenderer(Window* window,

@@ -7,4 +7,4 @@ RLWindow::RLWindow() {
 
 RLWindow::~RLWindow() { CloseWindowWrapper(); }
 
-int RLWindow::GetInput() { return 0; }
+bool RLWindow::ShouldExit() { return WindowShouldCloseWrapper(); }

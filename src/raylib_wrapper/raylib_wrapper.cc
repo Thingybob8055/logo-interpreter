@@ -35,23 +35,28 @@ to check if the functions are called and how many times they are called.
   PASS_N(_0, ##__VA_ARGS__, _10, _9, _8, _7, _6, _5, _4, _3, _2, _1, _0) \
   (__VA_ARGS__)
 
-#define WRAPPER_FUNCTION(FUNC, ...) \
-  void FUNC##Wrapper(ARGS(__VA_ARGS__)) { FUNC(PASS(__VA_ARGS__)); }
+#define WRAPPER_FUNCTION(RET, FUNC, ...) \
+  RET FUNC##Wrapper(ARGS(__VA_ARGS__)) { return FUNC(PASS(__VA_ARGS__)); }
 
-WRAPPER_FUNCTION(InitWindow, int, width, int, height, const char *, title)
+WRAPPER_FUNCTION(void, InitWindow, int, width, int, height, const char *, title)
 
-WRAPPER_FUNCTION(SetTargetFPS, int, fps)
+WRAPPER_FUNCTION(void, SetTargetFPS, int, fps)
 
-WRAPPER_FUNCTION(BeginDrawing)
+WRAPPER_FUNCTION(void, BeginDrawing)
 
-WRAPPER_FUNCTION(ClearBackground, Color, color)
+WRAPPER_FUNCTION(void, ClearBackground, Color, color)
 
-WRAPPER_FUNCTION(DrawRectangleLinesEx, Rectangle, rec, float, lineThick, Color,
-                 color)
+WRAPPER_FUNCTION(void, DrawRectangleLinesEx, Rectangle, rec, float, lineThick,
+                 Color, color)
 
-WRAPPER_FUNCTION(DrawText, const char *, text, int, posX, int, posY, int,
+WRAPPER_FUNCTION(void, DrawText, const char *, text, int, posX, int, posY, int,
                  fontSize, Color, color)
 
-WRAPPER_FUNCTION(EndDrawing)
+WRAPPER_FUNCTION(void, DrawLineEx, Vector2, startPos, Vector2, endPos, float,
+                 thick, Color, color)
 
-WRAPPER_FUNCTION(CloseWindow)
+WRAPPER_FUNCTION(void, EndDrawing)
+
+WRAPPER_FUNCTION(bool, WindowShouldClose)
+
+WRAPPER_FUNCTION(void, CloseWindow)

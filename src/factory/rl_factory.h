@@ -8,6 +8,7 @@
 #include "factory/ui_factory.h"
 #include "movement/movement.h"
 #include "renderer/renderer.h"
+#include "renderer/rl_renderer.h"
 #include "window/rl_window.h"
 #include "window/window.h"
 
@@ -16,12 +17,12 @@ class RLFactory : public UIFactory {
   std::unique_ptr<Window> createWindow() override {
     return std::make_unique<RLWindow>();
   }
-  std::unique_ptr<Box> createBox(Window* window = nullptr) override {
+  std::unique_ptr<Box> createBox(Window* window) override {
     return std::make_unique<RLBox>();
   }
   std::unique_ptr<Renderer> createRenderer(Window* window,
                                            Movement* movement) override {
-    return nullptr;
+    return std::make_unique<RLRenderer>(movement);
   }
 };
 

@@ -16,7 +16,7 @@ class RLWindow : public Window {
  public:
   RLWindow();
   ~RLWindow() override;
-  int GetInput() override;
+  bool ShouldExit() override;
 };
 
 #endif /* RL_WINDOW_H_ */

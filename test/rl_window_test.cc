@@ -14,8 +14,3 @@ TEST(RLWindowTest,
   ASSERT_EQ(InitWindowWrapper_fake.call_count, 1);
   ASSERT_EQ(SetTargetFPSWrapper_fake.call_count, 1);
 }
-
-TEST(RLWindowTest, when_get_input_expect_zero) {
-  RLWindow window;
-  ASSERT_EQ(window.GetInput(), 0);
-}

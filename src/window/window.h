@@ -3,7 +3,7 @@
 
 class Window {
  public:
-  virtual int GetInput() = 0;
+  virtual bool ShouldExit() = 0;
   virtual ~Window() = default;
 };
 
