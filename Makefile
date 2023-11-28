@@ -10,7 +10,7 @@ CXX = g++
 CXXFLAGS = -std=c++17 -DHAVE_CONFIG_H -DXCURSES  -DPDC_WIDE -DPDC_FORCE_UTF8 -DPLATFORM_DESKTOP
 INCLUDE = -I./src -I/usr/local/include/xcurses -I/usr/include/X11 -I/usr/include
 PD_LIBS = /usr/local/lib/libXCurses.a -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
-RL_LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -latomic
+RL_LIBS = -lraylib -lGL -lm -lpthread -ldl
 LIBS =  $(PD_LIBS) $(RL_LIBS)
 OBJS = main.o file_importer.o pd_renderer.o pd_window.o movement.o logo_parser.o character_assembler.o pd_box.o rl_box.o rl_window.o raylib_wrapper.o
 EXEC = bin/main
