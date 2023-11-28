@@ -30,7 +30,8 @@ else ifeq ($(shell uname -s),Linux)
 else
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Darwin)
-        LIBS += -L/usr/X11/lib -L/opt/homebrew/lib
+        PD_LIBS += -L/usr/X11/lib -L/opt/homebrew/lib
+        RL_LIBS += -L/usr/X11/lib -L/opt/homebrew/lib
         INCLUDE += -I/opt/homebrew/include
 		COVERAGE_DIR = .
     endif
