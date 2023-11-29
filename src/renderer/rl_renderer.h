@@ -11,6 +11,10 @@ class RLRenderer : public Renderer {
 
   void Move(int command, int magnitude) override;
   int Render() override;
+
+  private:
+  //Create a seperate screen to draw stuff inside the box
+  RenderTexture2D draw_screen = LoadRenderTextureWrapper(950, 650);
 };
 
 #endif /* RL_RENDERER_H_ */

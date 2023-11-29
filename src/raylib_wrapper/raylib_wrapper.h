@@ -32,6 +32,16 @@ void WEAK_REF DrawLineExWrapper(Vector2 startPos, Vector2 endPos, float thick,
 
 void WEAK_REF EndDrawingWrapper();
 
+RenderTexture2D WEAK_REF LoadRenderTextureWrapper(int width, int height);
+
+void WEAK_REF BeginTextureModeWrapper(RenderTexture2D target);
+
+void WEAK_REF EndTextureModeWrapper();
+
+void WEAK_REF DrawTextureProWrapper(Texture2D texture, Rectangle source,
+                           Rectangle dest, Vector2 origin, float rotation,
+                           Color tint);
+
 bool WEAK_REF WindowShouldCloseWrapper();
 void WEAK_REF CloseWindowWrapper();
 
