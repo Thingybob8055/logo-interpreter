@@ -20,9 +20,9 @@ class RLFactory : public UIFactory {
   std::unique_ptr<Box> createBox(Window* window) override {
     return std::make_unique<RLBox>();
   }
-  std::unique_ptr<Renderer> createRenderer(Window* window,
+  std::unique_ptr<Renderer> createRenderer(Box* box,
                                            Movement* movement) override {
-    return std::make_unique<RLRenderer>(movement);
+    return std::make_unique<RLRenderer>(static_cast<RLBox*>(box), movement);
   }
 };
 

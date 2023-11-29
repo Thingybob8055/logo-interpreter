@@ -23,7 +23,7 @@ void RunLoop(Window *window, Renderer *graphics, Parser *parser) {
 
   while (!window->ShouldExit()) {
     graphics->Render();
-  };
+  }
 }
 
 bool CheckForArguments(int argc) {
@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
   auto movement = std::make_unique<Movement>(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
       box->GetXSafeZone(), assembler.get());
-  auto graphics = ui_factory->createRenderer(window.get(), movement.get());
+  auto graphics = ui_factory->createRenderer(box.get(), movement.get());
   RunLoop(window.get(), graphics.get(), &parser);
 
   return 0;

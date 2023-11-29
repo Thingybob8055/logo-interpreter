@@ -39,8 +39,8 @@ void WEAK_REF BeginTextureModeWrapper(RenderTexture2D target);
 void WEAK_REF EndTextureModeWrapper();
 
 void WEAK_REF DrawTextureProWrapper(Texture2D texture, Rectangle source,
-                           Rectangle dest, Vector2 origin, float rotation,
-                           Color tint);
+                                    Rectangle dest, Vector2 origin,
+                                    float rotation, Color tint);
 
 bool WEAK_REF WindowShouldCloseWrapper();
 void WEAK_REF CloseWindowWrapper();

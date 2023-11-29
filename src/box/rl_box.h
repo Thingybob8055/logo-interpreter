@@ -7,11 +7,11 @@
 
 constexpr int border_pixel_width = 5;
 
-// create a seperate screen for the box to be drawn on
 class RLBox : public Box {
  private:
   void CreateBox() const;
-  RenderTexture2D BoxScreen = LoadRenderTextureWrapper(screen_width, screen_height);
+  RenderTexture2D BoxScreen =
+      LoadRenderTextureWrapper(screen_width, screen_height);
 
  public:
   explicit RLBox();
@@ -19,6 +19,7 @@ class RLBox : public Box {
 
   int GetXSafeZone() const override { return 0; }
   int GetYSafeZone() const override { return 0; }
+  RenderTexture2D GetBoxScreen() const { return BoxScreen; }
 };
 
 #endif /* RL_BOX_H_ */

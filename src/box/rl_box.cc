@@ -11,10 +11,6 @@ void RLBox::CreateBox() const {
   DrawBorder();
   DrawTitle();
   EndTextureModeWrapper();
-
-  BeginDrawingWrapper();
-  DrawTextureProWrapper(BoxScreen.texture, (Rectangle){ 0, 0, (float)BoxScreen.texture.width, -(float)BoxScreen.texture.height }, (Rectangle){ 0, 0, (float)BoxScreen.texture.width, (float)BoxScreen.texture.height}, (Vector2){ 0, 0 }, 0.0f, WHITE);
-  EndDrawingWrapper();
 }
 
 void DrawTitle() {

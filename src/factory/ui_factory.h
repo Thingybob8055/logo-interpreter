@@ -12,7 +12,7 @@ class UIFactory {
  public:
   virtual std::unique_ptr<Window> createWindow() = 0;
   virtual std::unique_ptr<Box> createBox(Window* window) = 0;
-  virtual std::unique_ptr<Renderer> createRenderer(Window* window,
+  virtual std::unique_ptr<Renderer> createRenderer(Box* box,
                                                    Movement* movement) = 0;
 
   virtual ~UIFactory() = default;

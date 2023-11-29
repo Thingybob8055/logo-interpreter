@@ -19,6 +19,7 @@ class PDBox : public Box {
   ~PDBox() override = default;
   int GetXSafeZone() const override { return x_safe_zone; }
   int GetYSafeZone() const override { return y_safe_zone; }
+  WINDOW *GetWindow() const { return pd_window->GetWindow(); }
 };
 
 #endif /* PD_BOX_H_ */

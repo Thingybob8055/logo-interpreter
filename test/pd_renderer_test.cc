@@ -29,11 +29,11 @@ TEST(PDRendererTest, when_constructed_expect_renderer_to_be_created) {
                    box->GetXSafeZone(), assembler);
 
   // Act
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Assert
 
-  ASSERT_EQ(win, renderer.GetWindow());
+  ASSERT_EQ(box, renderer.GetBox());
   ASSERT_EQ(movement, renderer.GetMovement());
 
   // Cleanup
@@ -56,7 +56,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   movement->TurnRight90();
 
@@ -87,7 +87,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   renderer.Move(KEY_UP, 1);
@@ -116,7 +116,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   movement->TurnRight90();
   movement->TurnRight90();
@@ -148,7 +148,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   movement->TurnRight90();
   movement->TurnRight90();
@@ -180,7 +180,7 @@ TEST(
   CharacterAssembler *assembler = new CharacterAssembler();
   Movement *movement =
       new Movement(y_start_location, x_start_location, 10, 10, assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   movement->TurnRight90();
 
@@ -210,7 +210,7 @@ TEST(
   CharacterAssembler *assembler = new CharacterAssembler();
   Movement *movement =
       new Movement(y_start_location, x_start_location, 10, 10, assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   renderer.Move(KEY_DOWN, 1);
@@ -238,7 +238,7 @@ TEST(
   CharacterAssembler *assembler = new CharacterAssembler();
   Movement *movement =
       new Movement(y_start_location, x_start_location, 10, 10, assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   renderer.Move(KEY_LEFT, 1);
   renderer.Move(KEY_LEFT, 1);
@@ -269,7 +269,7 @@ TEST(
   CharacterAssembler *assembler = new CharacterAssembler();
   Movement *movement =
       new Movement(y_start_location, x_start_location, 10, 10, assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   renderer.Move(KEY_RIGHT, 1);
   renderer.Move(KEY_RIGHT, 1);
@@ -301,7 +301,7 @@ TEST(PDRendererTest,
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   renderer.Move(KEY_SPACE, 1);
@@ -335,7 +335,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   int return_value = renderer.Render();
@@ -366,7 +366,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   movement->TurnRight90();
@@ -399,7 +399,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   movement->TurnRight90();
@@ -434,7 +434,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   renderer.Move(KEY_UP, 1);
@@ -465,7 +465,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   movement->TurnRight90();
@@ -499,7 +499,7 @@ TEST(
   Movement *movement =
       new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(win, movement);
+  PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
   renderer.Move(0, 0);

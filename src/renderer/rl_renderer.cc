@@ -1,6 +1,6 @@
 #include "renderer/rl_renderer.h"
 
-RLRenderer::RLRenderer(Movement *movement) {}
+RLRenderer::RLRenderer(RLBox *box, Movement *movement) : current_box(box) {}
 
 void RLRenderer::Move(int command, int magnitude) {}
 
@@ -20,13 +20,20 @@ int RLRenderer::Render() {
   EndTextureModeWrapper();
 
   BeginDrawingWrapper();
-  //start drawing the texture insde the box borders
+  DrawTextureProWrapper(
+      current_box->GetBoxScreen().texture,
+      (Rectangle){0, 0, (float)current_box->GetBoxScreen().texture.width,
+                  -(float)current_box->GetBoxScreen().texture.height},
+      (Rectangle){0, 0, (float)current_box->GetBoxScreen().texture.width,
+                  (float)current_box->GetBoxScreen().texture.height},
+      (Vector2){0, 0}, 0.0f, WHITE);
+  // start drawing the texture insde the box borders
   DrawTextureProWrapper(draw_screen.texture,
-                 (Rectangle){0, 0, (float)draw_screen.texture.width,
-                             -(float)draw_screen.texture.height},
-                 (Rectangle){55, 55, (float)draw_screen.texture.width,
-                             (float)draw_screen.texture.height},
-                 (Vector2){0, 0}, 0.0f, WHITE);
+                        (Rectangle){0, 0, (float)draw_screen.texture.width,
+                                    -(float)draw_screen.texture.height},
+                        (Rectangle){55, 55, (float)draw_screen.texture.width,
+                                    (float)draw_screen.texture.height},
+                        (Vector2){0, 0}, 0.0f, WHITE);
   EndDrawingWrapper();
   return 0;
 }

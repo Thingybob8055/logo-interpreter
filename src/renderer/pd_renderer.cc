@@ -2,9 +2,9 @@
 
 #include "keys.h"
 
-PDRenderer::PDRenderer(PDWindow *window, Movement *movement)
-    : current_window(window), movement(movement) {
-  keypad(this->current_window->GetWindow(), true);
+PDRenderer::PDRenderer(PDBox *box, Movement *movement)
+    : current_box(box), movement(movement) {
+  keypad(this->current_box->GetWindow(), true);
 }
 
 void PDRenderer::Move(int command, int magnitude) {
@@ -33,7 +33,7 @@ void PDRenderer::Move(int command, int magnitude) {
 
 int PDRenderer::Render() {
   int return_value = OK;
-  WINDOW *window = this->current_window->GetWindow();
+  WINDOW *window = this->current_box->GetWindow();
   Heading current_heading = this->movement->GetCurrentHeadingFromAssembler();
   Heading last_heading = this->movement->GetLastHeadingFromAssembler();
   Direction last_direction = this->movement->GetLastDirectionFronAssembler();

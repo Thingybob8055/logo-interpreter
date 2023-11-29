@@ -20,10 +20,9 @@ class PDFactory : public UIFactory {
   std::unique_ptr<Box> createBox(Window* window) override {
     return std::make_unique<PDBox>(static_cast<PDWindow*>(window));
   }
-  std::unique_ptr<Renderer> createRenderer(Window* window,
+  std::unique_ptr<Renderer> createRenderer(Box* box,
                                            Movement* movement) override {
-    return std::make_unique<PDRenderer>(static_cast<PDWindow*>(window),
-                                        movement);
+    return std::make_unique<PDRenderer>(static_cast<PDBox*>(box), movement);
   }
 };
 

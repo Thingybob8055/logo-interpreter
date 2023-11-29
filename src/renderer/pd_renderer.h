@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "box/pd_box.h"
 #include "movement/movement.h"
 #include "renderer/renderer.h"
-#include "window/pd_window.h"
 
 class PDRenderer : public Renderer {
  private:
@@ -26,12 +26,12 @@ class PDRenderer : public Renderer {
                                                Heading last_heading) const;
   int RenderLeadingCharacter(WINDOW *window, int y_location, int x_location,
                              const char *leading_character) const;
-  PDWindow *current_window;
+  PDBox *current_box;
 
   Movement *movement;
 
  public:
-  PDRenderer(PDWindow *window, Movement *movement);
+  PDRenderer(PDBox *box, Movement *movement);
 
   void Move(int command, int magnitude) override;
   int Render() override;
@@ -42,7 +42,7 @@ class PDRenderer : public Renderer {
     return movement->GetPenPosition();
   }
 
-  PDWindow *GetWindow() { return current_window; }
+  PDBox *GetBox() { return current_box; }
   Movement *GetMovement() { return movement; }
 };
 
