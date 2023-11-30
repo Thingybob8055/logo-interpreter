@@ -47,8 +47,8 @@ int main(int argc, char **argv) {
   auto repeatHandler = LogoRepeatHandler();
   auto lbHandler = LogoLineBreakHandler();
 
-  auto out = repeatHandler.handle(ss);
-  auto fin = lbHandler.handle(out);
+  auto out = repeatHandler.Handle(ss);
+  auto fin = lbHandler.Handle(out);
   auto parser = Parser(fin.str());
 
   std::unique_ptr<UIFactory> ui_factory;

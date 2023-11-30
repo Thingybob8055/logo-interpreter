@@ -8,7 +8,7 @@
 
 class LogoRepeatHandler {
  public:
-  std::stringstream handle(std::stringstream &ss) const;
+  std::stringstream Handle(std::stringstream &ss) const;
 };
 
 #endif  // LOGO_REPEAT_HANDLER_H_

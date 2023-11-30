@@ -1,15 +1,15 @@
 #ifndef LOGO_LINE_BREAK_HANDLER_H_
 #define LOGO_LINE_BREAK_HANDLER_H_
 
+#include <algorithm>
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <algorithm>
 
 class LogoLineBreakHandler {
  public:
-  std::stringstream handle(std::stringstream &ss) const;
+  std::stringstream Handle(std::stringstream &ss) const;
 };
 
 #endif  // LOGO_LINE_BREAK_HANDLER_H_

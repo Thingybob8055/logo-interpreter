@@ -18,18 +18,17 @@ std::string remove_loop_brackets(const std::string &string) {
 void erase_repeat_command(size_t repeat_location, std::string &line) {
   line.erase(repeat_location, repeat_command.length());
   trim(line);
-
 }
 
 void expand_repeat(std::string &line, std::stringstream &out) {
   int number_of_iterations = std::stoi(line.substr(0, line.find(" ")));
-      for (int i = 0; i < number_of_iterations; i++) {
-        std::string line_to_repeat = remove_loop_brackets(line);
-        out << line_to_repeat << std::endl;
-      }
+  for (int i = 0; i < number_of_iterations; i++) {
+    std::string line_to_repeat = remove_loop_brackets(line);
+    out << line_to_repeat << std::endl;
+  }
 }
 
-std::stringstream LogoRepeatHandler::handle(std::stringstream &ss) const {
+std::stringstream LogoRepeatHandler::Handle(std::stringstream &ss) const {
   std::stringstream out;
   for (std::string line; std::getline(ss, line);) {
     size_t repeat_location = line.find(repeat_command);
