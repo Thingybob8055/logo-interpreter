@@ -12,10 +12,8 @@ FAKE_VOID_FUNC(DrawTextureProWrapper, Texture2D, Rectangle, Rectangle, Vector2,
 FAKE_VOID_FUNC(DrawLineExWrapper, Vector2, Vector2, float, Color);
 
 class RLRendererTest : public ::testing::Test {
-protected:
-  void SetUp() override {
-    reset_common_fakes();
-  }
+ protected:
+  void SetUp() override { reset_common_fakes(); }
 };
 
 TEST_F(RLRendererTest, when_constructed_expect_rl_renderer_to_be_created) {

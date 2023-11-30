@@ -6,10 +6,8 @@
 #include "fff_common.h"
 
 class RLBoxTest : public ::testing::Test {
-protected:
-  void SetUp() override {
-    reset_common_fakes();
-  }
+ protected:
+  void SetUp() override { reset_common_fakes(); }
 };
 
 TEST_F(RLBoxTest, CreateBox_from_constructor) {

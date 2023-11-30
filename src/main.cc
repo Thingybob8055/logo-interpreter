@@ -41,7 +41,15 @@ int main(int argc, char **argv) {
   }
 
   auto fileImporter = FileImporter(argv[1]);
-  auto parser = Parser(fileImporter.GetContents());
+  std::stringstream ss;
+  ss << fileImporter.GetContents();
+
+  auto repeatHandler = LogoRepeatHandler();
+  auto lbHandler = LogoLineBreakHandler();
+
+  auto out = repeatHandler.handle(ss);
+  auto fin = lbHandler.handle(out);
+  auto parser = Parser(fin.str());
 
   std::unique_ptr<UIFactory> ui_factory;
   if (strcmp(argv[2], "pd") == 0) {

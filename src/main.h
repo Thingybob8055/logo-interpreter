@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <memory>
+#include <sstream>
 
 #include "box/box.h"
 #include "character_assembler/character_assembler.h"
@@ -14,6 +15,8 @@
 #include "parser/logo_parser.h"
 #include "renderer/renderer.h"
 #include "window/window.h"
+#include "parser/logo_repeat_handler.h"
+#include "parser/logo_line_break_handler.h"
 
 bool GetExitCommand(int command);
 
