@@ -12,11 +12,11 @@
 #include "factory/ui_factory.h"
 #include "importer/file_importer.h"
 #include "movement/movement.h"
+#include "parser/logo_line_break_handler.h"
 #include "parser/logo_parser.h"
+#include "parser/logo_repeat_handler.h"
 #include "renderer/renderer.h"
 #include "window/window.h"
-#include "parser/logo_repeat_handler.h"
-#include "parser/logo_line_break_handler.h"
 
 bool GetExitCommand(int command);
 

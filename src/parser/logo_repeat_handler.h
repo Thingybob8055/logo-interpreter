@@ -1,10 +1,10 @@
 #ifndef LOGO_REPEAT_HANDLER_H_
 #define LOGO_REPEAT_HANDLER_H_
 
-#include <string>
-#include <sstream>
-#include <iostream>
 #include <functional>
+#include <iostream>
+#include <sstream>
+#include <string>
 
 class LogoRepeatHandler {
  private:

@@ -1,8 +1,8 @@
 #ifndef LOGO_LINE_BREAK_HANDLER_H_
 #define LOGO_LINE_BREAK_HANDLER_H_
 
-#include <string>
 #include <sstream>
+#include <string>
 
 class LogoLineBreakHandler {
  public:
