@@ -24,11 +24,11 @@ TEST_F(RLBoxTest, CreateBox_from_constructor) {
 TEST_F(RLBoxTest, GetXSafeZone) {
   RLWindow window;
   RLBox box;
-  ASSERT_EQ(box.GetXSafeZone(), 0);
+  ASSERT_EQ(box.GetXSafeZone(), 950);
 }
 
 TEST_F(RLBoxTest, GetYSafeZone) {
   RLWindow window;
   RLBox box;
-  ASSERT_EQ(box.GetYSafeZone(), 0);
+  ASSERT_EQ(box.GetYSafeZone(), 650);
 }

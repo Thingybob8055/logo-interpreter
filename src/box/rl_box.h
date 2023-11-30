@@ -12,13 +12,15 @@ class RLBox : public Box {
   void CreateBox() const;
   RenderTexture2D BoxScreen =
       LoadRenderTextureWrapper(screen_width, screen_height);
+      int x_safe_zone = border_width;
+      int y_safe_zone = border_height;
 
  public:
   explicit RLBox();
   ~RLBox() override = default;
 
-  int GetXSafeZone() const override { return 0; }
-  int GetYSafeZone() const override { return 0; }
+  int GetXSafeZone() const override { return x_safe_zone; }
+  int GetYSafeZone() const override { return y_safe_zone; }
   RenderTexture2D GetBoxScreen() const { return BoxScreen; }
 };
 

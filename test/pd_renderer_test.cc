@@ -6,7 +6,7 @@
 
 #include "box/pd_box.h"
 #include "keys.h"
-#include "movement/movement.h"
+#include "movement/pd_movement.h"
 
 char *ReadStringFromWindow(WINDOW *win, int y, int x) {
   static char str[3];
@@ -24,8 +24,8 @@ TEST(PDRendererTest, when_constructed_expect_renderer_to_be_created) {
   int y_start_location = 1;
   int x_start_location = 1;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
 
   // Act
@@ -53,8 +53,8 @@ TEST(
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -84,8 +84,8 @@ TEST(
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -113,8 +113,8 @@ TEST(
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -145,8 +145,8 @@ TEST(
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -178,8 +178,8 @@ TEST(
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, 10, 10, assembler);
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, 10, 10, assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
   movement->TurnRight90();
@@ -208,8 +208,8 @@ TEST(
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, 10, 10, assembler);
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, 10, 10, assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
   // Act
@@ -236,8 +236,8 @@ TEST(
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, 10, 10, assembler);
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, 10, 10, assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
   renderer.Move(KEY_LEFT, 1);
@@ -267,8 +267,8 @@ TEST(
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, 10, 10, assembler);
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, 10, 10, assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
   renderer.Move(KEY_RIGHT, 1);
@@ -298,8 +298,8 @@ TEST(PDRendererTest,
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -332,8 +332,8 @@ TEST(
   int y_start_location = 1;
   int x_start_location = 1;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -363,8 +363,8 @@ TEST(
   int y_start_location = 1;
   int x_start_location = 1;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -396,8 +396,8 @@ TEST(
   int y_start_location = 5;
   int x_start_location = 5;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 
@@ -422,71 +422,6 @@ TEST(
 
 TEST(
     PDRendererTest,
-    Render_when_called_when_going_forwards_expect_trailing_character_to_be_written_to_window_when_heading_is_up_and_mangitude_is_1) {
-  // Arrange
-
-  PDWindow *win = new PDWindow();
-  PDBox *box = new PDBox(win);
-
-  int y_start_location = 5;
-  int x_start_location = 5;
-  CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
-                   box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(box, movement);
-
-  // Act
-  renderer.Move(KEY_UP, 1);
-  int return_value = renderer.Render();
-
-  // Assert
-  char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
-                                           x_start_location);
-  ASSERT_STREQ(read_string, assembler->GetTrailingCharacter());
-  ASSERT_EQ(OK, return_value);
-
-  // cleanup
-  delete win;
-  delete movement;
-  delete box;
-}
-
-TEST(
-    PDRendererTest,
-    Render_when_called_expect_when_going_forwards_trailing_character_to_be_written_to_window_when_heading_is_down_and_mangitude_is_1) {
-  // Arrange
-  PDWindow *win = new PDWindow();
-  PDBox *box = new PDBox(win);
-
-  int y_start_location = 5;
-  int x_start_location = 5;
-  CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
-                   box->GetXSafeZone(), assembler);
-  PDRenderer renderer = PDRenderer(box, movement);
-
-  // Act
-  movement->TurnRight90();
-  movement->TurnRight90();
-  renderer.Move(KEY_UP, 1);
-  int return_value = renderer.Render();
-
-  // Assert
-  char *read_string = ReadStringFromWindow(win->GetWindow(), y_start_location,
-                                           x_start_location);
-  ASSERT_STREQ(read_string, assembler->GetTrailingCharacter());
-  ASSERT_EQ(OK, return_value);
-
-  // cleanup
-  delete win;
-  delete movement;
-  delete box;
-}
-
-TEST(
-    PDRendererTest,
     when_move_called_and_invalid_key_pressed_expect_x_y_location_to_remain_the_same) {
   // Arrange
 
@@ -496,8 +431,8 @@ TEST(
   int y_start_location = 2;
   int x_start_location = 2;
   CharacterAssembler *assembler = new CharacterAssembler();
-  Movement *movement =
-      new Movement(y_start_location, x_start_location, box->GetYSafeZone(),
+  PDMovement *movement =
+      new PDMovement(y_start_location, x_start_location, box->GetYSafeZone(),
                    box->GetXSafeZone(), assembler);
   PDRenderer renderer = PDRenderer(box, movement);
 

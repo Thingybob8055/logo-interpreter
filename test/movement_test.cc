@@ -1,4 +1,4 @@
-#include "movement/movement.h"
+#include "movement/pd_movement.h"
 
 #include <curses.h>
 #include <gtest/gtest.h>
@@ -14,7 +14,7 @@ TEST(MovementTest, when_constructor_called_expect_movement_to_be_created) {
   CharacterAssembler *assembler = new CharacterAssembler();
 
   // Act
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   // Assert
@@ -36,7 +36,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   // Act
@@ -61,7 +61,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -89,7 +89,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnLeft90();
@@ -116,7 +116,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -143,7 +143,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   // Act
@@ -168,7 +168,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -196,7 +196,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnLeft90();
@@ -223,7 +223,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -251,7 +251,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   // Act
@@ -276,7 +276,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -304,7 +304,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnLeft90();
@@ -331,7 +331,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -358,7 +358,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   // Act
@@ -383,7 +383,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -411,7 +411,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
   movement.TurnLeft90();
 
@@ -437,7 +437,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(x_start_location, y_start_location, x_safe_zone,
+  auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                            y_safe_zone, assembler);
   movement.TurnRight90();
 
@@ -464,7 +464,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(y_start_location, x_start_location, y_safe_zone,
+  auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                            x_safe_zone, assembler);
 
   // Act
@@ -489,7 +489,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(y_start_location, x_start_location, y_safe_zone,
+  auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                            x_safe_zone, assembler);
 
   movement.TurnRight90();
@@ -517,7 +517,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(y_start_location, x_start_location, y_safe_zone,
+  auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                            x_safe_zone, assembler);
 
   movement.TurnLeft90();
@@ -544,7 +544,7 @@ TEST(
 
   CharacterAssembler *assembler = new CharacterAssembler();
 
-  auto movement = Movement(y_start_location, x_start_location, y_safe_zone,
+  auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                            x_safe_zone, assembler);
 
   movement.TurnRight90();

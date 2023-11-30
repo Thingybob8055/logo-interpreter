@@ -15,8 +15,15 @@ class RLRenderer : public Renderer {
   RLBox *GetBox() const { return current_box; }
 
  private:
-  RenderTexture2D draw_screen = LoadRenderTextureWrapper(950, 650);
+  RenderTexture2D draw_screen;
   RLBox *current_box;
+  Texture2D turtle;
+
+  float turtle_texture_width;
+  float turtle_texture_height;
+
+  void InitialiseTextures();
+
 };
 
 #endif /* RL_RENDERER_H_ */

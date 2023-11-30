@@ -1,6 +1,6 @@
-#include "movement.h"
+#include "pd_movement.h"
 
-Movement::Movement(int y_location, int x_location, int y_safe_zone,
+PDMovement::PDMovement(int y_location, int x_location, int y_safe_zone,
                    int x_safe_zone, CharacterAssembler *assembler)
     : x_location(x_location),
       y_location(y_location),
@@ -8,7 +8,7 @@ Movement::Movement(int y_location, int x_location, int y_safe_zone,
       y_safe_zone(y_safe_zone),
       assembler(assembler) {}
 
-void Movement::BoundaryCheck() {
+void PDMovement::BoundaryCheck() {
   static uint8_t ceiling_cap = 1;
   if (y_location < ceiling_cap) {
     y_location = ceiling_cap;
@@ -21,7 +21,7 @@ void Movement::BoundaryCheck() {
   }
 }
 
-void Movement::MoveForward() {
+void PDMovement::MoveForward() {
   if (assembler->GetCurrentHeading() == HEADING_UP) {
     y_location--;
   } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
@@ -37,7 +37,7 @@ void Movement::MoveForward() {
   BoundaryCheck();
 }
 
-void Movement::MoveBackward() {
+void PDMovement::MoveBackward() {
   if (assembler->GetCurrentHeading() == HEADING_UP) {
     y_location++;
   } else if (assembler->GetCurrentHeading() == HEADING_DOWN) {
@@ -53,7 +53,7 @@ void Movement::MoveBackward() {
   BoundaryCheck();
 }
 
-void Movement::TurnRight90() {
+void PDMovement::TurnRight90() {
   if (assembler->GetCurrentHeading() == HEADING_UP) {
     assembler->SetCurrentHeading(HEADING_RIGHT);
     assembler->SetLeadingCharacter(RIGHT_ARROW);
@@ -69,7 +69,7 @@ void Movement::TurnRight90() {
   }
 }
 
-void Movement::TurnLeft90() {
+void PDMovement::TurnLeft90() {
   if (assembler->GetCurrentHeading() == HEADING_UP) {
     assembler->SetCurrentHeading(HEADING_LEFT);
     assembler->SetLeadingCharacter(LEFT_ARROW);

@@ -27,8 +27,6 @@ void WEAK_REF DrawRectangleLinesExWrapper(Rectangle rec, float lineThick,
                                           Color color);
 void WEAK_REF DrawTextWrapper(const char *text, int posX, int posY,
                               int fontSize, Color color);
-void WEAK_REF DrawLineExWrapper(Vector2 startPos, Vector2 endPos, float thick,
-                                Color color);
 
 void WEAK_REF EndDrawingWrapper();
 
@@ -44,5 +42,7 @@ void WEAK_REF DrawTextureProWrapper(Texture2D texture, Rectangle source,
 
 bool WEAK_REF WindowShouldCloseWrapper();
 void WEAK_REF CloseWindowWrapper();
+
+Texture2D WEAK_REF LoadTextureWrapper(const char *fileName);
 
 #endif /* RAYLIB_WRAPPER_H_ */

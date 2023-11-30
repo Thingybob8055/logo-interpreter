@@ -24,6 +24,10 @@ class RLFactory : public UIFactory {
                                            Movement* movement) override {
     return std::make_unique<RLRenderer>(static_cast<RLBox*>(box), movement);
   }
+  std::unique_ptr<Movement> createMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+             CharacterAssembler* assembler) override {
+    return nullptr;
+  }
 };
 
 #endif /* RL_FACTORY_H_ */

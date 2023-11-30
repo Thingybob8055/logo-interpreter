@@ -7,6 +7,7 @@
 #include "box/pd_box.h"
 #include "factory/ui_factory.h"
 #include "movement/movement.h"
+#include "movement/pd_movement.h"
 #include "renderer/pd_renderer.h"
 #include "renderer/renderer.h"
 #include "window/pd_window.h"
@@ -22,7 +23,11 @@ class PDFactory : public UIFactory {
   }
   std::unique_ptr<Renderer> createRenderer(Box* box,
                                            Movement* movement) override {
-    return std::make_unique<PDRenderer>(static_cast<PDBox*>(box), movement);
+    return std::make_unique<PDRenderer>(static_cast<PDBox*>(box), static_cast<PDMovement*>(movement));
+  }
+  std::unique_ptr<Movement> createMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+             CharacterAssembler* assembler) override {
+    return std::make_unique<PDMovement>(y_location, x_location, y_safe_zone, x_safe_zone, assembler);
   }
 };
 

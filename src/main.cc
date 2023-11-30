@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
   uint8_t start_y_coordinate = (uint8_t)box->GetYSafeZone() / 2;
   uint8_t start_x_coordinate = (uint8_t)box->GetXSafeZone() / 2;
   auto assembler = std::make_unique<CharacterAssembler>();
-  auto movement = std::make_unique<Movement>(
+  auto movement = ui_factory->createMovement(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
       box->GetXSafeZone(), assembler.get());
   auto graphics = ui_factory->createRenderer(box.get(), movement.get());

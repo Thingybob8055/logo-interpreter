@@ -6,6 +6,7 @@
 #include "box/box.h"
 #include "movement/movement.h"
 #include "renderer/renderer.h"
+#include "character_assembler/character_assembler.h"
 #include "window/window.h"
 
 class UIFactory {
@@ -14,6 +15,8 @@ class UIFactory {
   virtual std::unique_ptr<Box> createBox(Window* window) = 0;
   virtual std::unique_ptr<Renderer> createRenderer(Box* box,
                                                    Movement* movement) = 0;
+  virtual std::unique_ptr<Movement> createMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+             CharacterAssembler* assembler) = 0;
 
   virtual ~UIFactory() = default;
 };

@@ -60,9 +60,6 @@ WRAPPER_FUNCTION(void, DrawRectangleLinesEx, Rectangle, rec, float, lineThick,
 WRAPPER_FUNCTION(void, DrawText, const char *, text, int, posX, int, posY, int,
                  fontSize, Color, color)
 
-WRAPPER_FUNCTION(void, DrawLineEx, Vector2, startPos, Vector2, endPos, float,
-                 thick, Color, color)
-
 WRAPPER_FUNCTION(void, EndDrawing)
 
 WRAPPER_FUNCTION(RenderTexture2D, LoadRenderTexture, int, width, int, height)
@@ -78,3 +75,5 @@ WRAPPER_FUNCTION(void, EndTextureMode)
 WRAPPER_FUNCTION(bool, WindowShouldClose)
 
 WRAPPER_FUNCTION(void, CloseWindow)
+
+WRAPPER_FUNCTION(Texture2D, LoadTexture, const char *, fileName)

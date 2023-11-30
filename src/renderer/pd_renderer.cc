@@ -2,7 +2,7 @@
 
 #include "keys.h"
 
-PDRenderer::PDRenderer(PDBox *box, Movement *movement)
+PDRenderer::PDRenderer(PDBox *box, PDMovement *movement)
     : current_box(box), movement(movement) {
   keypad(this->current_box->GetWindow(), true);
 }

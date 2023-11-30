@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 #include "box/pd_box.h"
-#include "movement/movement.h"
+#include "movement/pd_movement.h"
 #include "renderer/renderer.h"
 
 class PDRenderer : public Renderer {
@@ -28,10 +28,10 @@ class PDRenderer : public Renderer {
                              const char *leading_character) const;
   PDBox *current_box;
 
-  Movement *movement;
+  PDMovement *movement;
 
  public:
-  PDRenderer(PDBox *box, Movement *movement);
+  PDRenderer(PDBox *box, PDMovement *movement);
 
   void Move(int command, int magnitude) override;
   int Render() override;
@@ -43,7 +43,7 @@ class PDRenderer : public Renderer {
   }
 
   PDBox *GetBox() { return current_box; }
-  Movement *GetMovement() { return movement; }
+  PDMovement *GetMovement() { return movement; }
 };
 
 #endif /* PD_RENDERER_H_ */

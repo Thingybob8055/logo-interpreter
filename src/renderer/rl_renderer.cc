@@ -1,22 +1,23 @@
 #include "renderer/rl_renderer.h"
 
-RLRenderer::RLRenderer(RLBox *box, Movement *movement) : current_box(box) {}
+RLRenderer::RLRenderer(RLBox *box, Movement *movement) : current_box(box) {
+  this->InitialiseTextures();
+  draw_screen = LoadRenderTextureWrapper(current_box->GetXSafeZone(),
+                                         current_box->GetYSafeZone());
+}
 
 void RLRenderer::Move(int command, int magnitude) {}
 
 int RLRenderer::Render() {
-  float thickness = 3.0f;
-  Vector2 start = {0.0f, 0.0f};
-  Vector2 end = {55.0f, 55.0f};
-  Vector2 start2 = {55.0f, 55.0f};
-  Vector2 end2 = {55.0f, 100.0f};
-
   BeginTextureModeWrapper(draw_screen);
-  ClearBackgroundWrapper(RED);
-  DrawTextWrapper("Congrats! You created your first window!", 190, 200, 20,
-                  LIGHTGRAY);
-  DrawLineExWrapper(start, end, thickness, GREEN);
-  DrawLineExWrapper(start2, end2, thickness, GREEN);
+  ClearBackgroundWrapper(BLUE);
+  Rectangle source =
+      (Rectangle){0, 0, (float)turtle.width, (float)turtle.height};
+  Rectangle dest = (Rectangle){(float)current_box->GetXSafeZone() / 2,
+                               (float)current_box->GetYSafeZone() / 2,
+                               turtle_texture_width, turtle_texture_height};
+  DrawTextureProWrapper(turtle, source, dest,
+                 (Vector2){dest.width / 2, dest.height / 2}, 270.0f, WHITE);
   EndTextureModeWrapper();
 
   BeginDrawingWrapper();
@@ -36,4 +37,11 @@ int RLRenderer::Render() {
                         (Vector2){0, 0}, 0.0f, WHITE);
   EndDrawingWrapper();
   return 0;
+}
+
+void RLRenderer::InitialiseTextures() {
+  turtle = LoadTextureWrapper("resouces/turtle.png");
+  float scale_factor = 0.04f;
+  turtle_texture_width = turtle.width * scale_factor;
+  turtle_texture_height = turtle.height * scale_factor;
 }
