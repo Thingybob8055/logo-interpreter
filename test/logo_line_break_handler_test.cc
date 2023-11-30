@@ -8,7 +8,7 @@ TEST(
   std::stringstream ss;
   ss << "fd 50 rt 90";
   auto handler = LogoLineBreakHandler();
-  auto out = handler.handle(ss);
+  auto out = handler.Handle(ss);
   std::string expected = "fd 50\nrt 90\n";
   EXPECT_EQ(out.str(), expected);
 }
@@ -19,7 +19,7 @@ TEST(
   std::stringstream ss;
   ss << "pu pd";
   auto handler = LogoLineBreakHandler();
-  auto out = handler.handle(ss);
+  auto out = handler.Handle(ss);
   std::string expected = "pu\npd\n";
   EXPECT_EQ(out.str(), expected);
 }
@@ -30,7 +30,7 @@ TEST(
   std::stringstream ss;
   ss << "fd 50\nrt 90";
   auto handler = LogoLineBreakHandler();
-  auto out = handler.handle(ss);
+  auto out = handler.Handle(ss);
   std::string expected = "fd 50\nrt 90\n";
   EXPECT_EQ(out.str(), expected);
 }

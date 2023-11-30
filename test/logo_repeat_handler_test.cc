@@ -7,7 +7,7 @@ TEST(LogoRepeatHandlerTest,
   std::stringstream ss;
   ss << "repeat 4 [ fd 50 rt 90 ]";
   auto handler = LogoRepeatHandler();
-  auto out = handler.handle(ss);
+  auto out = handler.Handle(ss);
   std::string expected =
       "fd 50 rt 90 \nfd 50 rt 90 \nfd 50 rt 90 \nfd 50 rt 90 \n";
   EXPECT_EQ(out.str(), expected);
@@ -18,7 +18,7 @@ TEST(LogoRepeatHandlerTest,
   std::stringstream ss;
   ss << "fd 50 rt 90";
   auto handler = LogoRepeatHandler();
-  auto out = handler.handle(ss);
+  auto out = handler.Handle(ss);
   std::string expected = "fd 50 rt 90\n";
   EXPECT_EQ(out.str(), expected);
 }
