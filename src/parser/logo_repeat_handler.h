@@ -7,8 +7,6 @@
 #include <string>
 
 class LogoRepeatHandler {
- private:
-  /* data */
  public:
   std::stringstream handle(std::stringstream &ss) const;
 };

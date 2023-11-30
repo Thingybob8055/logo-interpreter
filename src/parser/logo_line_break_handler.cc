@@ -1,42 +1,42 @@
 #include "parser/logo_line_break_handler.h"
 
-#include <iostream>
-#include <vector>
-
 const std::vector<std::string> list_of_commands_with_magnitude = {"fd", "bk",
                                                                   "lt", "rt"};
 
-std::stringstream LogoLineBreakHandler::handle(std::stringstream &ss) const {
-  std::stringstream out;
+std::vector<std::string> line_to_vector(std::string &line) {
+  std::string s;
+  std::stringstream ss(line);
+  std::vector<std::string> split_line;
+  while (std::getline(ss, s, ' ')) {
+   split_line.push_back(s);
+  }
+  return split_line;
+}
 
-  // TODO: Loop through each line in the stringstream
-  for (std::string line; std::getline(ss, line);) {
-    // TODO: Break up line by spaces and loop through each word
-    std::string s;
-    std::stringstream ss(line);
-    std::vector<std::string> v;
-
-    while (std::getline(ss, s, ' ')) {
-      v.push_back(s);
-    }
-
-    // print the vector
-    for (int i = 0; i < v.size(); i++) {
-      if (std::find(list_of_commands_with_magnitude.begin(),
+bool has_magnitude(std::string command) {
+  return std::find(list_of_commands_with_magnitude.begin(),
                     list_of_commands_with_magnitude.end(),
-                    v[i]) != list_of_commands_with_magnitude.end()) {
-        // TODO: If word is a command with a magnitude, add a line break after
-        // the next word std::cout << v[i] << " Is a command w/magnitude!" <<
-        // std::endl;
-        out << v[i] << " " << v[i + 1] << std::endl;
-        i++;
-      } else {
-        // TODO: If word is a command without a magnitude, add a line break
-        // after current word std::cout << v[i] << std::endl;
-        out << v[i] << std::endl;
-      }
+                    command) != list_of_commands_with_magnitude.end();
+}
+
+void format_to_stream(std::vector<std::string> &split_line, std::stringstream &out) {
+  for (int i = 0; i < split_line.size(); i++) {
+    std::string current_item = split_line[i];
+    if (has_magnitude(current_item)) {
+      std::string next_item = split_line[i+1];
+      out << current_item << " " << next_item << std::endl;
+      i++;
+    } else {
+      out << current_item << std::endl;
     }
   }
+}
 
+std::stringstream LogoLineBreakHandler::handle(std::stringstream &ss) const {
+  std::stringstream out;
+  for (std::string line; std::getline(ss, line);) {
+    std::vector<std::string> split_line = line_to_vector(line);
+    format_to_stream(split_line, out);
+  }
   return out;
 }

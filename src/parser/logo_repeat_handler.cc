@@ -8,28 +8,34 @@ void trim(std::string &string) {
                             std::bind_front(std::not_equal_to<char>(), ' ')));
 }
 
-std::string remove_loop(const std::string &string) {
+std::string remove_loop_brackets(const std::string &string) {
   std::string out = string.substr(string.find("[") + 1,
                                   string.length() - (string.find("[") + 1) - 1);
   trim(out);
   return out;
 }
 
+void erase_repeat_command(size_t repeat_location, std::string &line) {
+  line.erase(repeat_location, repeat_command.length());
+  trim(line);
+
+}
+
+void expand_repeat(std::string &line, std::stringstream &out) {
+  int number_of_iterations = std::stoi(line.substr(0, line.find(" ")));
+      for (int i = 0; i < number_of_iterations; i++) {
+        std::string line_to_repeat = remove_loop_brackets(line);
+        out << line_to_repeat << std::endl;
+      }
+}
+
 std::stringstream LogoRepeatHandler::handle(std::stringstream &ss) const {
   std::stringstream out;
   for (std::string line; std::getline(ss, line);) {
-    size_t f = line.find(repeat_command);
-    if (f != std::string::npos) {
-      line.erase(f, repeat_command.length());
-      trim(line);
-      // Get the number of times to repeat
-      int number_of_repeats = std::stoi(line.substr(0, line.find(" ")));
-      for (int i = 0; i < number_of_repeats; i++) {
-        // Get the line to repeat
-        std::string line_to_repeat = remove_loop(line);
-        // Add the line to repeat to the stringstream
-        out << line_to_repeat << std::endl;
-      }
+    size_t repeat_location = line.find(repeat_command);
+    if (repeat_location != std::string::npos) {
+      erase_repeat_command(repeat_location, line);
+      expand_repeat(line, out);
     } else {
       out << line << std::endl;
     }
