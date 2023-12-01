@@ -1,11 +1,12 @@
 #ifndef RL_MOVEMENT_H_
 #define RL_MOVEMENT_H_
 
+#include <vector>
+
 #include "heading.h"
 #include "movement.h"
 #include "pen_position.h"
 #include "raylib_wrapper/raylib_wrapper.h"
-#include <vector>
 
 struct TrailPoint {
   Vector2 position;
@@ -25,7 +26,8 @@ class RLMovement : public Movement {
   std::vector<TrailPoint> trail_points;
 
  public:
-  RLMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone, int angle);
+  RLMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+             int angle);
 
   void MoveForward() override;
   void MoveBackward() override;
@@ -43,7 +45,6 @@ class RLMovement : public Movement {
   }
 
   std::vector<TrailPoint> GetTrailPoints() const { return trail_points; }
-
 };
 
 #endif /* RL_MOVEMENT_H_ */

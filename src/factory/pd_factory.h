@@ -23,11 +23,14 @@ class PDFactory : public UIFactory {
   }
   std::unique_ptr<Renderer> createRenderer(Box* box,
                                            Movement* movement) override {
-    return std::make_unique<PDRenderer>(static_cast<PDBox*>(box), static_cast<PDMovement*>(movement));
+    return std::make_unique<PDRenderer>(static_cast<PDBox*>(box),
+                                        static_cast<PDMovement*>(movement));
   }
-  std::unique_ptr<Movement> createMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone, int angle,
-             CharacterAssembler* assembler) override {
-    return std::make_unique<PDMovement>(y_location, x_location, y_safe_zone, x_safe_zone, assembler);
+  std::unique_ptr<Movement> createMovement(
+      int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+      int angle, CharacterAssembler* assembler) override {
+    return std::make_unique<PDMovement>(y_location, x_location, y_safe_zone,
+                                        x_safe_zone, assembler);
   }
 };
 

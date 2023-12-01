@@ -4,6 +4,7 @@
 
 #include "external/fff.h"
 #include "fff_common.h"
+#include "movement/pen_position.h"
 
 FAKE_VOID_FUNC(BeginDrawingWrapper);
 FAKE_VOID_FUNC(EndDrawingWrapper);
@@ -44,4 +45,46 @@ TEST_F(RLRendererTest, test_get_box) {
   RLBox box;
   RLRenderer renderer(&box, nullptr);
   renderer.Move(0, 0);
+}
+
+TEST_F(RLRendererTest, test_move_function_move_down) {
+  RLBox box;
+  RLMovement movement(50, 50, 350, 350, 270);
+  RLRenderer renderer(&box, &movement);
+  renderer.Move(258, 2);
+  EXPECT_EQ(sinfWrapper_fake.call_count, 2);
+  EXPECT_EQ(cosfWrapper_fake.call_count, 2);
+}
+
+TEST_F(RLRendererTest, test_move_function_move_up) {
+  RLBox box;
+  RLMovement movement(50, 50, 350, 350, 270);
+  RLRenderer renderer(&box, &movement);
+  renderer.Move(259, 2);
+  EXPECT_EQ(sinfWrapper_fake.call_count, 2);
+  EXPECT_EQ(cosfWrapper_fake.call_count, 2);
+}
+
+TEST_F(RLRendererTest, test_move_function_pen_position) {
+  RLBox box;
+  RLMovement movement(50, 50, 350, 350, 270);
+  RLRenderer renderer(&box, &movement);
+  renderer.Move(32, 2);
+  EXPECT_EQ(movement.GetPenPosition(), PEN_UP);
+}
+
+TEST_F(RLRendererTest, test_move_function_turn_left) {
+  RLBox box;
+  RLMovement movement(50, 50, 350, 350, 270);
+  RLRenderer renderer(&box, &movement);
+  renderer.Move(260, 2);
+  EXPECT_EQ(movement.GetAngle(), 180);
+}
+
+TEST_F(RLRendererTest, test_move_function_turn_right) {
+  RLBox box;
+  RLMovement movement(50, 50, 350, 350, 180);
+  RLRenderer renderer(&box, &movement);
+  renderer.Move(261, 2);
+  EXPECT_EQ(movement.GetAngle(), 270);
 }

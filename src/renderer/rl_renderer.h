@@ -2,9 +2,9 @@
 #define RL_RENDERER_H_
 
 #include "box/rl_box.h"
+#include "movement/rl_movement.h"
 #include "raylib_wrapper/raylib_wrapper.h"
 #include "renderer/renderer.h"
-#include "movement/rl_movement.h"
 
 class RLRenderer : public Renderer {
  public:
@@ -30,7 +30,6 @@ class RLRenderer : public Renderer {
   void MoveForwardsWithMagnitude(int magnitude);
   void MoveBackwardsWithMagnitude(int magnitude);
   void TogglePenPosition();
-
 };
 
 #endif /* RL_RENDERER_H_ */

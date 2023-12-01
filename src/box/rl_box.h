@@ -12,8 +12,8 @@ class RLBox : public Box {
   void CreateBox() const;
   RenderTexture2D BoxScreen =
       LoadRenderTextureWrapper(screen_width, screen_height);
-      int x_safe_zone = border_width;
-      int y_safe_zone = border_height;
+  int x_safe_zone = border_width;
+  int y_safe_zone = border_height;
 
  public:
   explicit RLBox();

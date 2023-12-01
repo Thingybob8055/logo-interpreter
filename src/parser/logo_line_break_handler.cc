@@ -11,48 +11,43 @@ std::vector<std::string> line_to_vector(std::string &line) {
   bool repeat = false;
   std::stringstream buf;
   while (std::getline(ss, s, ' ')) {
-    if (s=="repeat") {
+    if (s == "repeat") {
       repeat = true;
       buf << s << " ";
       continue;
-    }   
+    }
     if (repeat) {
-      if (s=="2") {
+      if (s == "2") {
         buf << s << " ";
         continue;
-      }
-      else if (s=="[") {
+      } else if (s == "[") {
         lvalue++;
         buf << s << " ";
-      }
-      else if (s=="]") {
+      } else if (s == "]") {
         rvalue++;
         buf << s;
       }
-      
-      else if (lvalue==rvalue) {
+
+      else if (lvalue == rvalue) {
         split_line.push_back(buf.str());
         lvalue = 0;
         rvalue = 0;
         buf.clear();
-        repeat=false;
-        if (s!=" ") {
-         split_line.push_back(s);
+        repeat = false;
+        if (s != " ") {
+          split_line.push_back(s);
         }
-      }
-      else {
+      } else {
         buf << s << " ";
       }
-      
-    }
-    else {
-      if (s=="]" || s=="[") {
+
+    } else {
+      if (s == "]" || s == "[") {
         std::cerr << "Fatal error while parsing." << std::endl;
         exit(1);
       }
       split_line.push_back(s);
     }
-
   }
   return split_line;
 }
@@ -70,7 +65,7 @@ void format_to_stream(std::vector<std::string> &split_line,
     if (has_magnitude(current_item)) {
       std::string next_item = split_line[i + 1];
       out << current_item << " " << next_item << std::endl;
-      i++; 
+      i++;
     } else {
       out << current_item << std::endl;
     }

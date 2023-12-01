@@ -1,15 +1,18 @@
 #include "renderer/rl_renderer.h"
-#include "curses.h"
+
 #include <unistd.h>
 
-RLRenderer::RLRenderer(RLBox *box, RLMovement *movement) : current_box(box), movement(movement) {
+#include "curses.h"
+
+RLRenderer::RLRenderer(RLBox *box, RLMovement *movement)
+    : current_box(box), movement(movement) {
   this->InitialiseTextures();
   draw_screen = LoadRenderTextureWrapper(current_box->GetXSafeZone(),
                                          current_box->GetYSafeZone());
 }
 
 void RLRenderer::Move(int command, int magnitude) {
-  switch(command) {
+  switch (command) {
     case KEY_UP:
       MoveForwardsWithMagnitude(magnitude);
       break;
@@ -40,13 +43,14 @@ int RLRenderer::Render() {
                                (float)movement->GetYLocation(),
                                turtle_texture_width, turtle_texture_height};
   DrawTextureProWrapper(turtle, source, dest,
-                 (Vector2){dest.width / 2, dest.height / 2}, (float)movement->GetAngle(), WHITE);
+                        (Vector2){dest.width / 2, dest.height / 2},
+                        (float)movement->GetAngle(), WHITE);
 
   for (size_t i = 1; i < trail_points.size(); ++i) {
-    DrawRectangleVWrapper(trail_points[i-1].position, {2.0f, 2.0f},
-                   trail_points[i].color);
+    DrawRectangleVWrapper(trail_points[i - 1].position, {2.0f, 2.0f},
+                          trail_points[i].color);
   }
-  
+
   EndTextureModeWrapper();
 
   BeginDrawingWrapper();

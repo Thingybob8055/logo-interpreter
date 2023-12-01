@@ -62,7 +62,6 @@ int main(int argc, char **argv) {
 
   int start_y_coordinate = box->GetYSafeZone() / 2;
   int start_x_coordinate = box->GetXSafeZone() / 2;
-  printf("Start Y: %d Start X: %d\n", start_y_coordinate, start_x_coordinate);
   auto assembler = std::make_unique<CharacterAssembler>();
   auto movement = ui_factory->createMovement(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),

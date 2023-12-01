@@ -7,11 +7,11 @@
 #include "box/rl_box.h"
 #include "factory/ui_factory.h"
 #include "movement/movement.h"
+#include "movement/rl_movement.h"
 #include "renderer/renderer.h"
 #include "renderer/rl_renderer.h"
 #include "window/rl_window.h"
 #include "window/window.h"
-#include "movement/rl_movement.h"
 
 class RLFactory : public UIFactory {
  public:
@@ -23,11 +23,14 @@ class RLFactory : public UIFactory {
   }
   std::unique_ptr<Renderer> createRenderer(Box* box,
                                            Movement* movement) override {
-    return std::make_unique<RLRenderer>(static_cast<RLBox*>(box), static_cast<RLMovement*>(movement));
+    return std::make_unique<RLRenderer>(static_cast<RLBox*>(box),
+                                        static_cast<RLMovement*>(movement));
   }
-  std::unique_ptr<Movement> createMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone, int angle,
-             CharacterAssembler* assembler = nullptr) override {
-    return std::make_unique<RLMovement>(y_location, x_location, y_safe_zone, x_safe_zone, angle);
+  std::unique_ptr<Movement> createMovement(
+      int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+      int angle, CharacterAssembler* assembler = nullptr) override {
+    return std::make_unique<RLMovement>(y_location, x_location, y_safe_zone,
+                                        x_safe_zone, angle);
   }
 };
 

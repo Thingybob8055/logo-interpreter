@@ -17,7 +17,6 @@ void RLMovement::MoveForward() {
     trail_points.push_back(
         {(Vector2){(float)x_location, (float)y_location}, RED});
   }
-
 }
 
 void RLMovement::MoveBackward() {
