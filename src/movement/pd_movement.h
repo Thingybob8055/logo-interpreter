@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include "character_assembler/character_assembler.h"
+#include "character_assembler/pd_character_assembler.h"
 #include "heading.h"
 #include "movement.h"
 #include "pen_position.h"
@@ -23,11 +23,11 @@ class PDMovement : public Movement {
   void BoundaryCheck();
   PenPosition pen_position = PEN_DOWN;
 
-  CharacterAssembler* assembler;
+  PDCharacterAssembler* assembler;
 
  public:
   PDMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
-             CharacterAssembler* assembler);
+             PDCharacterAssembler* assembler);
 
   void MoveForward() override;
   void MoveBackward() override;

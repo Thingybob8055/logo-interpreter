@@ -6,7 +6,7 @@
 #include <sstream>
 
 #include "box/box.h"
-#include "character_assembler/character_assembler.h"
+#include "character_assembler/pd_character_assembler.h"
 #include "factory/pd_factory.h"
 #include "factory/rl_factory.h"
 #include "factory/ui_factory.h"

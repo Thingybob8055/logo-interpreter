@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "box/box.h"
-#include "character_assembler/character_assembler.h"
+#include "character_assembler/pd_character_assembler.h"
 #include "movement/movement.h"
 #include "renderer/renderer.h"
 #include "window/window.h"

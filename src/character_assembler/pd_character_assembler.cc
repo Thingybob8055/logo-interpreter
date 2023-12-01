@@ -1,4 +1,4 @@
-#include "character_assembler.h"
+#include "pd_character_assembler.h"
 
 constexpr const char* horizontal = (const char*)"─";
 constexpr const char* vertical = (const char*)"│";
@@ -8,12 +8,12 @@ constexpr const char* bottom_left = (const char*)"└";
 constexpr const char* bottom_right = (const char*)"┘";
 constexpr const char* space = (const char*)" ";
 
-CharacterAssembler::CharacterAssembler() {
+PDCharacterAssembler::PDCharacterAssembler() {
   this->last_heading = HEADING_UP;
   this->current_heading = HEADING_UP;
 }
 
-const char* CharacterAssembler::TrailingCharacter(
+const char* PDCharacterAssembler::TrailingCharacter(
     Direction current_direction) const {
   const char* returned_trailing_character;
   if (current_direction == FORWARDS && last_direction == FORWARDS) {
@@ -35,7 +35,7 @@ const char* CharacterAssembler::TrailingCharacter(
   return returned_trailing_character;
 }
 
-void CharacterAssembler::SetTrailingCharacter(Direction current_direction,
+void PDCharacterAssembler::SetTrailingCharacter(Direction current_direction,
                                               PenPosition pen_position) {
   if (pen_position == PEN_DOWN) {
     this->trailing_character = TrailingCharacter(current_direction);
@@ -45,7 +45,7 @@ void CharacterAssembler::SetTrailingCharacter(Direction current_direction,
 }
 
 const char*
-CharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsForwards()
+PDCharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsForwards()
     const {
   switch (current_heading) {
     case HEADING_RIGHT:
@@ -69,7 +69,7 @@ CharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsForwards()
 }
 
 const char*
-CharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsBackwards()
+PDCharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsBackwards()
     const {
   switch (current_heading) {
     case HEADING_RIGHT:
@@ -92,7 +92,7 @@ CharacterAssembler::TrailingCharacterIfCurrentAndLastDirectionIsBackwards()
   return space;
 }
 
-const char* CharacterAssembler::
+const char* PDCharacterAssembler::
     TrailingCharacterIfCurrentDirectionIsForwardsLastIsBackwards() const {
   switch (current_heading) {
     case HEADING_RIGHT:
@@ -115,7 +115,7 @@ const char* CharacterAssembler::
   return space;
 }
 
-const char* CharacterAssembler::
+const char* PDCharacterAssembler::
     TrailingCharacterIfCurrentDirectionIsBackwardsLastIsForwards() const {
   switch (current_heading) {
     case HEADING_RIGHT:
@@ -138,7 +138,7 @@ const char* CharacterAssembler::
   return space;
 }
 
-const char* CharacterAssembler::ReturnTrailingCharacterFromLastHeading(
+const char* PDCharacterAssembler::ReturnTrailingCharacterFromLastHeading(
     Heading heading1, Heading heading2, Heading heading3, const char* output1,
     const char* output2, const char* output3,
     const char* output_default) const {

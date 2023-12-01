@@ -11,7 +11,7 @@ TEST(MovementTest, when_constructor_called_expect_movement_to_be_created) {
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   // Act
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
@@ -34,7 +34,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -59,7 +59,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -87,7 +87,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -114,7 +114,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -141,7 +141,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -166,7 +166,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -194,7 +194,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -221,7 +221,7 @@ TEST(
   int x_safe_zone = 10;
   int y_safe_zone = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -249,7 +249,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_RIGHT;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -274,7 +274,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_LEFT;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -302,7 +302,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_UP;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -329,7 +329,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_DOWN;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -356,7 +356,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_LEFT;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -381,7 +381,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_RIGHT;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -409,7 +409,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_DOWN;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -435,7 +435,7 @@ TEST(
   int y_safe_zone = 10;
   Heading expected_heading = HEADING_UP;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(x_start_location, y_start_location, x_safe_zone,
                              y_safe_zone, assembler);
@@ -462,7 +462,7 @@ TEST(
   int y_safe_zone = 10;
   int expected_y_location = 1;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                              x_safe_zone, assembler);
@@ -487,7 +487,7 @@ TEST(
   int y_safe_zone = 10;
   int expected_y_location = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                              x_safe_zone, assembler);
@@ -515,7 +515,7 @@ TEST(
   int y_safe_zone = 10;
   int expected_x_location = 1;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                              x_safe_zone, assembler);
@@ -542,7 +542,7 @@ TEST(
   int y_safe_zone = 10;
   int expected_x_location = 10;
 
-  CharacterAssembler *assembler = new CharacterAssembler();
+  PDCharacterAssembler *assembler = new PDCharacterAssembler();
 
   auto movement = PDMovement(y_start_location, x_start_location, y_safe_zone,
                              x_safe_zone, assembler);

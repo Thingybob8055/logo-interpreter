@@ -12,6 +12,7 @@
 #include "renderer/renderer.h"
 #include "window/pd_window.h"
 #include "window/window.h"
+#include "character_assembler/character_assembler.h"
 
 class PDFactory : public UIFactory {
  public:
@@ -30,7 +31,7 @@ class PDFactory : public UIFactory {
       int y_location, int x_location, int y_safe_zone, int x_safe_zone,
       int angle, CharacterAssembler* assembler) override {
     return std::make_unique<PDMovement>(y_location, x_location, y_safe_zone,
-                                        x_safe_zone, assembler);
+                                        x_safe_zone, static_cast<PDCharacterAssembler*>(assembler));
   }
 };
 

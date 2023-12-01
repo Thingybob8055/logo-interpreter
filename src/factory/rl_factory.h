@@ -12,6 +12,7 @@
 #include "renderer/rl_renderer.h"
 #include "window/rl_window.h"
 #include "window/window.h"
+#include "character_assembler/character_assembler.h"
 
 class RLFactory : public UIFactory {
  public:
