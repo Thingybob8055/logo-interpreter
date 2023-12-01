@@ -60,12 +60,13 @@ int main(int argc, char **argv) {
   auto window = ui_factory->createWindow();
   auto box = ui_factory->createBox(window.get());
 
-  uint8_t start_y_coordinate = (uint8_t)box->GetYSafeZone() / 2;
-  uint8_t start_x_coordinate = (uint8_t)box->GetXSafeZone() / 2;
+  int start_y_coordinate = box->GetYSafeZone() / 2;
+  int start_x_coordinate = box->GetXSafeZone() / 2;
+  printf("Start Y: %d Start X: %d\n", start_y_coordinate, start_x_coordinate);
   auto assembler = std::make_unique<CharacterAssembler>();
   auto movement = ui_factory->createMovement(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
-      box->GetXSafeZone(), assembler.get());
+      box->GetXSafeZone(), 270, assembler.get());
   auto graphics = ui_factory->createRenderer(box.get(), movement.get());
   RunLoop(window.get(), graphics.get(), &parser);
 

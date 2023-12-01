@@ -2,13 +2,13 @@
 #define RL_RENDERER_H_
 
 #include "box/rl_box.h"
-#include "movement/movement.h"
 #include "raylib_wrapper/raylib_wrapper.h"
 #include "renderer/renderer.h"
+#include "movement/rl_movement.h"
 
 class RLRenderer : public Renderer {
  public:
-  RLRenderer(RLBox *box, Movement *movement);
+  RLRenderer(RLBox *box, RLMovement *movement);
 
   void Move(int command, int magnitude) override;
   int Render() override;
@@ -22,7 +22,14 @@ class RLRenderer : public Renderer {
   float turtle_texture_width;
   float turtle_texture_height;
 
+  std::vector<TrailPoint> trail_points;
+
+  RLMovement *movement;
+
   void InitialiseTextures();
+  void MoveForwardsWithMagnitude(int magnitude);
+  void MoveBackwardsWithMagnitude(int magnitude);
+  void TogglePenPosition();
 
 };
 

@@ -10,6 +10,8 @@ DECLARE_FAKE_VOID_FUNC(DrawRectangleLinesExWrapper, Rectangle, float, Color);
 DECLARE_FAKE_VALUE_FUNC(RenderTexture2D, LoadRenderTextureWrapper, int, int);
 DECLARE_FAKE_VOID_FUNC(BeginTextureModeWrapper, RenderTexture2D);
 DECLARE_FAKE_VOID_FUNC(EndTextureModeWrapper);
+DECLARE_FAKE_VALUE_FUNC(float, sinfWrapper, float);
+DECLARE_FAKE_VALUE_FUNC(float, cosfWrapper, float);
 
 void reset_common_fakes();
 

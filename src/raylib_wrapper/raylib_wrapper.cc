@@ -77,3 +77,10 @@ WRAPPER_FUNCTION(bool, WindowShouldClose)
 WRAPPER_FUNCTION(void, CloseWindow)
 
 WRAPPER_FUNCTION(Texture2D, LoadTexture, const char *, fileName)
+
+WRAPPER_FUNCTION(void, DrawRectangleV, Vector2, position, Vector2, size, Color,
+                 color)
+
+WRAPPER_FUNCTION(float, sinf, float, value)
+
+WRAPPER_FUNCTION(float, cosf, float, value)

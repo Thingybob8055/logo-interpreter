@@ -11,6 +11,7 @@
 #undef KEY_END
 
 #include <raylib.h>
+#include <raymath.h>
 
 #ifdef TEST
 #define WEAK_REF __attribute__((weak))
@@ -44,5 +45,12 @@ bool WEAK_REF WindowShouldCloseWrapper();
 void WEAK_REF CloseWindowWrapper();
 
 Texture2D WEAK_REF LoadTextureWrapper(const char *fileName);
+
+void WEAK_REF DrawRectangleVWrapper(Vector2 position, Vector2 size,
+                                    Color color);
+
+float WEAK_REF sinfWrapper(float value);
+
+float WEAK_REF cosfWrapper(float value);
 
 #endif /* RAYLIB_WRAPPER_H_ */
