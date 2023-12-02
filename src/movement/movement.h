@@ -16,6 +16,8 @@ class Movement {
   virtual void SetPenPosition(PenPosition pen_position) = 0;
   virtual PenPosition GetPenPosition() const = 0;
 
+  virtual Heading GetCurrentHeadingFromAssembler() const = 0;
+
   virtual ~Movement() = default;
 };
 

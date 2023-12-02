@@ -3,6 +3,7 @@
 
 #include <vector>
 
+#include "character_assembler/rl_character_assembler.h"
 #include "heading.h"
 #include "movement.h"
 #include "pen_position.h"
@@ -19,15 +20,15 @@ class RLMovement : public Movement {
   int y_location;
   int x_safe_zone;
   int y_safe_zone;
-  int angle;
 
   // TODO:  make a boundry check function
   PenPosition pen_position = PEN_DOWN;
   std::vector<TrailPoint> trail_points;
+  RLCharacterAssembler *assembler;
 
  public:
   RLMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
-             int angle);
+             RLCharacterAssembler *assembler);
 
   void MoveForward() override;
   void MoveBackward() override;
@@ -36,12 +37,15 @@ class RLMovement : public Movement {
 
   int GetXLocation() const override { return x_location; }
   int GetYLocation() const override { return y_location; }
-  int GetAngle() const { return angle; }
   PenPosition GetPenPosition() const override { return pen_position; }
   int GetXSafeZone() const { return x_safe_zone; }
   int GetYSafeZone() const { return y_safe_zone; }
   void SetPenPosition(PenPosition pen_position) override {
     this->pen_position = pen_position;
+  }
+
+  Heading GetCurrentHeadingFromAssembler() const override {
+    return assembler->GetCurrentHeading();
   }
 
   std::vector<TrailPoint> GetTrailPoints() const { return trail_points; }

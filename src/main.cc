@@ -62,10 +62,12 @@ int main(int argc, char **argv) {
 
   int start_y_coordinate = box->GetYSafeZone() / 2;
   int start_x_coordinate = box->GetXSafeZone() / 2;
-  auto assembler = std::make_unique<PDCharacterAssembler>();
+
+  auto assembler = ui_factory->createCharacterAssembler();
+
   auto movement = ui_factory->createMovement(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
-      box->GetXSafeZone(), 270, assembler.get());
+      box->GetXSafeZone(), assembler.get());
   auto graphics = ui_factory->createRenderer(box.get(), movement.get());
   RunLoop(window.get(), graphics.get(), &parser);
 

@@ -3,9 +3,8 @@
 
 #include <cstdint>
 
-#include "movement/heading.h"
-#include "movement/pen_position.h"
 #include "character_assembler/character_assembler.h"
+#include "movement/pen_position.h"
 
 class PDCharacterAssembler : public CharacterAssembler {
  private:
@@ -49,8 +48,10 @@ class PDCharacterAssembler : public CharacterAssembler {
   void SetLastHeading(Heading heading) { last_heading = heading; }
   Heading GetLastHeading() const { return last_heading; }
 
-  void SetCurrentHeading(Heading heading) { current_heading = heading; }
-  Heading GetCurrentHeading() const { return current_heading; }
+  void SetCurrentHeading(Heading heading) override {
+    current_heading = heading;
+  }
+  Heading GetCurrentHeading() const override { return current_heading; }
 };
 
 #endif /* PD_CHARACTER_ASSEMBLER_H_ */

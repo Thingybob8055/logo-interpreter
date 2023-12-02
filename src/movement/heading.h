@@ -4,10 +4,10 @@
 typedef enum Direction { FORWARDS, BACKWARDS } Direction;
 
 typedef enum Heading {
-  HEADING_UP,
-  HEADING_DOWN,
-  HEADING_LEFT,
-  HEADING_RIGHT
+  HEADING_UP = 270,
+  HEADING_DOWN = 90,
+  HEADING_LEFT = 180,
+  HEADING_RIGHT = 0
 } Heading;
 
 #endif /* _HEADING_H_ */

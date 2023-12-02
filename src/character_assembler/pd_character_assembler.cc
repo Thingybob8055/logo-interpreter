@@ -36,7 +36,7 @@ const char* PDCharacterAssembler::TrailingCharacter(
 }
 
 void PDCharacterAssembler::SetTrailingCharacter(Direction current_direction,
-                                              PenPosition pen_position) {
+                                                PenPosition pen_position) {
   if (pen_position == PEN_DOWN) {
     this->trailing_character = TrailingCharacter(current_direction);
   } else {

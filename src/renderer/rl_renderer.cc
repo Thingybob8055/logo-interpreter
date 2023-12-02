@@ -42,9 +42,9 @@ int RLRenderer::Render() {
   Rectangle dest = (Rectangle){(float)movement->GetXLocation(),
                                (float)movement->GetYLocation(),
                                turtle_texture_width, turtle_texture_height};
-  DrawTextureProWrapper(turtle, source, dest,
-                        (Vector2){dest.width / 2, dest.height / 2},
-                        (float)movement->GetAngle(), WHITE);
+  DrawTextureProWrapper(
+      turtle, source, dest, (Vector2){dest.width / 2, dest.height / 2},
+      (float)movement->GetCurrentHeadingFromAssembler(), WHITE);
 
   for (size_t i = 1; i < trail_points.size(); ++i) {
     DrawRectangleVWrapper(trail_points[i - 1].position, {2.0f, 2.0f},

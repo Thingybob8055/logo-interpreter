@@ -56,7 +56,7 @@ class PDMovement : public Movement {
   Heading GetLastHeadingFromAssembler() const {
     return assembler->GetLastHeading();
   }
-  Heading GetCurrentHeadingFromAssembler() const {
+  Heading GetCurrentHeadingFromAssembler() const override {
     return assembler->GetCurrentHeading();
   }
 };

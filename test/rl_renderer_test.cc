@@ -26,7 +26,8 @@ TEST_F(RLRendererTest, when_constructed_expect_rl_renderer_to_be_created) {
 
 TEST_F(RLRendererTest, when_render_expect_used_raylib_wrappers_to_be_called) {
   RLBox box;
-  RLMovement movement(50, 50, 350, 350, 270);
+  RLCharacterAssembler assembler;
+  RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(259, 2);
   renderer.Render();
@@ -41,15 +42,10 @@ TEST_F(RLRendererTest, when_render_expect_used_raylib_wrappers_to_be_called) {
   EXPECT_EQ(DrawRectangleVWrapper_fake.call_count, 1);
 }
 
-TEST_F(RLRendererTest, test_get_box) {
-  RLBox box;
-  RLRenderer renderer(&box, nullptr);
-  renderer.Move(0, 0);
-}
-
 TEST_F(RLRendererTest, test_move_function_move_down) {
   RLBox box;
-  RLMovement movement(50, 50, 350, 350, 270);
+  RLCharacterAssembler assembler;
+  RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(258, 2);
   EXPECT_EQ(sinfWrapper_fake.call_count, 2);
@@ -58,7 +54,8 @@ TEST_F(RLRendererTest, test_move_function_move_down) {
 
 TEST_F(RLRendererTest, test_move_function_move_up) {
   RLBox box;
-  RLMovement movement(50, 50, 350, 350, 270);
+  RLCharacterAssembler assembler;
+  RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(259, 2);
   EXPECT_EQ(sinfWrapper_fake.call_count, 2);
@@ -67,7 +64,7 @@ TEST_F(RLRendererTest, test_move_function_move_up) {
 
 TEST_F(RLRendererTest, test_move_function_pen_position) {
   RLBox box;
-  RLMovement movement(50, 50, 350, 350, 270);
+  RLMovement movement(50, 50, 350, 350, nullptr);
   RLRenderer renderer(&box, &movement);
   renderer.Move(32, 2);
   EXPECT_EQ(movement.GetPenPosition(), PEN_UP);
@@ -75,16 +72,18 @@ TEST_F(RLRendererTest, test_move_function_pen_position) {
 
 TEST_F(RLRendererTest, test_move_function_turn_left) {
   RLBox box;
-  RLMovement movement(50, 50, 350, 350, 270);
+  RLCharacterAssembler assembler;
+  RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(260, 2);
-  EXPECT_EQ(movement.GetAngle(), 180);
+  EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 180);
 }
 
 TEST_F(RLRendererTest, test_move_function_turn_right) {
   RLBox box;
-  RLMovement movement(50, 50, 350, 350, 180);
+  RLCharacterAssembler assembler;
+  RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(261, 2);
-  EXPECT_EQ(movement.GetAngle(), 270);
+  EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 360);
 }
