@@ -1,13 +1,12 @@
 #include "rl_movement.h"
 
 RLMovement::RLMovement(int y_location, int x_location, int y_safe_zone,
-                       int x_safe_zone, RLCharacterAssembler *assembler) {
-  this->x_location = x_location;
-  this->y_location = y_location;
-  this->x_safe_zone = x_safe_zone;
-  this->y_safe_zone = y_safe_zone;
-  this->assembler = assembler;
-}
+                       int x_safe_zone, RLCharacterAssembler *assembler)
+    : x_location(x_location),
+      y_location(y_location),
+      x_safe_zone(x_safe_zone),
+      y_safe_zone(y_safe_zone),
+      assembler(assembler) {}
 
 void RLMovement::MoveForward() {
   x_location = x_location +
