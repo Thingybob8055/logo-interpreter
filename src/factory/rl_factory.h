@@ -34,7 +34,7 @@ class RLFactory : public UIFactory {
   }
 
   std::unique_ptr<Movement> createMovement(
-      int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+      float y_location, float x_location, int y_safe_zone, int x_safe_zone,
       CharacterAssembler* assembler = nullptr) override {
     return std::make_unique<RLMovement>(
         y_location, x_location, y_safe_zone, x_safe_zone,

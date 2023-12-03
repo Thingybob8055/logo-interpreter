@@ -1,0 +1,1 @@
+repeat 200 [pu fd 30 rt 20 fd 3 pd fd 20 lt 50 fd 20 rt 45 fd 40 lt 60 fd 22 rt 50 pu fd 45 rt 90 pd fd 20]

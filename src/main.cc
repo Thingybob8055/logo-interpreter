@@ -56,6 +56,9 @@ int main(int argc, char **argv) {
     ui_factory = std::make_unique<PDFactory>();
   } else if (strcmp(argv[2], "rl") == 0) {
     ui_factory = std::make_unique<RLFactory>();
+  } else {
+    std::cout << "Usage: ./main <filename> <pd/rl>" << std::endl;
+    return 1;
   }
   auto window = ui_factory->createWindow();
   auto box = ui_factory->createBox(window.get());

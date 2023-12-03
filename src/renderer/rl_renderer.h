@@ -30,6 +30,8 @@ class RLRenderer : public Renderer {
   void MoveForwardsWithMagnitude(int magnitude);
   void MoveBackwardsWithMagnitude(int magnitude);
   void TogglePenPosition();
+  void RenderTurtle() const;
+  void RenderTrail();
 };
 
 #endif /* RL_RENDERER_H_ */

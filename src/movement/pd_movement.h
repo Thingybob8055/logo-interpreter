@@ -34,8 +34,8 @@ class PDMovement : public Movement {
   void TurnRight90() override;
   void TurnLeft90() override;
 
-  int GetXLocation() const override { return x_location; }
-  int GetYLocation() const override { return y_location; }
+  float GetXLocation() const override { return (float)x_location; }
+  float GetYLocation() const override { return (float)y_location; }
   PenPosition GetPenPosition() const override { return pen_position; }
   int GetXSafeZone() const { return x_safe_zone; }
   int GetYSafeZone() const { return y_safe_zone; }

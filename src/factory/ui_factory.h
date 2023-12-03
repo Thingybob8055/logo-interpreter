@@ -17,7 +17,7 @@ class UIFactory {
                                                    Movement* movement) = 0;
   virtual std::unique_ptr<CharacterAssembler> createCharacterAssembler() = 0;
   virtual std::unique_ptr<Movement> createMovement(
-      int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+      float y_location, float x_location, int y_safe_zone, int x_safe_zone,
       CharacterAssembler* assembler) = 0;
 
   virtual ~UIFactory() = default;

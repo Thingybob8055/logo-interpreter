@@ -36,8 +36,8 @@ class PDRenderer : public Renderer {
   void Move(int command, int magnitude) override;
   int Render() override;
 
-  int GetXLocationFromMovement() const { return movement->GetXLocation(); }
-  int GetYLocationFromMovement() const { return movement->GetYLocation(); }
+  int GetXLocationFromMovement() const { return (int)movement->GetXLocation(); }
+  int GetYLocationFromMovement() const { return (int)movement->GetYLocation(); }
   PenPosition GetPenPositionFromMovement() const {
     return movement->GetPenPosition();
   }

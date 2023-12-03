@@ -76,7 +76,7 @@ TEST_F(RLRendererTest, test_move_function_turn_left) {
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(260, 2);
-  EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 180);
+  EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 268);
 }
 
 TEST_F(RLRendererTest, test_move_function_turn_right) {
@@ -85,5 +85,5 @@ TEST_F(RLRendererTest, test_move_function_turn_right) {
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement);
   renderer.Move(261, 2);
-  EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 360);
+  EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 272);
 }

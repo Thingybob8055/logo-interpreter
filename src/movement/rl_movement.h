@@ -16,8 +16,8 @@ struct TrailPoint {
 
 class RLMovement : public Movement {
  private:
-  int x_location;
-  int y_location;
+  float x_location;
+  float y_location;
   int x_safe_zone;
   int y_safe_zone;
 
@@ -26,17 +26,22 @@ class RLMovement : public Movement {
   std::vector<TrailPoint> trail_points;
   RLCharacterAssembler *assembler;
 
+  void WrapLocation();
+
  public:
-  RLMovement(int y_location, int x_location, int y_safe_zone, int x_safe_zone,
-             RLCharacterAssembler *assembler);
+  RLMovement(float y_location, float x_location, int y_safe_zone,
+             int x_safe_zone, RLCharacterAssembler *assembler);
 
   void MoveForward() override;
   void MoveBackward() override;
   void TurnRight90() override;
   void TurnLeft90() override;
 
-  int GetXLocation() const override { return x_location; }
-  int GetYLocation() const override { return y_location; }
+  void TurnRight(int angle);
+  void TurnLeft(int angle);
+
+  float GetXLocation() const override { return x_location; }
+  float GetYLocation() const override { return y_location; }
   PenPosition GetPenPosition() const override { return pen_position; }
   int GetXSafeZone() const { return x_safe_zone; }
   int GetYSafeZone() const { return y_safe_zone; }

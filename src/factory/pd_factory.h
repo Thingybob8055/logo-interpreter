@@ -34,10 +34,10 @@ class PDFactory : public UIFactory {
   }
 
   std::unique_ptr<Movement> createMovement(
-      int y_location, int x_location, int y_safe_zone, int x_safe_zone,
+      float y_location, float x_location, int y_safe_zone, int x_safe_zone,
       CharacterAssembler* assembler) override {
     return std::make_unique<PDMovement>(
-        y_location, x_location, y_safe_zone, x_safe_zone,
+        (int)y_location, (int)x_location, y_safe_zone, x_safe_zone,
         static_cast<PDCharacterAssembler*>(assembler));
   }
 };

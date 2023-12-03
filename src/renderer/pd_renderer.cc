@@ -37,8 +37,8 @@ int PDRenderer::Render() {
   Heading current_heading = this->movement->GetCurrentHeadingFromAssembler();
   Heading last_heading = this->movement->GetLastHeadingFromAssembler();
   Direction last_direction = this->movement->GetLastDirectionFronAssembler();
-  int x_location = this->movement->GetXLocation();
-  int y_location = this->movement->GetYLocation();
+  auto x_location = (int)this->movement->GetXLocation();
+  auto y_location = (int)this->movement->GetYLocation();
   const char *trailing_character =
       this->movement->GetTrailingCharacterFromAssembler();
   const char *leading_character =

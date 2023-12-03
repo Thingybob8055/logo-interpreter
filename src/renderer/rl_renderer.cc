@@ -20,10 +20,10 @@ void RLRenderer::Move(int command, int magnitude) {
       MoveBackwardsWithMagnitude(magnitude);
       break;
     case KEY_LEFT:
-      movement->TurnLeft90();
+      movement->TurnLeft(magnitude);
       break;
     case KEY_RIGHT:
-      movement->TurnRight90();
+      movement->TurnRight(magnitude);
       break;
     case 32:
       TogglePenPosition();
@@ -37,20 +37,8 @@ int RLRenderer::Render() {
   trail_points = movement->GetTrailPoints();
   BeginTextureModeWrapper(draw_screen);
   ClearBackgroundWrapper(WHITE);
-  Rectangle source =
-      (Rectangle){0, 0, (float)turtle.width, (float)turtle.height};
-  Rectangle dest = (Rectangle){(float)movement->GetXLocation(),
-                               (float)movement->GetYLocation(),
-                               turtle_texture_width, turtle_texture_height};
-  DrawTextureProWrapper(
-      turtle, source, dest, (Vector2){dest.width / 2, dest.height / 2},
-      (float)movement->GetCurrentHeadingFromAssembler(), WHITE);
-
-  for (size_t i = 1; i < trail_points.size(); ++i) {
-    DrawRectangleVWrapper(trail_points[i - 1].position, {2.0f, 2.0f},
-                          trail_points[i].color);
-  }
-
+  RenderTurtle();
+  RenderTrail();
   EndTextureModeWrapper();
 
   BeginDrawingWrapper();
@@ -76,8 +64,8 @@ int RLRenderer::Render() {
 void RLRenderer::InitialiseTextures() {
   turtle = LoadTextureWrapper("resouces/turtle.png");
   float scale_factor = 0.04f;
-  turtle_texture_width = turtle.width * scale_factor;
-  turtle_texture_height = turtle.height * scale_factor;
+  turtle_texture_width = (float)turtle.width * scale_factor;
+  turtle_texture_height = (float)turtle.height * scale_factor;
 }
 
 void RLRenderer::MoveForwardsWithMagnitude(int magnitude) {
@@ -97,5 +85,23 @@ void RLRenderer::TogglePenPosition() {
     movement->SetPenPosition(PEN_DOWN);
   } else {
     movement->SetPenPosition(PEN_UP);
+  }
+}
+
+void RLRenderer::RenderTurtle() const {
+  Rectangle source =
+      (Rectangle){0, 0, (float)turtle.width, (float)turtle.height};
+  Rectangle dest =
+      (Rectangle){movement->GetXLocation(), movement->GetYLocation(),
+                  turtle_texture_width, turtle_texture_height};
+  DrawTextureProWrapper(
+      turtle, source, dest, (Vector2){dest.width / 2, dest.height / 2},
+      (float)movement->GetCurrentHeadingFromAssembler(), WHITE);
+}
+
+void RLRenderer::RenderTrail() {
+  for (size_t i = 1; i < trail_points.size(); ++i) {
+    DrawRectangleVWrapper(trail_points[i - 1].position, {2.0f, 2.0f},
+                          trail_points[i].color);
   }
 }
