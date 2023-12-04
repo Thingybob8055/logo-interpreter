@@ -60,4 +60,6 @@ bool SaveFileDataWrapper(const char *fileName, void *data, int dataSize);
 
 bool IsKeyPressedWrapper(int key);
 
+Vector2 GetWindowScaleDPIWrapper();
+
 #endif /* RAYLIB_WRAPPER_H_ */

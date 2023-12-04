@@ -8,9 +8,10 @@ void RLRecorder::InitRecording() {
   if (!gifRecording) {
     gifRecording = true;
     gifFrameCounter = 0;
+    Vector2 scale = GetWindowScaleDPIWrapper();
 
-    msf_gif_begin(&gifState, (int)((float)screen_width),
-                  (int)((float)screen_height));
+    msf_gif_begin(&gifState, (int)((float)screen_width*scale.x),
+                  (int)((float)screen_height*scale.y));
   }
 }
 
@@ -19,9 +20,10 @@ void RLRecorder::StartRecording() {
     gifFrameCounter++;
 
     if ((gifFrameCounter % gif_record_framerate) == 0) {
+      Vector2 scale = GetWindowScaleDPIWrapper();
       unsigned char* screenData = rlReadScreenPixelsWrapper(
-          (int)((float)screen_width), (int)((float)screen_height));
-      msf_gif_frame(&gifState, screenData, 10, 16, screen_width * 4);
+          (int)((float)screen_width*scale.x), (int)((float)screen_height*scale.y));
+      msf_gif_frame(&gifState, screenData, 10, 16, screen_width*scale.x * 4);
 
       RL_FREE(screenData);
     }

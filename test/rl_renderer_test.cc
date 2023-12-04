@@ -18,6 +18,7 @@ FAKE_VOID_FUNC(DrawRectangleVWrapper, Vector2, Vector2, Color);
 FAKE_VALUE_FUNC(unsigned char *, rlReadScreenPixelsWrapper, int, int);
 FAKE_VALUE_FUNC(bool, SaveFileDataWrapper, const char *, void *, int);
 FAKE_VALUE_FUNC(bool, IsKeyPressedWrapper, int);
+FAKE_VALUE_FUNC(Vector2, GetWindowScaleDPIWrapper);
 
 class RLRendererTest : public ::testing::Test {
  protected:

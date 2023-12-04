@@ -91,3 +91,5 @@ WRAPPER_FUNCTION(bool, SaveFileData, const char *, fileName, void *, data, int,
                  dataSize)
 
 WRAPPER_FUNCTION(bool, IsKeyPressed, int, key)
+
+WRAPPER_FUNCTION(Vector2, GetWindowScaleDPI)
