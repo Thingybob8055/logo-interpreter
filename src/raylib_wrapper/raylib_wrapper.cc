@@ -84,3 +84,10 @@ WRAPPER_FUNCTION(void, DrawRectangleV, Vector2, position, Vector2, size, Color,
 WRAPPER_FUNCTION(float, sinf, float, value)
 
 WRAPPER_FUNCTION(float, cosf, float, value)
+
+WRAPPER_FUNCTION(unsigned char *, rlReadScreenPixels, int, width, int, height)
+
+WRAPPER_FUNCTION(bool, SaveFileData, const char *, fileName, void *, data, int,
+                 dataSize)
+
+WRAPPER_FUNCTION(bool, IsKeyPressed, int, key)

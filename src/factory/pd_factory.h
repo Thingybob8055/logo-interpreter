@@ -14,6 +14,7 @@
 #include "renderer/renderer.h"
 #include "window/pd_window.h"
 #include "window/window.h"
+#include "recorder/noop_recorder.h"
 
 class PDFactory : public UIFactory {
  public:
@@ -23,8 +24,13 @@ class PDFactory : public UIFactory {
   std::unique_ptr<Box> createBox(Window* window) override {
     return std::make_unique<PDBox>(static_cast<PDWindow*>(window));
   }
+
+  std::unique_ptr<Recorder> createRecorder() override {
+    return std::make_unique<NoopRecorder>();
+  }
+
   std::unique_ptr<Renderer> createRenderer(Box* box,
-                                           Movement* movement) override {
+                                           Movement* movement, Recorder *recorder = nullptr) override {
     return std::make_unique<PDRenderer>(static_cast<PDBox*>(box),
                                         static_cast<PDMovement*>(movement));
   }

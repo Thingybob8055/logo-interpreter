@@ -12,6 +12,7 @@
 
 #include <raylib.h>
 #include <raymath.h>
+#include <rlgl.h>
 
 #ifdef TEST
 #define WEAK_REF __attribute__((weak))
@@ -52,5 +53,11 @@ void WEAK_REF DrawRectangleVWrapper(Vector2 position, Vector2 size,
 float WEAK_REF sinfWrapper(float value);
 
 float WEAK_REF cosfWrapper(float value);
+
+unsigned char* rlReadScreenPixelsWrapper(int width, int height);
+
+bool SaveFileDataWrapper(const char *fileName, void *data, int dataSize);
+
+bool IsKeyPressedWrapper(int key);
 
 #endif /* RAYLIB_WRAPPER_H_ */

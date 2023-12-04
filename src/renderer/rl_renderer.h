@@ -5,10 +5,11 @@
 #include "movement/rl_movement.h"
 #include "raylib_wrapper/raylib_wrapper.h"
 #include "renderer/renderer.h"
+#include "recorder/rl_recorder.h"
 
 class RLRenderer : public Renderer {
  public:
-  RLRenderer(RLBox *box, RLMovement *movement);
+  RLRenderer(RLBox *box, RLMovement *movement, RLRecorder *recorder);
 
   void Move(int command, int magnitude) override;
   int Render() override;
@@ -25,6 +26,7 @@ class RLRenderer : public Renderer {
   std::vector<TrailPoint> trail_points;
 
   RLMovement *movement;
+  RLRecorder *recorder;
 
   void InitialiseTextures();
   void MoveForwardsWithMagnitude(int magnitude);

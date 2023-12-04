@@ -67,11 +67,12 @@ int main(int argc, char **argv) {
   int start_x_coordinate = box->GetXSafeZone() / 2;
 
   auto assembler = ui_factory->createCharacterAssembler();
+  auto recorder = ui_factory->createRecorder();
 
   auto movement = ui_factory->createMovement(
       start_y_coordinate, start_x_coordinate, box->GetYSafeZone(),
       box->GetXSafeZone(), assembler.get());
-  auto graphics = ui_factory->createRenderer(box.get(), movement.get());
+  auto graphics = ui_factory->createRenderer(box.get(), movement.get(), recorder.get());
   RunLoop(window.get(), graphics.get(), &parser);
 
   return 0;

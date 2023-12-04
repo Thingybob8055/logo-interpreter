@@ -12,12 +12,12 @@ INCLUDE = -I./src -I/usr/local/include/xcurses -I/usr/include/X11 -I/usr/include
 PD_LIBS = /usr/local/lib/libXCurses.a -lXaw -lXmu -lXt -lX11 -lXpm -lSM -lICE -lXext
 RL_LIBS = -lraylib -lGL -lm -lpthread -ldl
 LIBS =  $(PD_LIBS) $(RL_LIBS)
-OBJS = main.o file_importer.o pd_renderer.o pd_window.o pd_movement.o logo_parser.o pd_character_assembler.o pd_box.o rl_box.o rl_window.o raylib_wrapper.o rl_renderer.o logo_repeat_handler.o logo_line_break_handler.o rl_movement.o rl_character_assembler.o
+OBJS = main.o file_importer.o pd_renderer.o pd_window.o pd_movement.o logo_parser.o pd_character_assembler.o pd_box.o rl_box.o rl_window.o raylib_wrapper.o rl_renderer.o logo_repeat_handler.o logo_line_break_handler.o rl_movement.o rl_character_assembler.o rl_recorder.o
 EXEC = bin/main
 TEST_EXEC = bin/test_main
 SRCS_MAIN = src/main.cc src/raylib_wrapper/raylib_wrapper.cc $(SRCS)
 PD_SRCS = src/renderer/pd_renderer.cc src/window/pd_window.cc src/movement/pd_movement.cc src/character_assembler/pd_character_assembler.cc src/box/pd_box.cc
-RL_SRCS = src/box/rl_box.cc src/window/rl_window.cc src/renderer/rl_renderer.cc src/movement/rl_movement.cc src/character_assembler/rl_character_assembler.cc
+RL_SRCS = src/box/rl_box.cc src/window/rl_window.cc src/renderer/rl_renderer.cc src/movement/rl_movement.cc src/character_assembler/rl_character_assembler.cc src/recorder/rl_recorder.cc
 PARSER_SRCS = src/importer/file_importer.cc src/parser/logo_parser.cc src/parser/logo_repeat_handler.cc src/parser/logo_line_break_handler.cc
 SRCS =  $(PD_SRCS) $(RL_SRCS) $(PARSER_SRCS)
 TEST_SRCS = test/file_importer_test.cc test/pd_renderer_test.cc test/movement_test.cc test/logo_parser_test.cc test/test_all.cc test/pd_character_assembler_test.cc test/pd_window_test.cc test/main_test.cc test/rl_window_test.cc test/rl_box_test.cc test/rl_renderer_test.cc test/logo_repeat_handler_test.cc test/logo_line_break_handler_test.cc test/fff_common.cc test/rl_movement_test.cc $(SRCS)
@@ -62,6 +62,7 @@ rm:
 	rm -f $(TEST_EXEC)
 	rm -rf $(REPORTS_DIR)
 	make coverage_clean
+	rm -f out/logo.gif
 
 run:
 	xrdb -merge src/xresource && ./$(EXEC)

@@ -4,11 +4,12 @@
 
 #include "curses.h"
 
-RLRenderer::RLRenderer(RLBox *box, RLMovement *movement)
-    : current_box(box), movement(movement) {
+RLRenderer::RLRenderer(RLBox *box, RLMovement *movement, RLRecorder *recorder)
+    : current_box(box), movement(movement), recorder(recorder) {
   this->InitialiseTextures();
   draw_screen = LoadRenderTextureWrapper(current_box->GetXSafeZone(),
                                          current_box->GetYSafeZone());
+  recorder->InitRecording();
 }
 
 void RLRenderer::Move(int command, int magnitude) {
@@ -58,6 +59,8 @@ int RLRenderer::Render() {
                         (Vector2){0, 0}, 0.0f, WHITE);
 
   EndDrawingWrapper();
+  recorder->StartRecording();
+  recorder->SaveRecording();
   return 0;
 }
 
