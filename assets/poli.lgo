@@ -1,0 +1,42 @@
+pu
+bk 300
+lt 90
+fd 325
+rt 90
+pd
+fd 600
+rt 90
+fd 175
+rt 90
+fd 200
+rt 90
+fd 175
+lt 90
+pu
+fd 400
+lt 90
+fd 225
+lt 90
+pd
+fd 600
+rt 90
+fd 175
+rt 90
+fd 600
+rt 90
+fd 175
+pu
+rt 180
+fd 225
+lt 90
+pd
+fd 600
+bk 600
+rt 90
+fd 175
+pu
+fd 50
+lt 90
+pd
+fd 600
+pu
