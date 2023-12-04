@@ -63,6 +63,7 @@ rm:
 	rm -rf $(REPORTS_DIR)
 	make coverage_clean
 	rm -f out/logo.gif
+	rm -f out/logo.png
 
 run:
 	xrdb -merge src/xresource && ./$(EXEC)
@@ -75,5 +76,5 @@ coverage_clean:
 
 gen_report: coverage_clean test
 	./$(TEST_EXEC) --gtest_output="xml:$(REPORTS_DIR)/gtest-report.xml"
-	gcovr --filter src/ --html-details $(REPORTS_DIR)/coverage.html
+	gcovr --filter src/ --exclude src/external --html-details $(REPORTS_DIR)/coverage.html
 	make coverage_clean
