@@ -13,6 +13,7 @@
 #include <raylib.h>
 #include <raymath.h>
 #include <rlgl.h>
+#include "wrapper.h"
 
 #ifdef TEST
 #define WEAK_REF __attribute__((weak))
