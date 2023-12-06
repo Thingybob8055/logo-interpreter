@@ -53,6 +53,9 @@ class RLMovement : public Movement {
     return assembler->GetCurrentHeading();
   }
 
+  Color GetTrailColour() const { return assembler->GetTrailColour(); }
+  void SetTrailColour(int index = 0) { assembler->SetTrailColour(index); }
+
   std::vector<TrailPoint> GetTrailPoints() const { return trail_points; }
 };
 

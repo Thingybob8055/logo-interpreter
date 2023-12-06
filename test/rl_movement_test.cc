@@ -100,7 +100,7 @@ TEST_F(RLMovementTest, when_turn_left_90_expect_angle_to_be_updated) {
 
 TEST_F(
     RLMovementTest,
-    when_turn_left_called_and_angle_is_greater_than_360_expect_angle_plus_360) {
+    when_turn_left_90_called_and_angle_is_greater_than_360_expect_angle_plus_360) {
   int x_location = 50;
   int y_location = 50;
   int x_safe_zone = 50;
@@ -132,7 +132,7 @@ TEST_F(
 
 TEST_F(
     RLMovementTest,
-    when_turn_left_called_and_current_angle_greater_than_360_expect_current_angle_plus_360) {
+    when_turn_left_called_and_current_angle_less_than_0_expect_current_angle_plus_360) {
   int x_location = 50;
   int y_location = 50;
   int x_safe_zone = 50;
@@ -141,9 +141,9 @@ TEST_F(
 
   RLMovement movement(y_location, x_location, y_safe_zone, x_safe_zone,
                       &assembler);
-  assembler.SetCurrentHeading((Heading)720);
+  assembler.SetCurrentHeading((Heading)60);
   movement.TurnLeft(90);
-  EXPECT_EQ((int)movement.GetCurrentHeadingFromAssembler(), 990);
+  EXPECT_EQ((int)movement.GetCurrentHeadingFromAssembler(), 330);
 }
 
 TEST_F(RLMovementTest, when_at_bottom_of_the_screen_wrap_y_location) {

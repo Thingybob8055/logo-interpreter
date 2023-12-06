@@ -17,7 +17,8 @@ void RLMovement::MoveForward() {
   WrapLocation();
 
   if (pen_position == PEN_DOWN) {
-    trail_points.push_back({(Vector2){x_location, y_location}, RED});
+    trail_points.push_back(
+        {(Vector2){x_location, y_location}, assembler->GetTrailColour()});
   }
 }
 
@@ -30,7 +31,8 @@ void RLMovement::MoveBackward() {
   WrapLocation();
 
   if (pen_position == PEN_DOWN) {
-    trail_points.push_back({(Vector2){x_location, y_location}, RED});
+    trail_points.push_back(
+        {(Vector2){x_location, y_location}, assembler->GetTrailColour()});
   }
 }
 
@@ -64,7 +66,7 @@ void RLMovement::TurnRight(int angle) {
 void RLMovement::TurnLeft(int angle) {
   auto current_angle = (int)assembler->GetCurrentHeading();
   current_angle = current_angle - angle;
-  if (current_angle > 360) {
+  if (current_angle < 0) {
     current_angle = current_angle + 360;
   }
   assembler->SetCurrentHeading((Heading)current_angle);

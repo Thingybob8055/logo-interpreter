@@ -1,7 +1,7 @@
 #include "parser/logo_line_break_handler.h"
 
-const std::vector<std::string> list_of_commands_with_magnitude = {"fd", "bk",
-                                                                  "lt", "rt"};
+const std::vector<std::string> list_of_commands_with_magnitude = {
+    "fd", "bk", "lt", "rt", "pc"};
 
 struct {
   std::string open_bracket = "[";

@@ -29,6 +29,9 @@ void RLRenderer::Move(int command, int magnitude) {
     case 32:
       TogglePenPosition();
       break;
+    case KEY_PRINT:
+      movement->SetTrailColour(magnitude);
+      break;
     default:
       break;
   }

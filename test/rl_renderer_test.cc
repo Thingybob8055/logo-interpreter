@@ -3,6 +3,7 @@
 
 #include <gtest/gtest.h>
 
+#include "curses.h"
 #include "external/fff.h"
 #include "fff_common.h"
 #include "movement/pen_position.h"
@@ -102,4 +103,19 @@ TEST_F(RLRendererTest, test_move_function_turn_right) {
   RLRenderer renderer(&box, &movement, &recorder);
   renderer.Move(261, 2);
   EXPECT_EQ(movement.GetCurrentHeadingFromAssembler(), 272);
+}
+
+TEST_F(RLRendererTest, test_set_trail_colour_function) {
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
+  RLCharacterAssembler assembler;
+  RLMovement movement(50, 50, 350, 350, &assembler);
+  RLRenderer renderer(&box, &movement, &recorder);
+  renderer.Move(346, 1);
+  Color blue = BLUE;
+  EXPECT_EQ(movement.GetTrailColour().a, blue.a);
+  EXPECT_EQ(movement.GetTrailColour().r, blue.r);
+  EXPECT_EQ(movement.GetTrailColour().g, blue.g);
+  EXPECT_EQ(movement.GetTrailColour().b, blue.b);
 }
