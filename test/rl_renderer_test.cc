@@ -19,6 +19,12 @@ FAKE_VALUE_FUNC(bool, SaveFileDataWrapper, const char *, void *, int);
 FAKE_VALUE_FUNC(bool, IsKeyPressedWrapper, int);
 FAKE_VALUE_FUNC(Vector2, GetWindowScaleDPIWrapper);
 
+FAKE_VALUE_FUNC(int, MsfGifBeginWrapper, MsfGifState *, int, int);
+FAKE_VALUE_FUNC(int, MSfGifFrameWrapper, MsfGifState *, uint8_t *, int, int,
+                 int);
+FAKE_VALUE_FUNC(MsfGifResult, MsfGifEndWrapper, MsfGifState *);
+FAKE_VOID_FUNC(MsfGifFreeWrapper, MsfGifResult);
+
 class RLRendererTest : public ::testing::Test {
  protected:
   void SetUp() override { reset_common_fakes(); }

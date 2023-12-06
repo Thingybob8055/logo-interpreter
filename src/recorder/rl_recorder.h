@@ -3,7 +3,7 @@
 
 #include <raylib_wrapper/raylib_wrapper.h>
 
-#include "external/msf_gif.h"
+#include "raylib_wrapper/msf_gif_wrapper.h"
 #include "recorder.h"
 #include "window/rl_window.h"
 
