@@ -12,8 +12,8 @@
 
 int WEAK_REF msf_gif_beginWrapper(MsfGifState *handle, int width, int height);
 int WEAK_REF msf_gif_frameWrapper(MsfGifState *handle, uint8_t *pixelData,
-                                int centiSecondsPerFame, int maxBitDepth,
-                                int pitchInBytes);
+                                  int centiSecondsPerFame, int maxBitDepth,
+                                  int pitchInBytes);
 MsfGifResult WEAK_REF msf_gif_endWrapper(MsfGifState *handle);
 void WEAK_REF msf_gif_freeWrapper(MsfGifResult result);
 

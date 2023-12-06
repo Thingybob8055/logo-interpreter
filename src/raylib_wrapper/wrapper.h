@@ -47,4 +47,4 @@ to check if the functions are called and how many times they are called.
 #define WRAPPER_FUNCTION(RET, FUNC, ...) \
   RET FUNC##Wrapper(ARGS(__VA_ARGS__)) { return FUNC(PASS(__VA_ARGS__)); }
 
-#endif  /* WRAPPER_H_ */
+#endif /* WRAPPER_H_ */

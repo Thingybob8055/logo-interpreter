@@ -52,7 +52,7 @@ test: $(TEST_SRCS)
 	make clean
 
 format:
-	find . -type f \( -name "*.h" -o -name "*.cc" -o -name "*.c" \) | xargs clang-format -style=Google -i
+	find . -type f \( -name "*.h" -o -name "*.cc" -o -name "*.c" \) -not -path "./src/external/*" | xargs clang-format -style=Google -i
 
 clean:
 	rm -f *.o

@@ -2,12 +2,14 @@
 
 ## How to build & run
 
-To compile a binary to run you will need to use make. This will run all the GCC commands to compile and link the project.
+To compile a binary to run you will need to use make. This will run all the G++ commands to compile and link the project.
 
 ```shell
 make
-make run
+./bin/main <filename> <pd/rl>
 ```
+- Replace `<filename>` with the logo file, such as `./assets/poli.lgo`
+- If `pd` is passed in, the binary will run the first iteration UI (PDCurses). If `rl` it runs the second iteration UI (Raylib).
 
 ## Running Test
 
