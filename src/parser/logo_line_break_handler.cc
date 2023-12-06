@@ -3,52 +3,79 @@
 const std::vector<std::string> list_of_commands_with_magnitude = {"fd", "bk",
                                                                   "lt", "rt"};
 
-std::vector<std::string> line_to_vector(std::string &line) {
-  std::string s;
+struct {
+  std::string open_bracket = "[";
+  std::string close_bracket = "]";
+  std::string repeat_word = "repeat";
+} r;
+
+bool is_number(const std::string &s) {
+  std::string::const_iterator it = s.begin();
+  while (it != s.end() && std::isdigit(*it)) ++it;
+  return !s.empty() && it == s.end();
+}
+
+void add_to_buffer(std::stringstream &buf, std::string &s) {
+  if (s == r.close_bracket)
+    buf << s;
+  else
+    buf << s << " ";
+}
+
+void reset_values(std::stringstream &buf, int &lvalue, int &rvalue,
+                  bool &repeat) {
+  lvalue = 0;
+  rvalue = 0;
+  buf.clear();
+  repeat = false;
+}
+
+void get_nested_repeat(std::string &line, std::string &s,
+                       std::vector<std::string> &split_line,
+                       std::stringstream &buf) {
   std::stringstream ss(line);
-  std::vector<std::string> split_line;
   int lvalue = 0, rvalue = 0;
   bool repeat = false;
-  std::stringstream buf;
   while (std::getline(ss, s, ' ')) {
-    if (s == "repeat") {
+    if (s == r.repeat_word) {
       repeat = true;
-      buf << s << " ";
+      add_to_buffer(buf, s);
       continue;
     }
     if (repeat) {
-      if (s == "2") {
-        buf << s << " ";
+      if (is_number(s)) {
+        add_to_buffer(buf, s);
         continue;
-      } else if (s == "[") {
+      } else if (s == r.open_bracket) {
         lvalue++;
-        buf << s << " ";
-      } else if (s == "]") {
+        add_to_buffer(buf, s);
+      } else if (s == r.close_bracket) {
         rvalue++;
-        buf << s;
-      }
-
-      else if (lvalue == rvalue) {
-        split_line.push_back(buf.str());
-        lvalue = 0;
-        rvalue = 0;
-        buf.clear();
-        repeat = false;
-        if (s != " ") {
-          split_line.push_back(s);
+        add_to_buffer(buf, s);
+        if (lvalue == rvalue) {
+          split_line.push_back(buf.str());
+          reset_values(buf, lvalue, rvalue, repeat);
         }
       } else {
-        buf << s << " ";
+        add_to_buffer(buf, s);
       }
-
     } else {
-      if (s == "]" || s == "[") {
+      if (s == r.close_bracket || s == r.open_bracket) {
         std::cerr << "Fatal error while parsing." << std::endl;
         exit(1);
       }
       split_line.push_back(s);
     }
   }
+}
+
+std::vector<std::string> line_to_vector(std::string &line) {
+  std::string s;
+  std::vector<std::string> split_line;
+  std::stringstream buf;
+
+  get_nested_repeat(line, s, split_line, buf);
+
   return split_line;
 }
 

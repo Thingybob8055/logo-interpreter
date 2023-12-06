@@ -49,7 +49,16 @@ int main(int argc, char **argv) {
 
   auto out = repeatHandler.Handle(ss);
   auto fin = lbHandler.Handle(out);
-  auto parser = Parser(fin.str());
+
+TODO:  // Implement a more sophisticated way to call these classes depending on
+       // the amount of repeats.
+  auto out1 = repeatHandler.Handle(fin);
+  auto fin1 = lbHandler.Handle(out1);
+
+  auto out2 = repeatHandler.Handle(fin1);
+  auto fin2 = lbHandler.Handle(out2);
+
+  auto parser = Parser(fin2.str());
 
   std::unique_ptr<UIFactory> ui_factory;
   if (strcmp(argv[2], "pd") == 0) {
