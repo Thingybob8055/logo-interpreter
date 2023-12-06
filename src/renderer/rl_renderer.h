@@ -4,8 +4,8 @@
 #include "box/rl_box.h"
 #include "movement/rl_movement.h"
 #include "raylib_wrapper/raylib_wrapper.h"
-#include "renderer/renderer.h"
 #include "recorder/rl_recorder.h"
+#include "renderer/renderer.h"
 
 class RLRenderer : public Renderer {
  public:

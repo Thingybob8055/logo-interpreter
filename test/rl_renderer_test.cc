@@ -8,7 +8,6 @@
 #include "movement/pen_position.h"
 #include "recorder/rl_recorder.h"
 
-
 FAKE_VOID_FUNC(BeginDrawingWrapper);
 FAKE_VOID_FUNC(EndDrawingWrapper);
 FAKE_VOID_FUNC(DrawTextureProWrapper, Texture2D, Rectangle, Rectangle, Vector2,
@@ -26,15 +25,17 @@ class RLRendererTest : public ::testing::Test {
 };
 
 TEST_F(RLRendererTest, when_constructed_expect_rl_renderer_to_be_created) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLRenderer renderer(&box, nullptr, &recorder);
   EXPECT_NE(renderer.GetBox(), nullptr);
 }
 
 TEST_F(RLRendererTest, when_render_expect_used_raylib_wrappers_to_be_called) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLCharacterAssembler assembler;
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement, &recorder);
@@ -52,8 +53,9 @@ TEST_F(RLRendererTest, when_render_expect_used_raylib_wrappers_to_be_called) {
 }
 
 TEST_F(RLRendererTest, test_move_function_move_down) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLCharacterAssembler assembler;
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement, &recorder);
@@ -63,8 +65,9 @@ TEST_F(RLRendererTest, test_move_function_move_down) {
 }
 
 TEST_F(RLRendererTest, test_move_function_move_up) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLCharacterAssembler assembler;
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement, &recorder);
@@ -74,8 +77,9 @@ TEST_F(RLRendererTest, test_move_function_move_up) {
 }
 
 TEST_F(RLRendererTest, test_move_function_pen_position) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLMovement movement(50, 50, 350, 350, nullptr);
   RLRenderer renderer(&box, &movement, &recorder);
   renderer.Move(32, 2);
@@ -83,8 +87,9 @@ TEST_F(RLRendererTest, test_move_function_pen_position) {
 }
 
 TEST_F(RLRendererTest, test_move_function_turn_left) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLCharacterAssembler assembler;
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement, &recorder);
@@ -93,8 +98,9 @@ TEST_F(RLRendererTest, test_move_function_turn_left) {
 }
 
 TEST_F(RLRendererTest, test_move_function_turn_right) {
-  RLBox box;
-  RLRecorder recorder;
+  RLWindow window;
+  RLBox box = RLBox(&window);
+  RLRecorder recorder = RLRecorder(&window);
   RLCharacterAssembler assembler;
   RLMovement movement(50, 50, 350, 350, &assembler);
   RLRenderer renderer(&box, &movement, &recorder);

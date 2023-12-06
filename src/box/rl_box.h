@@ -10,18 +10,21 @@ constexpr int border_pixel_width = 5;
 class RLBox : public Box {
  private:
   void CreateBox() const;
-  RenderTexture2D BoxScreen =
-      LoadRenderTextureWrapper(screen_width, screen_height);
-  int x_safe_zone = border_width;
-  int y_safe_zone = border_height;
+  RenderTexture2D box_screen;
+  int x_safe_zone;
+  int y_safe_zone;
+  RLWindow* window;
+
+  void DrawTitle() const;
+  void DrawBorder() const;
 
  public:
-  explicit RLBox();
+  RLBox(RLWindow* window);
   ~RLBox() override = default;
 
   int GetXSafeZone() const override { return x_safe_zone; }
   int GetYSafeZone() const override { return y_safe_zone; }
-  RenderTexture2D GetBoxScreen() const { return BoxScreen; }
+  RenderTexture2D GetBoxScreen() const { return box_screen; }
 };
 
 #endif /* RL_BOX_H_ */

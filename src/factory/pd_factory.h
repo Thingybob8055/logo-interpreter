@@ -10,11 +10,11 @@
 #include "factory/ui_factory.h"
 #include "movement/movement.h"
 #include "movement/pd_movement.h"
+#include "recorder/noop_recorder.h"
 #include "renderer/pd_renderer.h"
 #include "renderer/renderer.h"
 #include "window/pd_window.h"
 #include "window/window.h"
-#include "recorder/noop_recorder.h"
 
 class PDFactory : public UIFactory {
  public:
@@ -25,12 +25,12 @@ class PDFactory : public UIFactory {
     return std::make_unique<PDBox>(static_cast<PDWindow*>(window));
   }
 
-  std::unique_ptr<Recorder> createRecorder() override {
+  std::unique_ptr<Recorder> createRecorder(Window* window) override {
     return std::make_unique<NoopRecorder>();
   }
 
-  std::unique_ptr<Renderer> createRenderer(Box* box,
-                                           Movement* movement, Recorder *recorder = nullptr) override {
+  std::unique_ptr<Renderer> createRenderer(
+      Box* box, Movement* movement, Recorder* recorder = nullptr) override {
     return std::make_unique<PDRenderer>(static_cast<PDBox*>(box),
                                         static_cast<PDMovement*>(movement));
   }

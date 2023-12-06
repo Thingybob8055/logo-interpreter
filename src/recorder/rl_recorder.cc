@@ -2,7 +2,7 @@
 
 constexpr int gif_record_framerate = 10;
 
-RLRecorder::RLRecorder() {}
+RLRecorder::RLRecorder(RLWindow* window) : window(window) {}
 
 void RLRecorder::InitRecording() {
   if (!gifRecording) {
@@ -10,8 +10,9 @@ void RLRecorder::InitRecording() {
     gifFrameCounter = 0;
     Vector2 scale = GetWindowScaleDPIWrapper();
 
-    msf_gif_begin(&gifState, (int)((float)screen_width*scale.x),
-                  (int)((float)screen_height*scale.y));
+    msf_gif_begin(&gifState,
+                  (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
+                  (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
   }
 }
 
@@ -22,8 +23,10 @@ void RLRecorder::StartRecording() {
     if ((gifFrameCounter % gif_record_framerate) == 0) {
       Vector2 scale = GetWindowScaleDPIWrapper();
       unsigned char* screenData = rlReadScreenPixelsWrapper(
-          (int)((float)screen_width*scale.x), (int)((float)screen_height*scale.y));
-      msf_gif_frame(&gifState, screenData, 10, 16, screen_width*scale.x * 4);
+          (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
+          (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
+      msf_gif_frame(&gifState, screenData, 10, 16,
+                    window->GetXMaxScreenCoordinate() * scale.x * 4);
 
       RL_FREE(screenData);
     }
@@ -40,7 +43,6 @@ void RLRecorder::SaveRecording() {
       SaveFileDataWrapper("./out/logo.gif", result.data,
                           (unsigned int)result.dataSize);
       msf_gif_free(result);
-
     }
   }
 }

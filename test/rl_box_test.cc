@@ -12,7 +12,7 @@ class RLBoxTest : public ::testing::Test {
 
 TEST_F(RLBoxTest, CreateBox_from_constructor) {
   RLWindow window;
-  RLBox box;
+  RLBox box = RLBox(&window);
   ASSERT_EQ(ClearBackgroundWrapper_fake.call_count, 1);
   ASSERT_EQ(DrawRectangleLinesExWrapper_fake.call_count, 1);
   ASSERT_EQ(DrawTextWrapper_fake.call_count, 1);
@@ -23,12 +23,12 @@ TEST_F(RLBoxTest, CreateBox_from_constructor) {
 
 TEST_F(RLBoxTest, GetXSafeZone) {
   RLWindow window;
-  RLBox box;
+  RLBox box = RLBox(&window);
   ASSERT_EQ(box.GetXSafeZone(), 950);
 }
 
 TEST_F(RLBoxTest, GetYSafeZone) {
   RLWindow window;
-  RLBox box;
+  RLBox box = RLBox(&window);
   ASSERT_EQ(box.GetYSafeZone(), 650);
 }

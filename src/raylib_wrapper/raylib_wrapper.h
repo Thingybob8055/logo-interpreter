@@ -54,7 +54,7 @@ float WEAK_REF sinfWrapper(float value);
 
 float WEAK_REF cosfWrapper(float value);
 
-unsigned char* rlReadScreenPixelsWrapper(int width, int height);
+unsigned char *rlReadScreenPixelsWrapper(int width, int height);
 
 bool SaveFileDataWrapper(const char *fileName, void *data, int dataSize);
 

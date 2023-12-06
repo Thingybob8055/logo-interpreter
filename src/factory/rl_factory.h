@@ -21,17 +21,18 @@ class RLFactory : public UIFactory {
     return std::make_unique<RLWindow>();
   }
   std::unique_ptr<Box> createBox(Window* window) override {
-    return std::make_unique<RLBox>();
+    return std::make_unique<RLBox>(static_cast<RLWindow*>(window));
   }
 
-  std::unique_ptr<Recorder> createRecorder() override {
-    return std::make_unique<RLRecorder>();
+  std::unique_ptr<Recorder> createRecorder(Window* window) override {
+    return std::make_unique<RLRecorder>(static_cast<RLWindow*>(window));
   }
 
-  std::unique_ptr<Renderer> createRenderer(Box* box,
-                                           Movement* movement, Recorder *recorder) override {
+  std::unique_ptr<Renderer> createRenderer(Box* box, Movement* movement,
+                                           Recorder* recorder) override {
     return std::make_unique<RLRenderer>(static_cast<RLBox*>(box),
-                                        static_cast<RLMovement*>(movement), static_cast<RLRecorder*>(recorder));
+                                        static_cast<RLMovement*>(movement),
+                                        static_cast<RLRecorder*>(recorder));
   }
 
   std::unique_ptr<CharacterAssembler> createCharacterAssembler() override {

@@ -2,21 +2,25 @@
 #define RL_RECORDER_H_
 
 #include <raylib_wrapper/raylib_wrapper.h>
-#include "window/rl_window.h"
-#include "recorder.h"
+
 #include "external/msf_gif.h"
+#include "recorder.h"
+#include "window/rl_window.h"
 
 class RLRecorder : public Recorder {
+ private:
+  RLWindow* window;
+
  public:
-  RLRecorder();
+  RLRecorder(RLWindow* window);
 
   void InitRecording() override;
   void StartRecording() override;
   void SaveRecording() override;
 
  private:
-  int gifFrameCounter = 0;  
-  bool gifRecording = false; 
+  int gifFrameCounter = 0;
+  bool gifRecording = false;
   MsfGifState gifState = {0};
 };
 

@@ -20,8 +20,12 @@ class PDWindow : public Window {
   bool ShouldExit() override;
 
   WINDOW *GetWindow();
-  int GetYMaxScreenCoordinate() const { return y_max_screen_coordinate; }
-  int GetXMaxScreenCoordinate() const { return x_max_screen_coordinate; }
+  int GetYMaxScreenCoordinate() const override {
+    return y_max_screen_coordinate;
+  }
+  int GetXMaxScreenCoordinate() const override {
+    return x_max_screen_coordinate;
+  }
 };
 
 void InitXcurses();

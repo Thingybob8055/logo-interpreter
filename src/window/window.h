@@ -4,6 +4,8 @@
 class Window {
  public:
   virtual bool ShouldExit() = 0;
+  virtual int GetYMaxScreenCoordinate() const = 0;
+  virtual int GetXMaxScreenCoordinate() const = 0;
   virtual ~Window() = default;
 };
 
