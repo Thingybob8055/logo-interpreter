@@ -10,9 +10,9 @@ void RLRecorder::InitRecording() {
     gifFrameCounter = 0;
     Vector2 scale = GetWindowScaleDPIWrapper();
 
-    MsfGifBeginWrapper(&gifState,
-                  (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
-                  (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
+    MsfGifBeginWrapper(
+        &gifState, (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
+        (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
   }
 }
 
@@ -26,7 +26,7 @@ void RLRecorder::StartRecording() {
           (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
           (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
       MSfGifFrameWrapper(&gifState, screenData, 10, 16,
-                    window->GetXMaxScreenCoordinate() * scale.x * 4);
+                         window->GetXMaxScreenCoordinate() * scale.x * 4);
 
       RL_FREE(screenData);
     }
@@ -37,7 +37,7 @@ void RLRecorder::SaveRecording() {
   if (IsKeyPressedWrapper(KEY_ENTER)) {
     if (gifRecording) {
       gifRecording = false;
-
+      ;
       MsfGifResult result = MsfGifEndWrapper(&gifState);
 
       SaveFileDataWrapper("./out/logo.gif", result.data,
