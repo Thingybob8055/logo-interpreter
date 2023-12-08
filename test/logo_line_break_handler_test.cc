@@ -24,9 +24,7 @@ TEST(
   EXPECT_EQ(out.str(), expected);
 }
 
-TEST(
-    LogoLineBreakHandlerTest,
-    when_given_repeat_should_not_break_line) {
+TEST(LogoLineBreakHandlerTest, when_given_repeat_should_not_break_line) {
   std::stringstream ss;
   ss << "pu repeat 4 [ fd 50 rt 90 ] pd";
   auto handler = LogoLineBreakHandler();

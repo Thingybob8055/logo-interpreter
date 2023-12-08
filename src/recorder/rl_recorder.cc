@@ -43,7 +43,7 @@ void RLRecorder::SaveRecording() {
   if (IsKeyPressedWrapper(KEY_ENTER)) {
     if (gifRecording) {
       gifRecording = false;
-    
+
       MsfGifResult result = msf_gif_endWrapper(&gifState);
 
       SaveFileDataWrapper("./out/logo.gif", result.data,

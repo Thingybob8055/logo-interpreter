@@ -1,1 +1,1 @@
-repeat 3 [ rt 10 repeat 2 [ fd 100 rt 120 ] ]
+repeat 50 [ rt 10 repeat 2 [ fd 200 rt 120 ] ]

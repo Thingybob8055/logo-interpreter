@@ -8,6 +8,20 @@ bool GetExitCommand(int command) {
   }
 }
 
+void ParseLoop(std::stringstream &ss) {
+  auto repeatHandler = LogoRepeatHandler();
+  auto lbHandler = LogoLineBreakHandler();
+  int max_repeat = 10;
+  for (size_t i = 0; i < max_repeat; i++) {
+    auto out = repeatHandler.Handle(ss);
+    if (out.str().compare(ss.str()) == 0) {
+      std::cout << "No more repeats" << std::endl;
+      break;
+    }
+    ss = lbHandler.Handle(out);
+  }
+}
+
 void RunLoop(Window *window, Renderer *graphics, Parser *parser) {
   while (parser->HasNext()) {
     parser->Next();
@@ -43,22 +57,8 @@ int main(int argc, char **argv) {
   auto fileImporter = FileImporter(argv[1]);
   std::stringstream ss;
   ss << fileImporter.GetContents();
-
-  auto repeatHandler = LogoRepeatHandler();
-  auto lbHandler = LogoLineBreakHandler();
-
-  auto out = repeatHandler.Handle(ss);
-  auto fin = lbHandler.Handle(out);
-
-TODO:  // Implement a more sophisticated way to call these classes depending on
-       // the amount of repeats.
-  auto out1 = repeatHandler.Handle(fin);
-  auto fin1 = lbHandler.Handle(out1);
-
-  auto out2 = repeatHandler.Handle(fin1);
-  auto fin2 = lbHandler.Handle(out2);
-
-  auto parser = Parser(fin2.str());
+  ParseLoop(ss);
+  auto parser = Parser(ss.str());
 
   std::unique_ptr<UIFactory> ui_factory;
   if (strcmp(argv[2], "pd") == 0) {

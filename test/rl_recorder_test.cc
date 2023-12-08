@@ -97,7 +97,6 @@ TEST_F(RLRecorderTest, when_SaveScreenshot_function_to_be_tested) {
 
   RLWindow window;
   RLRecorder recorder(&window);
- 
 
   IsKeyPressedWrapper_fake.custom_fake = IsKeyPressedWrapper_custom_value_fake;
 
