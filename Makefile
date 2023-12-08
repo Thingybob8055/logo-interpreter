@@ -63,7 +63,7 @@ rm:
 	rm -rf $(REPORTS_DIR)
 	make coverage_clean
 	rm -f out/logo.gif
-	rm -f out/logo.png
+	rm -f logo.png
 
 run:
 	xrdb -merge src/xresource && ./$(EXEC)

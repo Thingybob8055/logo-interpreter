@@ -64,6 +64,7 @@ int RLRenderer::Render() {
   EndDrawingWrapper();
   recorder->StartRecording();
   recorder->SaveRecording();
+  recorder->SaveScreenshot();
   return 0;
 }
 

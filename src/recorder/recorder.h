@@ -6,6 +6,7 @@ class Recorder {
   virtual void InitRecording() = 0;
   virtual void StartRecording() = 0;
   virtual void SaveRecording() = 0;
+  virtual void SaveScreenshot() = 0;
   virtual ~Recorder() = default;
 };
 

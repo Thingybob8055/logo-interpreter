@@ -5,4 +5,5 @@ class NoopRecorder : public Recorder {
   void InitRecording() override { return; }
   void StartRecording() override { return; }
   void SaveRecording() override { return; }
+  void SaveScreenshot() override { return; }
 };

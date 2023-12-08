@@ -33,19 +33,22 @@ void RLRecorder::StartRecording() {
   }
 }
 
+void RLRecorder::SaveScreenshot() {
+  if (IsKeyPressedWrapper(KEY_BACKSPACE)) {
+    TakeScreenshotWrapper("./assets/logo.png");
+  }
+}
+
 void RLRecorder::SaveRecording() {
   if (IsKeyPressedWrapper(KEY_ENTER)) {
     if (gifRecording) {
       gifRecording = false;
-      ;
+    
       MsfGifResult result = msf_gif_endWrapper(&gifState);
 
       SaveFileDataWrapper("./out/logo.gif", result.data,
                           (unsigned int)result.dataSize);
       msf_gif_freeWrapper(result);
     }
-  }
-  if(IsKeyPressedWrapper(KEY_BACKSPACE)) {
-    TakeScreenshotWrapper("./out/logo.png");
   }
 }

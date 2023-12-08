@@ -17,6 +17,7 @@ class RLRecorder : public Recorder {
   void InitRecording() override;
   void StartRecording() override;
   void SaveRecording() override;
+  void SaveScreenshot() override;
 
  private:
   int gifFrameCounter = 0;
