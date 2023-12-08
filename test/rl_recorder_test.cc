@@ -16,6 +16,7 @@ FAKE_VALUE_FUNC(int, msf_gif_frameWrapper, MsfGifState *, uint8_t *, int, int,
                 int);
 FAKE_VALUE_FUNC(MsfGifResult, msf_gif_endWrapper, MsfGifState *);
 FAKE_VOID_FUNC(msf_gif_freeWrapper, MsfGifResult);
+FAKE_VOID_FUNC(TakeScreenshotWrapper, const char *);
 
 class RLRecorderTest : public ::testing::Test {
  protected:
@@ -63,6 +64,7 @@ TEST_F(RLRecorderTest, when_SaveRecording_function_to_be_tested) {
   RESET_FAKE(SaveFileDataWrapper);
   RESET_FAKE(msf_gif_freeWrapper);
   RESET_FAKE(msf_gif_freeWrapper);
+  RESET_FAKE(TakeScreenshotWrapper);
 
   RLWindow window;
   RLRecorder recorder(&window);
@@ -78,8 +80,9 @@ TEST_F(RLRecorderTest, when_SaveRecording_function_to_be_tested) {
 
   EXPECT_EQ(GetWindowScaleDPIWrapper_fake.call_count, 2);
   EXPECT_EQ(rlReadScreenPixelsWrapper_fake.call_count, 1);
-  EXPECT_EQ(IsKeyPressedWrapper_fake.call_count, 1);
+  EXPECT_EQ(IsKeyPressedWrapper_fake.call_count, 2);
   EXPECT_EQ(msf_gif_endWrapper_fake.call_count, 1);
   EXPECT_EQ(SaveFileDataWrapper_fake.call_count, 1);
   EXPECT_EQ(msf_gif_endWrapper_fake.call_count, 1);
+  EXPECT_EQ(TakeScreenshotWrapper_fake.call_count, 1);
 }

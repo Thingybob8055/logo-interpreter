@@ -64,4 +64,6 @@ bool IsKeyPressedWrapper(int key);
 
 Vector2 GetWindowScaleDPIWrapper();
 
+void TakeScreenshotWrapper(const char *fileName);
+
 #endif /* RAYLIB_WRAPPER_H_ */

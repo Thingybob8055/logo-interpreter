@@ -45,4 +45,7 @@ void RLRecorder::SaveRecording() {
       msf_gif_freeWrapper(result);
     }
   }
+  if(IsKeyPressedWrapper(KEY_BACKSPACE)) {
+    TakeScreenshotWrapper("./out/logo.png");
+  }
 }

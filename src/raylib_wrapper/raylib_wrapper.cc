@@ -47,3 +47,5 @@ WRAPPER_FUNCTION(bool, SaveFileData, const char *, fileName, void *, data, int,
 WRAPPER_FUNCTION(bool, IsKeyPressed, int, key)
 
 WRAPPER_FUNCTION(Vector2, GetWindowScaleDPI)
+
+WRAPPER_FUNCTION(void, TakeScreenshot, const char *, fileName)
