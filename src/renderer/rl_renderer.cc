@@ -69,7 +69,7 @@ int RLRenderer::Render() {
 }
 
 void RLRenderer::InitialiseTextures() {
-  turtle = LoadTextureWrapper("resouces/turtle.png");
+  turtle = LoadTextureWrapper("resources/turtle.png");
   float scale_factor = 0.04f;
   turtle_texture_width = (float)turtle.width * scale_factor;
   turtle_texture_height = (float)turtle.height * scale_factor;
