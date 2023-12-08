@@ -80,9 +80,29 @@ TEST_F(RLRecorderTest, when_SaveRecording_function_to_be_tested) {
 
   EXPECT_EQ(GetWindowScaleDPIWrapper_fake.call_count, 2);
   EXPECT_EQ(rlReadScreenPixelsWrapper_fake.call_count, 1);
-  EXPECT_EQ(IsKeyPressedWrapper_fake.call_count, 2);
+  EXPECT_EQ(IsKeyPressedWrapper_fake.call_count, 1);
   EXPECT_EQ(msf_gif_endWrapper_fake.call_count, 1);
   EXPECT_EQ(SaveFileDataWrapper_fake.call_count, 1);
   EXPECT_EQ(msf_gif_endWrapper_fake.call_count, 1);
+}
+
+TEST_F(RLRecorderTest, when_SaveScreenshot_function_to_be_tested) {
+  RESET_FAKE(GetWindowScaleDPIWrapper);
+  RESET_FAKE(rlReadScreenPixelsWrapper);
+  RESET_FAKE(IsKeyPressedWrapper);
+  RESET_FAKE(SaveFileDataWrapper);
+  RESET_FAKE(msf_gif_freeWrapper);
+  RESET_FAKE(msf_gif_freeWrapper);
+  RESET_FAKE(TakeScreenshotWrapper);
+
+  RLWindow window;
+  RLRecorder recorder(&window);
+ 
+
+  IsKeyPressedWrapper_fake.custom_fake = IsKeyPressedWrapper_custom_value_fake;
+
+  recorder.SaveScreenshot();
+
+  EXPECT_EQ(IsKeyPressedWrapper_fake.call_count, 1);
   EXPECT_EQ(TakeScreenshotWrapper_fake.call_count, 1);
 }
