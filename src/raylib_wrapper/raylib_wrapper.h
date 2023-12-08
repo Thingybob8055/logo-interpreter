@@ -66,4 +66,8 @@ Vector2 GetWindowScaleDPIWrapper();
 
 void TakeScreenshotWrapper(const char *fileName);
 
+void SetWindowIconWrapper(Image image);
+
+Image LoadImageWrapper(const char *fileName);
+
 #endif /* RAYLIB_WRAPPER_H_ */

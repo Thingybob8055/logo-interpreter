@@ -49,3 +49,7 @@ WRAPPER_FUNCTION(bool, IsKeyPressed, int, key)
 WRAPPER_FUNCTION(Vector2, GetWindowScaleDPI)
 
 WRAPPER_FUNCTION(void, TakeScreenshot, const char *, fileName)
+
+WRAPPER_FUNCTION(void, SetWindowIcon, Image, image)
+
+WRAPPER_FUNCTION(Image, LoadImage, const char *, fileName)
