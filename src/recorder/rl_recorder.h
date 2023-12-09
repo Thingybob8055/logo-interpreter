@@ -20,9 +20,9 @@ class RLRecorder : public Recorder {
   void SaveScreenshot() override;
 
  private:
-  int gifFrameCounter = 0;
-  bool gifRecording = false;
-  MsfGifState gifState = {0};
+  int gif_frame_counter = 0;
+  bool gif_recording = false;
+  MsfGifState gif_state = {0};
 };
 
 #endif /* RL_RECORDER_H_ */

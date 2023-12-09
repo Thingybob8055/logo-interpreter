@@ -5,30 +5,30 @@ constexpr int gif_record_framerate = 10;
 RLRecorder::RLRecorder(RLWindow* window) : window(window) {}
 
 void RLRecorder::InitRecording() {
-  if (!gifRecording) {
-    gifRecording = true;
-    gifFrameCounter = 0;
+  if (!gif_recording) {
+    gif_recording = true;
+    gif_frame_counter = 0;
     Vector2 scale = GetWindowScaleDPIWrapper();
 
     msf_gif_beginWrapper(
-        &gifState, (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
+        &gif_state, (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
         (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
   }
 }
 
 void RLRecorder::StartRecording() {
-  if (gifRecording) {
-    gifFrameCounter++;
+  if (gif_recording) {
+    gif_frame_counter++;
 
-    if ((gifFrameCounter % gif_record_framerate) == 0) {
+    if ((gif_frame_counter % gif_record_framerate) == 0) {
       Vector2 scale = GetWindowScaleDPIWrapper();
-      unsigned char* screenData = rlReadScreenPixelsWrapper(
+      unsigned char* screen_data = rlReadScreenPixelsWrapper(
           (int)((float)window->GetXMaxScreenCoordinate() * scale.x),
           (int)((float)window->GetYMaxScreenCoordinate() * scale.y));
-      msf_gif_frameWrapper(&gifState, screenData, 10, 16,
+      msf_gif_frameWrapper(&gif_state, screen_data, 10, 16,
                            window->GetXMaxScreenCoordinate() * scale.x * 4);
 
-      RL_FREE(screenData);
+      RL_FREE(screen_data);
     }
   }
 }
@@ -41,10 +41,10 @@ void RLRecorder::SaveScreenshot() {
 
 void RLRecorder::SaveRecording() {
   if (IsKeyPressedWrapper(KEY_ENTER)) {
-    if (gifRecording) {
-      gifRecording = false;
+    if (gif_recording) {
+      gif_recording = false;
 
-      MsfGifResult result = msf_gif_endWrapper(&gifState);
+      MsfGifResult result = msf_gif_endWrapper(&gif_state);
 
       SaveFileDataWrapper("./out/logo.gif", result.data,
                           (unsigned int)result.dataSize);
