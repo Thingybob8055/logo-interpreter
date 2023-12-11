@@ -72,8 +72,8 @@ int main(int argc, char **argv) {
   auto window = ui_factory->createWindow();
   auto box = ui_factory->createBox(window.get());
 
-  int start_y_coordinate = box->GetYSafeZone() / 2;
-  int start_x_coordinate = box->GetXSafeZone() / 2;
+  float start_y_coordinate = (float)box->GetYSafeZone() / 2;
+  float start_x_coordinate = (float)box->GetXSafeZone() / 2;
 
   auto assembler = ui_factory->createCharacterAssembler();
   auto recorder = ui_factory->createRecorder(window.get());

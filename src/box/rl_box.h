@@ -19,7 +19,7 @@ class RLBox : public Box {
   void DrawBorder() const;
 
  public:
-  RLBox(RLWindow* window);
+  explicit RLBox(RLWindow* window);
   ~RLBox() override = default;
 
   int GetXSafeZone() const override { return x_safe_zone; }

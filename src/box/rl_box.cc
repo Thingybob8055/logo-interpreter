@@ -3,9 +3,10 @@
 void DrawTitle();
 void DrawBorder();
 
-RLBox::RLBox(RLWindow* window) : window(window) {
-  x_safe_zone = window->GetBorderWidth();
-  y_safe_zone = window->GetBorderHeight();
+RLBox::RLBox(RLWindow* window)
+    : x_safe_zone(window->GetBorderWidth()),
+      y_safe_zone(window->GetBorderHeight()),
+      window(window) {
   box_screen = LoadRenderTextureWrapper(window->GetXMaxScreenCoordinate(),
                                         window->GetYMaxScreenCoordinate());
   this->CreateBox();

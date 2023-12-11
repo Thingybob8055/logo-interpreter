@@ -7,7 +7,7 @@
 
 class FileImporter {
  private:
-  std::ifstream *file = nullptr;
+  std::unique_ptr<std::ifstream> file = nullptr;
   std::string contents;
 
  public:
